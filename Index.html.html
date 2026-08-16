@@ -1,0 +1,1773 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autodidact Infinite Archive Core | V7.0 Ultra Expanded</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Vazirmatn & Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght=300;400;500;700;800&family=Cairo:wght=400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --dominant-violet: #7C3AED;
+            --dominant-violet-glow: rgba(124, 58, 237, 0.4);
+            --gold-neon: #F59E0B;
+            --gold-neon-glow: rgba(245, 158, 11, 0.35);
+            --charcoal-bg: #121212;
+            --card-glass: rgba(18, 18, 18, 0.75);
+            --margin-gray: #94A3B8;
+            --emerald-accent: #10B981;
+            --cyan-accent: #06B6D4;
+        }
+
+        body {
+            font-family: 'Vazirmatn', 'Cairo', sans-serif;
+            background-color: var(--charcoal-bg) !important;
+            color: #FFFFFF;
+            background-image: radial-gradient(circle at 50% 0%, rgba(124, 58, 237, 0.08) 0%, rgba(18, 18, 18, 0) 70%);
+            background-attachment: fixed;
+        }
+
+        /* Cyberpunk Glass-morphic Cards styling */
+        .cyber-card {
+            background: rgba(124, 58, 237, 0.03);
+            border: 1px solid rgba(124, 58, 237, 0.18);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cyber-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .cyber-card:hover {
+            border-color: var(--dominant-violet);
+            box-shadow: 0 0 30px rgba(124, 58, 237, 0.25);
+            transform: translateY(-3px);
+        }
+
+        .cyber-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Tables design rules */
+        .academic-table th {
+            background-color: rgba(124, 58, 237, 0.15);
+            color: #FFFFFF;
+            font-weight: 700;
+            border-bottom: 2px solid var(--dominant-violet);
+        }
+
+        .academic-table tr {
+            border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+            transition: background-color 0.2s ease;
+        }
+
+        .academic-table tr:hover {
+            background-color: rgba(124, 58, 237, 0.04);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0F0F11;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--dominant-violet);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-neon);
+        }
+
+        /* Custom Badges */
+        .neon-badge-violet {
+            background: rgba(124, 58, 237, 0.12);
+            border: 1px solid rgba(124, 58, 237, 0.4);
+            color: #C084FC;
+        }
+
+        .neon-badge-gold {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            color: #FBBF24;
+        }
+
+        .neon-badge-emerald {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #34D399;
+        }
+
+        .neon-badge-cyan {
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.4);
+            color: #22D3EE;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-purple-900 selection:text-white pb-12">
+
+    <!-- HEADER -->
+    <header class="bg-[#121212]/90 border-b border-purple-900/40 sticky top-0 z-50 backdrop-blur-md transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col lg:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-900 to-indigo-950 border border-purple-500/50 flex items-center justify-center text-amber-400 text-2xl shadow-lg shadow-purple-950/50">
+                    🌌
+                </div>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-black text-white tracking-wide font-cairo">
+                        AUTODIDACT <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-violet-500 to-amber-400">INFINITE ARCHIVE CORE</span>
+                    </h1>
+                    <p class="text-[10px] text-gray-400 uppercase tracking-widest font-mono">
+                        UX Academic Content Protocol V7.0 Ultra Expanded • 25 Categorical Disciplines • 7 Universal Knowledge Phases
+                    </p>
+                </div>
+            </div>
+
+            <!-- Enhanced Navigation -->
+            <nav class="flex flex-wrap justify-center gap-2">
+                <button onclick="switchTab('directory')" id="btn-directory" class="tab-btn px-4 py-2 rounded-lg font-bold text-xs transition-all duration-200 bg-purple-900/60 border border-purple-500 text-white shadow-lg shadow-purple-900/30">
+                    📂 أرشيف دليل المصادر الشامل (25 فئة)
+                </button>
+                <button onclick="switchTab('methodology')" id="btn-methodology" class="tab-btn px-4 py-2 rounded-lg font-bold text-xs transition-all duration-200 border border-transparent text-gray-400 hover:text-white hover:bg-purple-950/20">
+                    🧠 المنهجية وهرم الأدلة والتوثيق
+                </button>
+                <button onclick="switchTab('glossary')" id="btn-glossary" class="tab-btn px-4 py-2 rounded-lg font-bold text-xs transition-all duration-200 border border-transparent text-gray-400 hover:text-white hover:bg-purple-950/20">
+                    📖 مسرد المصطلحات المعرفي
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 mt-6">
+        
+        <!-- Hero Section -->
+        <section class="mb-8 rounded-2xl bg-gradient-to-b from-purple-950/40 via-zinc-900/90 to-zinc-950/90 p-6 border border-purple-900/30 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-80 h-80 bg-purple-600/5 rounded-full filter blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 w-80 h-80 bg-amber-500/5 rounded-full filter blur-3xl pointer-events-none"></div>
+            
+            <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+                <div class="space-y-4 max-w-4xl">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-purple-900/30 border border-purple-500/30 text-purple-300">
+                        <span class="w-1.5 h-1.5 rounded-full bg-purple-500 animate-ping"></span> الموسوعة العالمية الموحدة للباحث العصامي
+                    </span>
+                    <h2 class="text-2xl md:text-4xl font-extrabold text-white leading-tight font-cairo">
+                        التحكيم، التأسيس المعرفي، والشمولية العلمية المطلقة
+                    </h2>
+                    <p class="text-gray-300 text-xs md:text-sm leading-relaxed">
+                        مرحباً بك في الإصدار المحدث كلياً <span class="text-amber-400 font-semibold">V7.0 Ultra Expanded</span>. تم إعادة صياغة وهيكلة الأرشيف ليتضمن كافة التخصصات العلمية والإنسانية والهندسية والقانونية وفلسفة العلم دون حذف أي مصدر سابق. موزعة بطريقة خطية صارمة عبر <span class="text-purple-400 font-bold">25 فئة دراسية شاملة</span> ومندرجة تحت <span class="text-purple-400 font-bold">7 مراحل معرفية كبرى</span> لضمان التأسيس المطلق وعزل التحيز.
+                    </p>
+                </div>
+                
+                <!-- Quick Stats -->
+                <div class="grid grid-cols-2 gap-4 w-full lg:w-auto shrink-0">
+                    <div class="bg-zinc-900/95 p-4 rounded-xl border border-purple-900/30 text-center min-w-[120px]">
+                        <span class="block text-3xl font-black text-purple-400 font-mono">25</span>
+                        <span class="text-[10px] text-gray-400 font-bold uppercase">فئة خطية</span>
+                    </div>
+                    <div class="bg-zinc-900/95 p-4 rounded-xl border border-purple-900/30 text-center min-w-[120px]">
+                        <span class="block text-3xl font-black text-amber-400 font-mono">150+</span>
+                        <span class="text-[10px] text-gray-400 font-bold uppercase">مرجعاً معتمداً</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================== TAB 1: DIRECTORY OF SOURCES =================== -->
+        <section id="tab-directory" class="tab-content block">
+            
+            <!-- Search & Filter Controls -->
+            <div class="bg-zinc-900/80 border border-purple-900/20 rounded-xl p-4 mb-8 flex flex-col lg:flex-row gap-4 items-center justify-between">
+                <div class="relative w-full lg:w-1/2">
+                    <span class="absolute inset-y-0 right-3 flex items-center text-purple-400">
+                        🔍
+                    </span>
+                    <input type="text" id="directorySearch" onkeyup="filterDirectory()" placeholder="ابحث باسم المرجع، الفئة، أو الكلمات المفتاحية..." class="w-full bg-[#121212] border border-purple-900/40 rounded-lg py-2.5 pr-10 pl-4 text-xs text-gray-100 placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all duration-200">
+                </div>
+                <div class="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto">
+                    <span class="text-[11px] text-gray-400 font-bold uppercase shrink-0">تصفية سريعة للمرحلة المعرفية:</span>
+                    <select id="categoryFilter" onchange="filterDirectory()" class="w-full sm:w-auto bg-[#121212] border border-purple-900/40 rounded-lg py-2 px-3 text-xs text-gray-200 focus:outline-none focus:border-purple-500">
+                        <option value="all">كل الفئات والمراحل (1 - 25)</option>
+                        <option value="المرحلة I">المرحلة I: التأسيس المعرفي وفلسفة العلم</option>
+                        <option value="المرحلة II">المرحلة II: محركات الاستكشاف وقواعد البيانات</option>
+                        <option value="المرحلة III">المرحلة III: العلوم الصلبة، الهندسة، والتكنولوجيا</option>
+                        <option value="المرحلة IV">المرحلة IV: العلوم الإنسانية، الاجتماعية، والقانونية</option>
+                        <option value="المرحلة V">المرحلة V: البنية التحتية وتحصيل الكتب والأطروحات</option>
+                        <option value="المرحلة VI">المرحلة VI: التقييم، التحرير، والمحاكاة البصرية</option>
+                        <option value="المرحلة VII">المرحلة VII: الذكاء الاصطناعي والمبادرات العربية</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Main Layout Grid: Sidebar Shortcuts + Tables Container -->
+            <div class="grid grid-cols-1 xl:grid-cols-4 gap-6">
+                
+                <!-- Navigation Map Sidebar -->
+                <div class="xl:col-span-1 space-y-4">
+                    <div class="bg-zinc-950/90 p-4 rounded-xl border border-purple-900/40 sticky top-20 shadow-xl">
+                        <h3 class="text-xs font-black uppercase text-amber-400 tracking-wider mb-4 pb-2 border-b border-purple-900/20 flex items-center gap-2 font-cairo">
+                            <span>🗺️</span> خارطة المراحل المعرفية الـ 7
+                        </h3>
+                        <div class="space-y-2 text-[11px] max-h-[70vh] overflow-y-auto pr-1">
+                            
+                            <span class="text-[9px] text-purple-400 font-bold block pt-1 uppercase">المرحلة I: التأسيس وفلسفة العلم</span>
+                            <a href="#cat-1" class="block p-1.5 rounded hover:bg-purple-950/30 text-gray-300">1. أدوات المسح والموسوعات</a>
+                            <a href="#cat-2" class="block p-1.5 rounded hover:bg-purple-950/30 text-gray-300">2. أمهات الكتب والمراجع الكلاسيكية</a>
+                            <a href="#cat-3" class="block p-1.5 rounded hover:bg-purple-950/30 text-amber-300 font-bold">3. فلسفة العلم، المعرفة، والعلم الفائق ★</a>
+
+                            <span class="text-[9px] text-purple-400 font-bold block pt-2 uppercase">المرحلة II: الفهارس وقواعد البيانات</span>
+                            <a href="#cat-4" class="block p-1.5 rounded hover:bg-purple-950/30 text-gray-300">4. محركات البحث ومؤشرات الاستشهاد</a>
+                            <a href="#cat-5" class="block p-1.5 rounded hover:bg-purple-950/30 text-gray-300">5. المجلات العلمية الرائدة عالمياً</a>
+                            <a href="#cat-6" class="block p-1.5 rounded hover:bg-purple-950/30 text-gray-300">6. قواعد البيانات المحكمة الكبرى</a>
+
+                            <span class="text-[9px] text-purple-400 font-bold block pt-2 uppercase">المرحلة III: العلوم الصلبة والهندسية</span>
+                            <a href="#cat-7" class="block p-1.5 rounded hover:bg-purple-950/30 text-emerald-400">7. تطوير الجسد والأداء الحيوي</a>
+                            <a href="#cat-8" class="block p-1.5 rounded hover:bg-purple-950/30 text-indigo-400">8. علوم الإدراك والسلوك والنمو</a>
+                            <a href="#cat-9" class="block p-1.5 rounded hover:bg-purple-950/30 text-gray-300">9. المراجع الطبية والصحية والسريرية</a>
+                            <a href="#cat-10" class="block p-1.5 rounded hover:bg-purple-950/30 text-gray-300">10. علوم الفضاء والفلك والكونيات</a>
+                            <a href="#cat-11" class="block p-1.5 rounded hover:bg-purple-950/30 text-cyan-300 font-bold">11. العلوم الهندسية وعلم المواد ★</a>
+                            <a href="#cat-12" class="block p-1.5 rounded hover:bg-purple-950/30 text-cyan-300 font-bold">12. علوم الحاسوب ومستودعات الكود ★</a>
+                            <a href="#cat-13" class="block p-1.5 rounded hover:bg-purple-950/30 text-cyan-300 font-bold">13. علوم البيئة، المناخ، والاستدامة ★</a>
+
+                            <span class="text-[9px] text-purple-400 font-bold block pt-2 uppercase">المرحلة IV: الإنسانيات، القانون، والمجتمع</span>
+                            <a href="#cat-14" class="block p-1.5 rounded hover:bg-purple-950/30 text-amber-300 font-bold">14. العلوم القانونية والتشريعات ★</a>
+                            <a href="#cat-15" class="block p-1.5 rounded hover:bg-purple-950/30 text-amber-300 font-bold">15. العلوم السياسية والجيوسياسة ★</a>
+                            <a href="#cat-16" class="block p-1.5 rounded hover:bg-purple-950/30 text-amber-300 font-bold">16. الاقتصاد الكلي والقياس الاقتصادي ★</a>
+                            <a href="#cat-17" class="block p-1.5 rounded hover:bg-purple-950/30 text-amber-300 font-bold">17. التاريخ المنهجي والأنثروبولوجيا ★</a>
+                            <a href="#cat-18" class="block p-1.5 rounded hover:bg-purple-950/30 text-gray-300">18. مصادر الأنظمة المعقدة والتنظيم</a>
+
+                            <span class="text-[9px] text-purple-400 font-bold block pt-2 uppercase">المرحلة V: المستودعات والمكتبات</span>
+                            <a href="#cat-19" class="block p-1.5 rounded hover:bg-purple-950/30 text-gray-300">19. الرسائل والأطروحات الجامعية</a>
+                            <a href="#cat-20" class="block p-1.5 rounded hover:bg-purple-950/30 text-gray-300">20. المكتبات الرقمية ومستودعات الكتب</a>
+
+                            <span class="text-[9px] text-purple-400 font-bold block pt-2 uppercase">المرحلة VI: المحاكاة والتدقيق الأكاديمي</span>
+                            <a href="#cat-21" class="block p-1.5 rounded hover:bg-purple-950/30 text-gray-300">21. التبسيط العلمي والمحاكاة</a>
+                            <a href="#cat-22" class="block p-1.5 rounded hover:bg-purple-950/30 text-rose-400">22. محركات الفحص ومقاييس المجلات</a>
+                            <a href="#cat-23" class="block p-1.5 rounded hover:bg-purple-950/30 text-gray-300">23. أدوات الكتابة والتوثيق المرجعي</a>
+
+                            <span class="text-[9px] text-purple-400 font-bold block pt-2 uppercase">المرحلة VII: الذكاء الاصطناعي والمصادر العربية</span>
+                            <a href="#cat-24" class="block p-1.5 rounded hover:bg-purple-950/30 text-purple-300">24. مساعدات البحث بالذكاء الاصطناعي</a>
+                            <a href="#cat-25" class="block p-1.5 rounded hover:bg-purple-950/30 text-emerald-300 font-bold">25. المنصات والمبادرات العلمية العربية</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content Tables Area -->
+                <div class="xl:col-span-3 space-y-10">
+                    
+                    <!-- ================= PHASE I: التأسيس المعرفي وفلسفة العلم ================= -->
+                    
+                    <!-- CAT 1 -->
+                    <div id="cat-1" class="cyber-card p-6 rounded-xl card-item" data-category="المرحلة I">
+                        <div class="flex items-center gap-3 mb-4 border-b border-purple-500/30 pb-2">
+                            <span class="text-2xl">🧠</span>
+                            <h3 class="text-base font-extrabold text-purple-300 font-cairo">الفئة 1: أدوات التأسيس والتبسيط الأكاديمي والمسح المعرفي الأولي (Academic Scanning)</h3>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed">
+                            <strong>الغرض المنهجي:</strong> حجر الأساس لرسم الخريطة المفاهيمية ومعرفة المدارس الفكرية ومصطلحات التخصص لعدم تشتيت الباحث.
+                        </p>
+                        <div class="overflow-x-auto rounded-lg border border-purple-900/30">
+                            <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                <thead class="text-purple-200">
+                                    <tr>
+                                        <th class="px-3 py-2.5 w-[220px]">المصدر (Resource)</th>
+                                        <th class="px-3 py-2.5">الخصائص المنهجية والأكاديمية بالتفصيل</th>
+                                        <th class="px-3 py-2.5 text-center w-[120px]">الرابط (Link)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-purple-950/40">
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Stanford Encyclopedia of Philosophy (SEP)</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">أضخم موسوعة أكاديمية رقمية محكّمة في حقول الفلسفة ونظرية المعرفة والمنطق وأخلاقيات العلوم والذكاء الاصطناعي.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://plato.stanford.edu" target="_blank" class="text-amber-400 hover:underline">plato.stanford.edu</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Oxford Very Short Introductions</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">سلسلة كتيبات مكثفة وبنيوية لأكثر من 1000 تخصص دقيق وعام، تصاغ بواسطة خبراء بارزين لتبسيط النواة المعرفية للمفهوم.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://global.oup.com" target="_blank" class="text-amber-400 hover:underline">global.oup.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Books of Introduction to... (كتب المداخل)</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">الكتب التمهيدية التأسيسية لتهيئة الباحث ذهنياً واستيعاب هيكلية وفهرسة التخصص.</td>
+                                        <td class="px-3 py-3 text-center"><span class="text-gray-500">-</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Encyclopedia Britannica</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">المستند التحريري الموثق الأقوى للتحقق من التواريخ والوقائع والحقائق العامة والمعارف التاريخية.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://britannica.com" target="_blank" class="text-amber-400 hover:underline">britannica.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">For Dummies Series (كتب فور دميز)</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">سلسلة كتب تهدف لتجاوز العقبات الأولية في المفاهيم التكنولوجية، التحليل الإحصائي، واللغات البرمجية.</td>
+                                        <td class="px-3 py-3 text-center"><span class="text-gray-500">-</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-rose-300">Wikipedia <span class="text-rose-400 font-bold">⚠️ أداة استرشادية</span></td>
+                                        <td class="px-3 py-3 text-rose-200/80 leading-relaxed">لا يجوز الاقتباس المباشر منها، بل تُستخدم كمنطلق استرشادي لفهم المفهوم السريع وتتبع مراجعها فقط.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://wikipedia.org" target="_blank" class="text-amber-400 hover:underline">wikipedia.org</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- CAT 2 -->
+                    <div id="cat-2" class="cyber-card p-6 rounded-xl card-item border-amber-500/30" data-category="المرحلة I">
+                        <div class="flex items-center gap-3 mb-4 border-b border-amber-500/30 pb-2">
+                            <span class="text-2xl">📚</span>
+                            <h3 class="text-base font-extrabold text-amber-300 font-cairo">الفئة 2: أمهات الكتب والمراجع الأكاديمية الكلاسيكية (Flagship Textbooks)</h3>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed">
+                            <strong>الغرض المنهجي:</strong> تمثل الأعمدة الحقيقية للإجماع العلمي المستقر والرجوع إليها في القوانين الثابتة والتعاريف المحسومة.
+                        </p>
+                        <div class="overflow-x-auto rounded-lg border border-amber-900/30">
+                            <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                <thead class="text-amber-200">
+                                    <tr>
+                                        <th class="px-3 py-2.5 w-[220px]">المرجع الكوني (Textbook)</th>
+                                        <th class="px-3 py-2.5">الأهمية البحثية والتعليمية بالتفصيل</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-purple-950/40">
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Campbell Biology (مرجع كامبل في الأحياء)</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">المرجع العالمي الأكثر شمولية في علم الأحياء والبيولوجيا الخلوية والجينات والتمثيل الغذائي.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Kotler - Marketing Management (مرجع كوتلر)</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">إنجيل علم التسويق؛ يربط العلوم السلوكية وإدارة الأعمال وبحوث السوق الكمية والاستراتيجية.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Robbins Basic Pathology (مرجع روبنز)</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">المرجع الجامع والأوسع للأمراض وعلم التشريح والفيزيولوجيا المرضية لتأصيل الفهم الطبي.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">The Fifth Discipline - Peter Senge (الركيزة الخامسة)</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">المرجع المعياري الصادر عن MIT لبحث هندسة وتصميم المؤسسات كأنظمة معقدة وتطبيق أدوات التفكير المنظومي.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- CAT 3: NEW FIELD -->
+                    <div id="cat-3" class="cyber-card p-6 rounded-xl card-item border-amber-500/50 bg-purple-950/20" data-category="المرحلة I">
+                        <div class="flex items-center gap-3 mb-4 border-b border-amber-500/40 pb-2">
+                            <span class="text-2xl">🏛️</span>
+                            <h3 class="text-base font-extrabold text-amber-300 font-cairo">الفئة 3: معارف ما بعد العلم: فلسفة العلم، نظرية المعرفة، والعلم الفائق (Metascience & Epistemology) <span class="text-xs font-normal text-amber-400 bg-amber-950 px-2 py-0.5 rounded border border-amber-500/40">جديد V7.0</span></h3>
+                        </div>
+                        <p class="text-xs text-amber-100 mb-4 leading-relaxed font-semibold">
+                            <strong>الغرض المنهجي:</strong> بناء "نظام التشغيل العقلي" والمشرط النقدي للباحث؛ لفهم حدود العلم التجريبي، تمييز العلم عن الخرافة (مشكلة التخوم)، تفكيك التحيز وإدارك أزمة التكرار (Replication Crisis).
+                        </p>
+                        <div class="overflow-x-auto rounded-lg border border-amber-900/40">
+                            <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                <thead class="text-amber-200">
+                                    <tr>
+                                        <th class="px-3 py-2.5 w-[220px]">المجال الدقيق / المرجع</th>
+                                        <th class="px-3 py-2.5">المحاور المفاهيمية والدوريات العالمية المعتمدة بالتفصيل</th>
+                                        <th class="px-3 py-2.5 text-center w-[120px]">الرابط (Link)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-purple-950/40">
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-amber-300">1. فلسفة العلم (Philosophy of Science)</td>
+                                        <td class="px-3 py-3 text-gray-200 leading-relaxed">دراسة كيفية تشكل النظريات، القابلية للتكذيب (كارل بوبر)، والقطائع المعرفية (توماس كون). تضم المجلتين الرائدتين عالمياً: <span class="text-purple-300 font-bold">The British Journal for the Philosophy of Science (BJPS)</span> ومجلة <span class="text-purple-300 font-bold">Philosophy of Science</span>.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://www.journals.uchicago.edu/toc/pos/current" target="_blank" class="text-amber-400 hover:underline">PhilSci Journal</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-amber-300">2. نظرية المعرفة والمنطق (Epistemology & Logic)</td>
+                                        <td class="px-3 py-3 text-gray-200 leading-relaxed">دراسة حدود اليقين البشري والاستدلال البيزي (Bayesian Reasoning) والتفريق بين السببية والاقتران الإحصائي. تعتمد مجلتي <span class="text-purple-300 font-bold">Synthese</span> و <span class="text-purple-300 font-bold">Erkenntnis</span>.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://www.springer.com/journal/11229" target="_blank" class="text-amber-400 hover:underline">Synthese</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-amber-300">3. العلم الفائق وعلم نقد المنهج (Metascience)</td>
+                                        <td class="px-3 py-3 text-gray-200 leading-relaxed">تطبيق المنهج العلمي لنقد المؤسسة العلمية وكشف انحياز النشر وأزمة التكرار. ترتكز على أبحاث مركز <span class="text-purple-300 font-bold">METRICS بستانفورد</span>، ومجلة <span class="text-purple-300 font-bold">Journal of Trial and Error</span> لنشر التجارب الفاشلة.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://www.trialanderror.org/" target="_blank" class="text-amber-400 hover:underline">Trial & Error</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-amber-300">4. تاريخ العلم وسوسيولوجيا المعرفة (HPS)</td>
+                                        <td class="px-3 py-3 text-gray-200 leading-relaxed">دراسة السياق التاريخي والاجتماعي لنشوء الاكتشافات العظمى عبر مجلتي <span class="text-purple-300 font-bold">Studies in History and Philosophy of Science</span> وأعرق مجلة تاريخ علم <span class="text-purple-300 font-bold">Isis</span>.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://www.journals.uchicago.edu/toc/isis/current" target="_blank" class="text-amber-400 hover:underline">Isis Journal</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-amber-300">5. أخلاقيات العلوم والتقنية (Bioethics & AI Ethics)</td>
+                                        <td class="px-3 py-3 text-gray-200 leading-relaxed">البوصلة الأخلاقية لتطبيقات الجينات والاستنسلاخ والذكاء الاصطناعي الفائق عبر مجلة <span class="text-purple-300 font-bold">American Journal of Bioethics (AJOB)</span> ومجلة <span class="text-purple-300 font-bold">Ethics and Information Technology</span>.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://www.tandfonline.com/toc/uabj20/current" target="_blank" class="text-amber-400 hover:underline">AJOB Ethics</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- ================= PHASE II: الفهارس وقواعد البيانات ================= -->
+
+                    <!-- CAT 4 -->
+                    <div id="cat-4" class="cyber-card p-6 rounded-xl card-item" data-category="المرحلة II">
+                        <div class="flex items-center gap-3 mb-4 border-b border-purple-500/30 pb-2">
+                            <span class="text-2xl">🔷</span>
+                            <h3 class="text-base font-extrabold text-purple-300 font-cairo">الفئة 4: محركات البحث الأكاديمي العامة ومؤشرات الاستشهاد المعتمدة</h3>
+                        </div>
+                        <div class="overflow-x-auto rounded-lg border border-purple-900/30">
+                            <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                <thead class="text-purple-200">
+                                    <tr>
+                                        <th class="px-3 py-2.5 w-[220px]">المحرك الفهرسي</th>
+                                        <th class="px-3 py-2.5">الوصف المنهجي والقدرة التحليلية</th>
+                                        <th class="px-3 py-2.5 text-center w-[120px]">الرابط (Link)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-purple-950/40">
+                                    <tr class="bg-purple-950/10">
+                                        <td class="px-3 py-3 font-bold text-amber-300">⭐ Semantic Scholar</td>
+                                        <td class="px-3 py-3 text-amber-200 leading-relaxed font-semibold">محرك مدعوم بالذكاء الاصطناعي الفائق مطور بواسطة معهد ألين للذكاء الاصطناعي يحلل شبكات الاقتباسات ويستخرج النظريات المؤثرة.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://www.semanticscholar.org" target="_blank" class="text-amber-400 hover:underline font-bold">semanticscholar.org</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Web of Science</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">المنصة الفهرسية الأكثر صرامة في العالم التابعة لـ Clarivate لحساب معاملات التأثير وتتبع الاستشهادات.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://webofscience.com" target="_blank" class="text-amber-400 hover:underline">webofscience.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Google Scholar</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">الأضخم عالمياً؛ يفهرس الأوراق والرسائل وتتبع الاقتباسات (Cited by) واستيراد صيغ التوثيق.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://scholar.google.com" target="_blank" class="text-amber-400 hover:underline">scholar.google.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">CORE</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">الأكبر عالمياً في تجميع الأوراق العلمية مفتوحة الوصول (Open Access) وتوفير تحميلها الفوري مجاناً.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://core.ac.uk" target="_blank" class="text-amber-400 hover:underline">core.ac.uk</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">RefSeek</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">محرك بحث أكاديمي يستثني المواقع التجارية والإخبارية لتقديم مستندات علمية ناصعة.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://refseek.com" target="_blank" class="text-amber-400 hover:underline">refseek.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">BASE</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">مشغل بواسطة مكتبة جامعة بيليفيلد الألمانية ويضم ما يزيد عن 240 مليون وثيقة مفهرسة مرخصة.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://base-search.net" target="_blank" class="text-amber-400 hover:underline">base-search.net</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">OpenAlex</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">البديل المفتوح الشامل؛ يعمل كرسام بياني معرفي عالمي يضم مئات الملايين من الكتل والأوراق دون قيود.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://openalex.org" target="_blank" class="text-amber-400 hover:underline">openalex.org</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- CAT 5 -->
+                    <div id="cat-5" class="cyber-card p-6 rounded-xl card-item" data-category="المرحلة II">
+                        <div class="flex items-center gap-3 mb-4 border-b border-purple-500/30 pb-2">
+                            <span class="text-2xl">🔷</span>
+                            <h3 class="text-base font-extrabold text-purple-300 font-cairo">الفئة 5: المجلات العلمية الرائدة العالمية (Flagship Journals)</h3>
+                        </div>
+                        <div class="overflow-x-auto rounded-lg border border-purple-900/30">
+                            <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                <thead class="text-purple-200">
+                                    <tr>
+                                        <th class="px-3 py-2.5 w-[220px]">المجلة الكبرى</th>
+                                        <th class="px-3 py-2.5">الوصف والسمعة الدولية وشروط الفحص</th>
+                                        <th class="px-3 py-2.5 text-center w-[120px]">الرابط (Link)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-purple-950/40">
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Nature</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">أعرق مجلة علمية متعددة التخصصات (تأسست 1869) وتختص بالاكتشافات المحدثة لقفزات تكنولوجية بمعامل تأثير خارق.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://nature.com" target="_blank" class="text-amber-400 hover:underline">nature.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Science (AAAS)</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">صادرة عن الجمعية الأمريكية لتقدم العلوم (AAAS)؛ تعتبر الند المباشر لـ Nature وتتميز بأبحاثها الصارمة دقيقة التحليل.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://sciencemag.org" target="_blank" class="text-amber-400 hover:underline">sciencemag.org</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- CAT 6 -->
+                    <div id="cat-6" class="cyber-card p-6 rounded-xl card-item" data-category="المرحلة II">
+                        <div class="flex items-center gap-3 mb-4 border-b border-purple-500/30 pb-2">
+                            <span class="text-2xl">🔷</span>
+                            <h3 class="text-base font-extrabold text-purple-300 font-cairo">الفئة 6: قواعد البيانات والمنصات المحكّمة الكبرى (Core Academic Indexes)</h3>
+                        </div>
+                        <div class="overflow-x-auto rounded-lg border border-purple-900/30">
+                            <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                <thead class="text-purple-200">
+                                    <tr>
+                                        <th class="px-3 py-2.5 w-[220px]">المنصة / المستودع</th>
+                                        <th class="px-3 py-2.5">الخصائص وحجم الفهرسة والتكامل</th>
+                                        <th class="px-3 py-2.5 text-center w-[120px]">الرابط (Link)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-purple-950/40">
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">ScienceDirect</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">البوابة الرقمية المباشرة لـ Elsevier وتوفر ما يزيد عن 18 مليون قطعة محتوى بحثي وطبي وهندسي.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://sciencedirect.com" target="_blank" class="text-amber-400 hover:underline">sciencedirect.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Scopus</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">المنصة الأكبر عالمياً لتلخيص وفهرسة الاستشهادات وتتبع مؤشر هيرش (H-Index) وتصنيف المجلات.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://scopus.com" target="_blank" class="text-amber-400 hover:underline">scopus.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">SpringerLink</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">تتيح البحث في ملايين الأوراق والكتب الصادرة عن Springer Nature بموجب معايير تدقيق ألمانية صارمة.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://link.springer.com" target="_blank" class="text-amber-400 hover:underline">link.springer.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">JSTOR</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">الأرشيف الأكثر شمولية في العلوم الاجتماعية والتاريخ والفلسفة والأدب؛ ويضم أعداداً تاريخية ومخطوطات عريقة.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://jstor.org" target="_blank" class="text-amber-400 hover:underline">jstor.org</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Cochrane Library</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">المرجع الذهبي الأعلى في الطب المسند بالدليل (Evidence-Based Medicine) ويختص بالمراجعات المنهجية والتحليلات التجميعية.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://cochranelibrary.com" target="_blank" class="text-amber-400 hover:underline">cochranelibrary.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">DOAJ</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">دليل المجلات مفتوحة النفاذ (DOAJ)؛ المؤشر الصارم لتأكيد خلو المجلات المجانية من الممارسات الافتراسية.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://doaj.org" target="_blank" class="text-amber-400 hover:underline">doaj.org</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-rose-300">arXiv <span class="text-rose-400 font-bold">⚠️ مسودات</span></td>
+                                        <td class="px-3 py-3 text-rose-200/80 leading-relaxed">مستودع تديره جامعة كورنيل لمسودات ما قبل التحكيم (Preprints) في الفيزياء، الرياضيات، والذكاء الاصطناعي.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://arxiv.org" target="_blank" class="text-amber-400 hover:underline">arxiv.org</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- ================= PHASE III: العلوم الصلبة، الهندسة، والتكنولوجيا ================= -->
+
+                    <!-- CAT 7 -->
+                    <div id="cat-7" class="cyber-card p-6 rounded-xl card-item border-emerald-500/30" data-category="المرحلة III">
+                        <div class="flex items-center gap-3 mb-4 border-b border-emerald-500/30 pb-2">
+                            <span class="text-2xl">🌱</span>
+                            <h3 class="text-base font-extrabold text-emerald-300 font-cairo">الفئة 7: منصات أبحاث تطوير الجسد والأداء الحيوي (Biohacking & Performance)</h3>
+                        </div>
+                        <div class="overflow-x-auto rounded-lg border border-emerald-900/30">
+                            <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                <thead class="text-emerald-200">
+                                    <tr>
+                                        <th class="px-3 py-2.5 w-[220px]">المنصة الحيوية</th>
+                                        <th class="px-3 py-2.5">الوصف العلمي والاستخدام الميداني والفسيولوجي</th>
+                                        <th class="px-3 py-2.5 text-center w-[120px]">الرابط (Link)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-purple-950/40">
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">bioRxiv / medRxiv</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">مستودعات رقمية توأم لمسودات ما قبل النشر في العلوم الحيوية والطب السريري لتتبع طليعة الأبحاث الحيوية.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://biorxiv.org" target="_blank" class="text-amber-400 hover:underline">biorxiv.org</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Aging Cell</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">مجلة Q1 رائدة في علم الشيخوخة الجزيئي والخلوي وإصلاح الحمض النووي وآليات التهام الخلايا (Autophagy).</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://onlinelibrary.wiley.com/journal/14749726" target="_blank" class="text-amber-400 hover:underline">Aging Cell</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Journal of Nutrition</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">صادرة عن الجمعية الأمريكية للتغذية؛ وتختص بالأبحاث البيولوجية للمغذيات والميكروبيوم المعوي والتركيز.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://academic.oup.com/jn" target="_blank" class="text-amber-400 hover:underline">academic.oup.com/jn</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- CAT 8 -->
+                    <div id="cat-8" class="cyber-card p-6 rounded-xl card-item border-indigo-500/30" data-category="المرحلة III">
+                        <div class="flex items-center gap-3 mb-4 border-b border-indigo-500/30 pb-2">
+                            <span class="text-2xl">🧠</span>
+                            <h3 class="text-base font-extrabold text-indigo-300 font-cairo">الفئة 8: علوم الإدراك، الذاكرة، علم النفس السلوكي والنمو والازدهار</h3>
+                        </div>
+                        <div class="overflow-x-auto rounded-lg border border-indigo-900/30">
+                            <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                <thead class="text-indigo-200">
+                                    <tr>
+                                        <th class="px-3 py-2.5 w-[220px]">المستودع / المجلة</th>
+                                        <th class="px-3 py-2.5">الأهمية البحثية وتفكيك النماذج الذهنية والانحيازات</th>
+                                        <th class="px-3 py-2.5 text-center w-[120px]">الرابط (Link)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-purple-950/40">
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">APA PsycNet</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">البوابة الرسمية لجمعية علم النفس الأمريكية؛ المنصة المعيارية الأعلى لأبحاث السلوك والإدراك والتعلم.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://psycnet.apa.org" target="_blank" class="text-amber-400 hover:underline">psycnet.apa.org</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Trends in Cognitive Sciences</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">مجلة مصنفة Q1 تجمع أبحاث الأعصاب، الذكاء الاصطناعي، وفلسفة العقل لشرح آليات المرونة العصبية وتفكيك النماذج الذهنية.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://cell.com/trends/cognitive-sciences/home" target="_blank" class="text-amber-400 hover:underline">cell.com/trends...</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Cognitive Science</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">تجمع التحليل الحاسوبي والفلسفي واللساني ومستويات معالجة المعرفة بالدماغ البشري.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://cognitivesciencesociety.org/cognitive-science-journal/" target="_blank" class="text-amber-400 hover:underline">cognitivesciencesociety.org</a></td>
+                                    </tr>
+                                    <tr class="bg-indigo-950/20">
+                                        <td class="px-3 py-3 font-bold text-indigo-300">Journal of Positive Psychology & Happiness Studies</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">المجلتان الرائدتان في دراسة الازدهار البشري (Flourishing)، ومحركات السعادة المبنية على البيانات الكمية.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://www.tandfonline.com" target="_blank" class="text-amber-400 hover:underline">tandfonline.com</a></td>
+                                    </tr>
+                                    <tr class="bg-indigo-950/20">
+                                        <td class="px-3 py-3 font-bold text-indigo-300">Journal of Personality & Social Psychology</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">تختص بدراسة آليات التنظيم الذاتي (Self-Regulation) والتحكم بالسلوك الإنساني والدافعية وصناعة الهوية.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://www.apa.org/pubs/journals/psp" target="_blank" class="text-amber-400 hover:underline">apa.org/journals/psp</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- CAT 9 -->
+                    <div id="cat-9" class="cyber-card p-6 rounded-xl card-item" data-category="المرحلة III">
+                        <div class="flex items-center gap-3 mb-4 border-b border-purple-500/30 pb-2">
+                            <span class="text-2xl">🩺</span>
+                            <h3 class="text-base font-extrabold text-purple-300 font-cairo">الفئة 9: المراجع الطبية والصحية والسريرية (Clinical & Health Repositories)</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="text-xs font-bold text-amber-400 mb-2">المستوى الأول: مراجع إكلينيكية (للممارسين والباحثين الطبيين)</h4>
+                                <div class="overflow-x-auto rounded-lg border border-purple-900/30">
+                                    <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                        <tbody class="divide-y divide-purple-950/40">
+                                            <tr>
+                                                <td class="px-3 py-2 font-bold text-white w-[220px]">UpToDate</td>
+                                                <td class="px-3 py-2 text-gray-300">المرجع السريري الأكثر استخداماً للأطباء لتحديد بروتوكولات العلاج والجرعات بدقة.</td>
+                                                <td class="px-3 py-2 text-center w-[120px]"><a href="https://uptodate.com" target="_blank" class="text-amber-400 hover:underline">uptodate.com</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-3 py-2 font-bold text-white">Medscape</td>
+                                                <td class="px-3 py-2 text-gray-300">أخبار سريرية ومقالات مراجعة، مع أداة لفحص التفاعلات الدوائية المتشابكة.</td>
+                                                <td class="px-3 py-2 text-center"><a href="https://medscape.com" target="_blank" class="text-amber-400 hover:underline">medscape.com</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-3 py-2 font-bold text-white">PubMed</td>
+                                                <td class="px-3 py-2 text-gray-300">المكتبة الوطنية الأمريكية للطب؛ تضم أزيد من 35 مليون وثيقة طبية حيوية وعلمية.</td>
+                                                <td class="px-3 py-2 text-center"><a href="https://pubmed.ncbi.nlm.nih.gov" target="_blank" class="text-amber-400 hover:underline">pubmed.ncbi.nlm.nih.gov</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h4 class="text-xs font-bold text-amber-400 mb-2">المستوى الثاني: مراجع صحية موثوقة للجمهور (تجنب الخرافات)</h4>
+                                <div class="overflow-x-auto rounded-lg border border-purple-900/30">
+                                    <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                        <tbody class="divide-y divide-purple-950/40">
+                                            <tr>
+                                                <td class="px-3 py-2 font-bold text-white w-[220px]">Mayo Clinic</td>
+                                                <td class="px-3 py-2 text-gray-300">المنصة الطبية غير الربحية الأكبر؛ توفر دليلاً مبسطاً وموثوقاً وخالياً تماماً من الإعلانات التجاري.</td>
+                                                <td class="px-3 py-2 text-center w-[120px]"><a href="https://mayoclinic.org" target="_blank" class="text-amber-400 hover:underline">mayoclinic.org</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-3 py-2 font-bold text-white">WebMD</td>
+                                                <td class="px-3 py-2 text-gray-300">من أقدم المواقع التبسيطية للأعراض والعناية بالجسد ويضم نظام تشخيص استرشادي.</td>
+                                                <td class="px-3 py-2 text-center"><a href="https://webmd.com" target="_blank" class="text-amber-400 hover:underline">webmd.com</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-3 py-2 font-bold text-white">Healthline</td>
+                                                <td class="px-3 py-2 text-gray-300">يهتم بالصحة الوقائية، العادات الحيوية، مع إرفاق روابط الدراسات الطبية الأصلية بداخل المتن.</td>
+                                                <td class="px-3 py-2 text-center"><a href="https://healthline.com" target="_blank" class="text-amber-400 hover:underline">healthline.com</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CAT 10 -->
+                    <div id="cat-10" class="cyber-card p-6 rounded-xl card-item" data-category="المرحلة III">
+                        <div class="flex items-center gap-3 mb-4 border-b border-purple-500/30 pb-2">
+                            <span class="text-2xl">🚀</span>
+                            <h3 class="text-base font-extrabold text-purple-300 font-cairo">الفئة 10: علوم الفضاء والفلك والكونيات (Space, Astronomy & Cosmology)</h3>
+                        </div>
+                        <div class="overflow-x-auto rounded-lg border border-purple-900/30">
+                            <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                <thead class="text-purple-200">
+                                    <tr>
+                                        <th class="px-3 py-2.5 w-[220px]">المصدر / الوكالة</th>
+                                        <th class="px-3 py-2.5">الوصف والبيانات المتاحة للباحثين والتلسكوبات</th>
+                                        <th class="px-3 py-2.5 text-center w-[120px]">الرابط (Link)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-purple-950/40">
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">NASA Science</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">البوابة البحثية لـ NASA؛ توفر بيانات مجانية مفتوحة لصور الأقمار الصناعية وسجلات المسابير الفضائية.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://science.nasa.gov" target="_blank" class="text-amber-400 hover:underline">science.nasa.gov</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">ESA (European Space Agency)</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">بوابة وكالة الفضاء الأوروبية؛ متخصصة في هندسة الصواريخ ورصد غلاف الأرض والنمذجة الفلكية.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://esa.int" target="_blank" class="text-amber-400 hover:underline">esa.int</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Space.com</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">أكبر منصة علمية متخصصة في تبسيط علم الفلك والرحلات الفضائية والكونيات تحت تدقيق الخبراء.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://space.com" target="_blank" class="text-amber-400 hover:underline">space.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Hubble Site</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">الأرشيف الفعلي لصور تلسكوب هابل، والبيانات الطيفية المجمعة حول السدم والجرام والمادة المظلمة.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://hubblesite.org" target="_blank" class="text-amber-400 hover:underline">hubblesite.org</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- CAT 11: NEW FIELD -->
+                    <div id="cat-11" class="cyber-card p-6 rounded-xl card-item border-cyan-500/40" data-category="المرحلة III">
+                        <div class="flex items-center gap-3 mb-4 border-b border-cyan-500/30 pb-2">
+                            <span class="text-2xl">⚙️</span>
+                            <h3 class="text-base font-extrabold text-cyan-300 font-cairo">الفئة 11: العلوم الهندسية، علم المواد، والتقنيات التطبيقية (Engineering & Materials Science) <span class="text-xs font-normal text-cyan-400 bg-cyan-950 px-2 py-0.5 rounded border border-cyan-500/40">جديد V7.0</span></h3>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed">
+                            <strong>الغرض المنهجي:</strong> الجسر المعرفي الذي ينقل الباحث من النظريات الفيزيائية والكيميائية المجردة إلى الهندسة التطبيقية وتطوير المنتجات المادية والمواد التكنولوجية المتقدمة.
+                        </p>
+                        <div class="overflow-x-auto rounded-lg border border-cyan-900/30">
+                            <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                <thead class="text-cyan-200">
+                                    <tr>
+                                        <th class="px-3 py-2.5 w-[220px]">الجهة / الجمعية / المجلة</th>
+                                        <th class="px-3 py-2.5">الوصف المنهجي والتخصصات المشمولة (ميكانيكا، كهرباء، نانو)</th>
+                                        <th class="px-3 py-2.5 text-center w-[120px]">الرابط (Link)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-purple-950/40">
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-cyan-300">IEEE Xplore Digital Library</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">المرجع العالمي الذهبي الأعلى والأضخم للهندسة الكهربائية، الإلكترونيات، الاتصالات، والروبوتات، والذكاء الاصطناعي التطبيقي.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://ieeexplore.ieee.org" target="_blank" class="text-amber-400 hover:underline">ieeexplore.ieee.org</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-cyan-300">Nature Materials</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">المجلة المصنفة الأولى عالمياً في علم المواد؛ تختص بأبحاث تقنيات النانو (Nanotechnology)، المواد الحيوية، وأشباه الموصلات.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://www.nature.com/nmat/" target="_blank" class="text-amber-400 hover:underline">nature.com/nmat</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-cyan-300">ASME Digital Collection</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">منشورات الجمعية الأمريكية للمهندسين الميكانيكيين؛ المرجع الأكاديمي الشامل للديناميكا الحرارية، التصميم الميكانيكي، والموائع.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://asmedigitalcollection.asme.org" target="_blank" class="text-amber-400 hover:underline">asme.org</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- CAT 12: NEW FIELD -->
+                    <div id="cat-12" class="cyber-card p-6 rounded-xl card-item border-cyan-500/40" data-category="المرحلة III">
+                        <div class="flex items-center gap-3 mb-4 border-b border-cyan-500/30 pb-2">
+                            <span class="text-2xl">💻</span>
+                            <h3 class="text-base font-extrabold text-cyan-300 font-cairo">الفئة 12: علوم الحاسوب النظرية، الحوسبة الكمومية، ومستودعات الكود البرمجي (Theoretical CS & Code Repos) <span class="text-xs font-normal text-cyan-400 bg-cyan-950 px-2 py-0.5 rounded border border-cyan-500/40">جديد V7.0</span></h3>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed">
+                            <strong>الغرض المنهجي:</strong> الجمع بين النظريات الأكاديمية الصارمة للحوسبة (Complexity & Information Theory) وبين البيئات التطبيقية التي تربط الأوراق العلمية بالكود المباشر (Reproducible Research).
+                        </p>
+                        <div class="overflow-x-auto rounded-lg border border-cyan-900/30">
+                            <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                <thead class="text-cyan-200">
+                                    <tr>
+                                        <th class="px-3 py-2.5 w-[220px]">المنصة / المستودع</th>
+                                        <th class="px-3 py-2.5">الخصائص المنهجية والربط بين الورقة الأكاديمية والكود والتجربة</th>
+                                        <th class="px-3 py-2.5 text-center w-[120px]">الرابط (Link)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-purple-950/40">
+                                    <tr class="bg-cyan-950/20">
+                                        <td class="px-3 py-3 font-bold text-amber-300">Papers with Code</td>
+                                        <td class="px-3 py-3 text-gray-200 leading-relaxed font-semibold">منصة استثنائية تربط الأوراق الأكاديمية المحكّمة في الذكاء الاصطناعي والحاسوب بالكود البرمجي المباشر المرفوع على GitHub لضمان التكرار والتجربة.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://paperswithcode.com" target="_blank" class="text-amber-400 hover:underline font-bold">paperswithcode.com</a></td>
+                                    </tr>
+                                    <tr class="bg-cyan-950/20">
+                                        <td class="px-3 py-3 font-bold text-amber-300">Hugging Face Hub</td>
+                                        <td class="px-3 py-3 text-gray-200 leading-relaxed font-semibold">المستودع العلمي والأكاديمي الأكبر عالمياً لمشاركة النماذج المفتوحة، الأبحاث، والأوزان الخاصة بالذكاء الاصطناعي ومعالجة اللغة.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://huggingface.co" target="_blank" class="text-amber-400 hover:underline font-bold">huggingface.co</a></td>
+                                    </tr>
+                                    <tr class="bg-cyan-950/20">
+                                        <td class="px-3 py-3 font-bold text-amber-300">Kaggle Datasets & Notebooks</td>
+                                        <td class="px-3 py-3 text-gray-200 leading-relaxed font-semibold">أضخم مجتمع رقمي ومستودع لبيانات العلماء والباحثين؛ يتيح دفاتر تشغيل (Jupyter Notebooks) مفتوحة للتحليل الإحصائي التطبيقي.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://www.kaggle.com" target="_blank" class="text-amber-400 hover:underline font-bold">kaggle.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Journal of the ACM (JACM)</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">المرجع العلمي الأعلى صرامة في العلوم الحاسوبية النظرية، الخوارزميات المعقدة، ونظرية التعقيد (Computational Complexity).</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://dl.acm.org/journal/jacm" target="_blank" class="text-amber-400 hover:underline">dl.acm.org/jacm</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">IEEE Computer Society</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">تغطي أبحاث هندسة البرمجيات، المعماريات الحاسوبية، والأمن السيبراني، ونظريات الشبكات والمعلومات (Shannon Theory).</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://www.computer.org" target="_blank" class="text-amber-400 hover:underline">computer.org</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">arXiv (cs.TH / quant-ph)</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">قسم علوم الحاسوب النظرية والحوسبة الكمومية بداخل أرشيف كورنيل؛ لتتبع طليعة أوراق خوارزميات الكم والتشفير الأحدث.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://arxiv.org/archive/cs" target="_blank" class="text-amber-400 hover:underline">arxiv/cs.TH</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- CAT 13: NEW FIELD -->
+                    <div id="cat-13" class="cyber-card p-6 rounded-xl card-item border-cyan-500/40" data-category="المرحلة III">
+                        <div class="flex items-center gap-3 mb-4 border-b border-cyan-500/30 pb-2">
+                            <span class="text-2xl">🌍</span>
+                            <h3 class="text-base font-extrabold text-cyan-300 font-cairo">الفئة 13: علوم البيئة، المناخ، الديناميكا المناخية والاستدامة (Environmental Sciences & Ecology) <span class="text-xs font-normal text-cyan-400 bg-cyan-950 px-2 py-0.5 rounded border border-cyan-500/40">جديد V7.0</span></h3>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed">
+                            <strong>الغرض المنهجي:</strong> فهم كوكب الأرض كمنظومة ديناميكية معقدة مغلقة، ودراسة الاحتباس الحراري، التنوع البيولوجي، واقتصاد كفاءة الموارد والطاقة المتجددة.
+                        </p>
+                        <div class="overflow-x-auto rounded-lg border border-cyan-900/30">
+                            <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                <thead class="text-cyan-200">
+                                    <tr>
+                                        <th class="px-3 py-2.5 w-[220px]">المصدر / المجلة</th>
+                                        <th class="px-3 py-2.5">الوصف التفصيلي والدور المعرفي الدولي والمناخي</th>
+                                        <th class="px-3 py-2.5 text-center w-[120px]">الرابط (Link)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-purple-950/40">
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-cyan-300">Nature Climate Change</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">أبرز مجلة محكّمة عالمياً تركز على الأبحاث النمذجية والتأثيرات القانونية والاقتصادية والفيزيائية للتغير المناخي.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://www.nature.com/nclimate/" target="_blank" class="text-amber-400 hover:underline">nature.com/nclimate</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-cyan-300">IPCC Assessment Reports</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">تقارير الهيئة الحكومية الدولية المعنية بتغير المناخ (IPCC)؛ المرجع المعياري الأكاديمي الشامل المستند للدليل العلمي للحالة المناخية.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://www.ipcc.ch/" target="_blank" class="text-amber-400 hover:underline">ipcc.ch</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-cyan-300">Global Change Biology</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">مجلة رائدة تبحث في تفاعل الأنظمة البيئية والحيوية (Ecology) والأنواع مع التغيرات المناخية والبيئية المتسارعة.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://onlinelibrary.wiley.com/journal/13652486" target="_blank" class="text-amber-400 hover:underline">Wiley GCB</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- ================= PHASE IV: العلوم الإنسانية، الاجتماعية، والقانونية ================= -->
+
+                    <!-- CAT 14: NEW FIELD -->
+                    <div id="cat-14" class="cyber-card p-6 rounded-xl card-item border-amber-500/40" data-category="المرحلة IV">
+                        <div class="flex items-center gap-3 mb-4 border-b border-amber-500/30 pb-2">
+                            <span class="text-2xl">⚖️</span>
+                            <h3 class="text-base font-extrabold text-amber-300 font-cairo">الفئة 14: العلوم القانونية، التشريع، الفلسفة القانونية والحوكمة (Law & Public Policy) <span class="text-xs font-normal text-amber-400 bg-amber-950 px-2 py-0.5 rounded border border-amber-500/40">جديد V7.0</span></h3>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed">
+                            <strong>الغرض المنهجي:</strong> تأطير الجانب التشريعي والقانوني الذي يحكم الأنظمة البشرية، والسياسات العامة، والعدالة الناجزة، وأخلاقيات تنظيم التكنولوجيا والذكاء الاصطناعي.
+                        </p>
+                        <div class="overflow-x-auto rounded-lg border border-amber-900/30">
+                            <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                <thead class="text-amber-200">
+                                    <tr>
+                                        <th class="px-3 py-2.5 w-[220px]">المصدر / المجلة</th>
+                                        <th class="px-3 py-2.5">الوصف المنهجي والأهمية الأكاديمية للقانون الدولي والتنظيم</th>
+                                        <th class="px-3 py-2.5 text-center w-[120px]">الرابط (Link)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-purple-950/40">
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-amber-300">Harvard Law Review</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">أعرق وأقوى مجلة قانونية أكاديمية في العالم؛ تختص بنقد وتحليل النظريات القانونية، الفلسفة التشريعية (Jurisprudence)، والقوانين العامة.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://harvardlawreview.org" target="_blank" class="text-amber-400 hover:underline">harvardlawreview.org</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-amber-300">SSRN - Legal Scholarship Network</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">شبكة الأبحاث الاجتماعية والقانونية (SSRN)؛ المستودع الأضخم لمسودات وأبحاث القانون والتشريعات السيبرانية وقوانين المؤسسات.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://www.ssrn.com" target="_blank" class="text-amber-400 hover:underline">ssrn.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-amber-300">UN Digital Library</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">مكتبة الأمم المتحدة الرقمية؛ المرجع الرئيسي لاتفاقيات القانون الدولي، المعاهدات، والسياسات العامة والأطر الحقوقية العالمية.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://digitallibrary.un.org" target="_blank" class="text-amber-400 hover:underline">digitallibrary.un.org</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- CAT 15: NEW FIELD -->
+                    <div id="cat-15" class="cyber-card p-6 rounded-xl card-item border-amber-500/40" data-category="المرحلة IV">
+                        <div class="flex items-center gap-3 mb-4 border-b border-amber-500/30 pb-2">
+                            <span class="text-2xl">🏛️</span>
+                            <h3 class="text-base font-extrabold text-amber-300 font-cairo">الفئة 15: العلوم السياسية، الجيوسياسة، والعلاقات الدولية (Political Science & IR) <span class="text-xs font-normal text-amber-400 bg-amber-950 px-2 py-0.5 rounded border border-amber-500/40">جديد V7.0</span></h3>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed">
+                            <strong>الغرض المنهجي:</strong> فهم موازين القوى، التفكير الجيوسياسي، دراسات الدولة والدبلوماسية، وإدارة الأزمات الدولية والديناميكيات الاقتصادية السياسية.
+                        </p>
+                        <div class="overflow-x-auto rounded-lg border border-amber-900/30">
+                            <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                <thead class="text-amber-200">
+                                    <tr>
+                                        <th class="px-3 py-2.5 w-[220px]">المجلة / الدورية</th>
+                                        <th class="px-3 py-2.5">الوصف والسمعة الدولية والأثر التحليلي للأزمات</th>
+                                        <th class="px-3 py-2.5 text-center w-[120px]">الرابط (Link)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-purple-950/40">
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-amber-300">Foreign Affairs</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">المرجع الأول والأشهر للتفكير الجيوسياسي والدبلوماسي والاستراتيجيات الدولية المعاصرة؛ الصادرة عن مجلس العلاقات الخارجية.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://www.foreignaffairs.com" target="_blank" class="text-amber-400 hover:underline">foreignaffairs.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-amber-300">American Political Science Review (APSR)</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">المجلة الأكاديمية الرائدة لجمعية العلوم السياسية الأمريكية؛ تختص بالنظريات السياسية الصارمة والسياسات المقارنة والتحليل الكمي.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://www.cambridge.org/core/journals/american-political-science-review" target="_blank" class="text-amber-400 hover:underline">APSR Cambridge</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-amber-300">World Politics</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">دورية محكّمة عالمية تصدر عن جامعة برينستون؛ تعنى بتحليل العلاقات الدولية والنظم السياسية والاقتصاد السياسي الدولي.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://www.cambridge.org/core/journals/world-politics" target="_blank" class="text-amber-400 hover:underline">World Politics</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- CAT 16: NEW FIELD -->
+                    <div id="cat-16" class="cyber-card p-6 rounded-xl card-item border-amber-500/40" data-category="المرحلة IV">
+                        <div class="flex items-center gap-3 mb-4 border-b border-amber-500/30 pb-2">
+                            <span class="text-2xl">📈</span>
+                            <h3 class="text-base font-extrabold text-amber-300 font-cairo">الفئة 16: الاقتصاد الكلي، القياس الاقتصادي، والمالية المتقدمة (Macroeconomics & Econometrics) <span class="text-xs font-normal text-amber-400 bg-amber-950 px-2 py-0.5 rounded border border-amber-500/40">جديد V7.0</span></h3>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed">
+                            <strong>الغرض المنهجي:</strong> الانقاذ من التبسيط الاقتصادي السطحي؛ وتوفير أوعية النمذجة الرياضية الحيوية للتضخم، السياسات النقدية، الاقتصاد القياسي، والأسواق المالية.
+                        </p>
+                        <div class="overflow-x-auto rounded-lg border border-amber-900/30">
+                            <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                <thead class="text-amber-200">
+                                    <tr>
+                                        <th class="px-3 py-2.5 w-[220px]">المصدر / الدورية</th>
+                                        <th class="px-3 py-2.5">الوصف المنهجي والقدرة التحليلية للنماذج الاقتصادية والقياسية</th>
+                                        <th class="px-3 py-2.5 text-center w-[120px]">الرابط (Link)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-purple-950/40">
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-amber-300">NBER Working Papers</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">أوراق المكتب القومي للبحوث الاقتصادية (NBER)؛ طليعة الأبحاث الاقتصادية العالمية النقدية والمالية التي تعتمد عليها البنوك المركزية.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://www.nber.org/papers" target="_blank" class="text-amber-400 hover:underline">nber.org/papers</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-amber-300">Econometrica</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">المرجع العلمي الأعلى عالمياً التابع لجمعية القياس الاقتصادي؛ يختص بالنمذجة الإحصائية والرياضية الصلبة للسلوك الاقتصادي.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://www.econometricsociety.org/publications/econometrica" target="_blank" class="text-amber-400 hover:underline">Econometrica</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-amber-300">The Quarterly Journal of Economics (QJE)</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">أقدم مجلة اقتصادية في العالم باللغة الإنجليزية، وتصدرها جامعة هارفارد؛ وتغطي كافة فروع الاقتصاد النظري والتطبيقي.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://academic.oup.com/qje" target="_blank" class="text-amber-400 hover:underline">academic.oup.com/qje</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- CAT 17: NEW FIELD -->
+                    <div id="cat-17" class="cyber-card p-6 rounded-xl card-item border-amber-500/40" data-category="المرحلة IV">
+                        <div class="flex items-center gap-3 mb-4 border-b border-amber-500/30 pb-2">
+                            <span class="text-2xl">🏺</span>
+                            <h3 class="text-base font-extrabold text-amber-300 font-cairo">الفئة 17: الإنسانيات الصلبة: التاريخ المنهجي، الآثار، والأنثروبولوجيا (History & Archaeology) <span class="text-xs font-normal text-amber-400 bg-amber-950 px-2 py-0.5 rounded border border-amber-500/40">جديد V7.0</span></h3>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 leading-relaxed">
+                            <strong>الغرض المنهجي:</strong> فهم تاريخ السلوك البشري والحضارات بناءً على أدلة تنقيب الآثار والتحليل الأنثروبولوجي المباشر بعيداً عن السرديات الانطباعية.
+                        </p>
+                        <div class="overflow-x-auto rounded-lg border border-amber-900/30">
+                            <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                <thead class="text-amber-200">
+                                    <tr>
+                                        <th class="px-3 py-2.5 w-[220px]">المجلة الأكاديمية</th>
+                                        <th class="px-3 py-2.5">الوصف العلمي والتحليل الآثاري وتاريخ السلوك الحضاري</th>
+                                        <th class="px-3 py-2.5 text-center w-[120px]">الرابط (Link)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-purple-950/40">
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-amber-300">The American Historical Review (AHR)</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">المجلة التاريخية المعيارية الرئيسية في الولايات المتحدة؛ وتغطي كافة العصور التاريخية بموجب نقد المخطوطات والوثائق.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://academic.oup.com/ahr" target="_blank" class="text-amber-400 hover:underline">academic.oup.com/ahr</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-amber-300">Current Anthropology</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">دورية محكّمة دولية تعنى بعلم الإنسان الشامل (الأنثروبولوجيا الثقافية والفيزيائية واللسانية) وتطور المجتمعات البشرية.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://www.journals.uchicago.edu/toc/ca/current" target="_blank" class="text-amber-400 hover:underline">UChicago CA</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-amber-300">Journal of Archaeological Science</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">تدمج التقنيات الفيزيائية والكيميائية الحديثة (مثل الكربون 14 والتحليل الجيني) في فحص المكتشفات الآثارية وتأريخ الحضارات.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://www.sciencedirect.com/journal/journal-of-archaeological-science" target="_blank" class="text-amber-400 hover:underline">ScienceDirect JAS</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- CAT 18 -->
+                    <div id="cat-18" class="cyber-card p-6 rounded-xl card-item" data-category="المرحلة IV">
+                        <div class="flex items-center gap-3 mb-4 border-b border-purple-500/30 pb-2">
+                            <span class="text-2xl">🔷</span>
+                            <h3 class="text-base font-extrabold text-purple-300 font-cairo">الفئة 18: مصادر التخصصات، الأنظمة المعقدة، السلوك التنظيمي وتفكير الحياة (Systems & Specialized)</h3>
+                        </div>
+                        <div class="overflow-x-auto rounded-lg border border-purple-900/30">
+                            <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                <thead class="text-purple-200">
+                                    <tr>
+                                        <th class="px-3 py-2.5 w-[220px]">التخصص الدقيق</th>
+                                        <th class="px-3 py-2.5">المجلات والجمعيات وقواعد البيانات والمسودات المعتمدة تفصيلياً</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-purple-950/40">
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">الفيزياء (Physics)</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">تعتمد مجلة <span class="text-purple-400 font-bold">Physical Review Letters (PRL)</span>، ومجلة <span class="text-purple-400 font-bold">Nature Physics</span>، والمستودع الشهير <span class="text-amber-400 font-bold">arXiv</span>.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">الكيمياء (Chemistry)</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">منشورات <span class="text-purple-400 font-bold">الجمعية الكيميائية الأمريكية (ACS)</span> مثل (JACS)، و<span class="text-purple-400 font-bold">الجمعية الملكية للكيمياء (RSC)</span>، ومستودع <span class="text-amber-400 font-bold">ChemRxiv</span>.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">الرياضيات (Mathematics)</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">مجلة <span class="text-purple-400 font-bold">Annals of Mathematics</span> ببرينستون، ومجلة <span class="text-purple-400 font-bold">Inventiones Mathematicae</span>، وقاعدة <span class="text-amber-400 font-bold">MathSciNet</span>.</td>
+                                    </tr>
+                                    <tr class="bg-purple-950/20">
+                                        <td class="px-3 py-3 font-bold text-amber-300">السلوك التنظيمي والإدارة</td>
+                                        <td class="px-3 py-3 text-amber-100 leading-relaxed font-semibold">منصات نخبوية: <span class="text-purple-400 font-bold">Academy of Management Review</span>، مجلة <span class="text-purple-400 font-bold">Management Science</span>، ودورية <span class="text-purple-400 font-bold">Harvard Business Review (HBR)</span>.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">التقنية الحيوية والجينات</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">قاعدة <span class="text-purple-400 font-bold">AlphaFold Protein Structure</span> المطورة من DeepMind لهياكل البروتينات، وقاعدة <span class="text-purple-400 font-bold">UniProt</span>.</td>
+                                    </tr>
+                                    <tr class="bg-purple-950/20">
+                                        <td class="px-3 py-3 font-bold text-amber-300">ديناميكيات النظم (System Dynamics)</td>
+                                        <td class="px-3 py-3 text-amber-100 leading-relaxed font-semibold">ترتكز على مدرسة MIT وتصدر في دوريات <span class="text-purple-400 font-bold">System Dynamics Review</span> و <span class="text-purple-400 font-bold">Systems Research & Behavioral Science</span> لنمذجة حلقات التغذية.</td>
+                                    </tr>
+                                    <tr class="bg-purple-950/20">
+                                        <td class="px-3 py-3 font-bold text-amber-300">الاقتصاد السلوكي واتخاذ القرار</td>
+                                        <td class="px-3 py-3 text-amber-100 leading-relaxed font-semibold">تستند لأبحاث كانمان وتفرسكي، ومجلتي: <span class="text-purple-400 font-bold">Journal of Behavioral Decision Making</span> و <span class="text-purple-400 font-bold">Judgment & Decision Making</span>.</td>
+                                    </tr>
+                                    <tr class="bg-purple-950/20">
+                                        <td class="px-3 py-3 font-bold text-amber-300">تفكير تصميم الحياة (Life Design)</td>
+                                        <td class="px-3 py-3 text-amber-100 leading-relaxed font-semibold">تُدرس عبر مساقات وإصدارات معهد الابتكار بجامعة ستانفورد <span class="text-purple-400 font-bold">Stanford d.school</span> التي توفر أدلة تفاعلية (Playbooks).</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- ================= PHASE V: البنية التحتية وتحصيل الكتب والأطروحات ================= -->
+
+                    <!-- CAT 19 -->
+                    <div id="cat-19" class="cyber-card p-6 rounded-xl card-item" data-category="المرحلة V">
+                        <div class="flex items-center gap-3 mb-4 border-b border-purple-500/30 pb-2">
+                            <span class="text-2xl">🎓</span>
+                            <h3 class="text-base font-extrabold text-purple-300 font-cairo">الفئة 19: الرسائل والأطروحات الجامعية والأبحاث المتخصصة الكبرى (Theses Repositories)</h3>
+                        </div>
+                        <div class="overflow-x-auto rounded-lg border border-purple-900/30">
+                            <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                <thead class="text-purple-200">
+                                    <tr>
+                                        <th class="px-3 py-2.5 w-[220px]">مستودع الأطروحات</th>
+                                        <th class="px-3 py-2.5">الموثوقية والقدرة البحثية وتغطية أطروحات الماجستير والدكتوراه</th>
+                                        <th class="px-3 py-2.5 text-center w-[120px]">الرابط (Link)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-purple-950/40">
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">EThOS</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">الخدمة الوطنية للأطروحات الإلكترونية التابعة للمكتبة البريطانية؛ تتيح تحميل نصف مليون أطروحة دكتوراه مجاناً.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://ethos.bl.uk" target="_blank" class="text-amber-400 hover:underline">ethos.bl.uk</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">OATD (Open Access Theses)</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">البوابة الرقمية الأوسع عالمياً؛ تفهرس وتربط أزيد من 6.5 مليون رسالة ماجستير ودكتوراه في 1100 جامعة.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://oatd.org" target="_blank" class="text-amber-400 hover:underline">oatd.org</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">RePEc</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">فهرس ولامركزية أبحاث ورسائل العلوم المالية والمصرفية والاقتصادية وإدارة الأعمال والسياسات النقدية.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://repec.org" target="_blank" class="text-amber-400 hover:underline">repec.org</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">OpenThesis</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">مستودع بحثي حر يهدف لتداول وتخزين ونشر الأطروحات وتسهيل التعاون ومشاركة البيانات الوصفية.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://openthesis.org" target="_blank" class="text-amber-400 hover:underline">openthesis.org</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- CAT 20 -->
+                    <div id="cat-20" class="cyber-card p-6 rounded-xl card-item" data-category="المرحلة V">
+                        <div class="flex items-center gap-3 mb-4 border-b border-purple-500/30 pb-2">
+                            <span class="text-2xl">🔷</span>
+                            <h3 class="text-base font-extrabold text-purple-300 font-cairo">الفئة 20: المكتبات الرقمية ومستودعات الكتب الشاملة والكتب المفتوحة (Digital Libraries)</h3>
+                        </div>
+                        <div class="overflow-x-auto rounded-lg border border-purple-900/30">
+                            <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                <thead class="text-purple-200">
+                                    <tr>
+                                        <th class="px-3 py-2.5 w-[220px]">المستودع الرقمي</th>
+                                        <th class="px-3 py-2.5">الوصف المنهجي وتجاوز جدران الدفع وتنبيهات الاستخدام</th>
+                                        <th class="px-3 py-2.5 text-center w-[120px]">الرابط (Link)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-purple-950/40">
+                                    <tr class="bg-purple-950/10">
+                                        <td class="px-3 py-3 font-bold text-amber-300">⭐ Anna's Archive</td>
+                                        <td class="px-3 py-3 text-amber-200 leading-relaxed font-semibold">أضخم محرك بحث وتجميع للمكتبات الرقمية ومستودعات الظل المفتوحة في التاريخ؛ يربط LibGen, Sci-Hub, Z-Library.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://annas-archive.gl" target="_blank" class="text-amber-400 hover:underline font-bold">annas-archive.gl</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">OpenStax</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">مبادرة جامعية غير ربحية ترعاها جامعة رايس؛ توفر المقررات الدراسية الجامعية المعتمدة مجاناً وبأمان قانوني.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://openstax.org" target="_blank" class="text-amber-400 hover:underline">openstax.org</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-rose-300">Sci-Hub <span class="text-rose-400 font-bold">⚠️ منصة ظل</span></td>
+                                        <td class="px-3 py-3 text-rose-200/80 leading-relaxed">تكسر احتكار شركات النشر الكبرى وتوفر أكثر من 85 مليون ورقة بحثية مغلقة للاطلاع والاستخدام الحذر.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://sci-hub.se" target="_blank" class="text-amber-400 hover:underline">sci-hub.se</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-rose-300">LibGen (Library Genesis) <span class="text-rose-400 font-bold">⚠️ منصة ظل</span></td>
+                                        <td class="px-3 py-3 text-rose-200/80 leading-relaxed">المستودع الأشهر عالمياً لتحميل الكتب والمقررات الأكاديمية والطبية المقيدة مجاناً وبمختلف اللغات.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://libgen.is" target="_blank" class="text-amber-400 hover:underline">libgen.is</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">WorldCat</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">الفهرس التعاوني الأضخم للمكتبات؛ يربط أكثر من 20 ألف مكتبة جامعية وعامة لتحديد مكان الكتاب الجغرافي.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://worldcat.org" target="_blank" class="text-amber-400 hover:underline">worldcat.org</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">PDF Drive</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">محرك بحث فائق السرعة للكتب والكتيبات المفتوحة بصيغة PDF يضم أزيد من 225 مليون كتاب.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://pdfdrive.com" target="_blank" class="text-amber-400 hover:underline">pdfdrive.com</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- ================= PHASE VI: التقييم، التحرير، والمحاكاة البصرية ================= -->
+
+                    <!-- CAT 21 -->
+                    <div id="cat-21" class="cyber-card p-6 rounded-xl card-item" data-category="المرحلة VI">
+                        <div class="flex items-center gap-3 mb-4 border-b border-purple-500/30 pb-2">
+                            <span class="text-2xl">📢</span>
+                            <h3 class="text-base font-extrabold text-purple-300 font-cairo">الفئة 21: منصات التبسيط العلمي والتعليم التفاعلي ومحاكاة المعامل (Simulation & Visuals)</h3>
+                        </div>
+                        <div class="overflow-x-auto rounded-lg border border-purple-900/30">
+                            <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                <thead class="text-purple-200">
+                                    <tr>
+                                        <th class="px-3 py-2.5 w-[220px]">المنصة التفاعلية</th>
+                                        <th class="px-3 py-2.5">القيمة المعرفية ومحاكاة المعامل الافتراضية والنمذجة</th>
+                                        <th class="px-3 py-2.5 text-center w-[120px]">الرابط (Link)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-purple-950/40">
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-amber-300">Particles by Casberry</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">محاكي تفاعلي 3D يعرض ما يزيد عن 20 ألف جزيء وجسيم حركي بدقة 60FPS مع توليد كود JS للحركات.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://particles.casberry.in" target="_blank" class="text-amber-400 hover:underline">particles.casberry.in</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">ScienceDaily</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">يلخص ويترجم أحدث الأوراق البحثية والاكتشافات الصادرة في الجامعات مراكز الأبحاث يومياً.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://sciencedaily.com" target="_blank" class="text-amber-400 hover:underline">sciencedaily.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Virtual Microscope</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">مختبر مجهري افتراضي يحاكي المجهر الحقيقي تماماً لفحص شرائح الخلايا والبكتيريا بتكبير 100x.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://www.ncbionetwork.org/iet/microscope/" target="_blank" class="text-amber-400 hover:underline">ncbionetwork...</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Phys.org</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">تغطية أحدث الأبحاث والاكتشافات في الفيزياء التطبيقية والكمية وعلوم الفلك والحاسب وتكنولوجيا النانو.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://phys.org" target="_blank" class="text-amber-400 hover:underline">phys.org</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Nature News</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">القسم الصحفي لمجلة Nature؛ يقدم تقارير وتحليلات يكتبها صحفيون علميون متميزون حول التمويل والسياسات.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://nature.com/news" target="_blank" class="text-amber-400 hover:underline">nature.com/news</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">EurekAlert!</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">الخدمة الإخبارية العالمية التابعة لـ AAAS لنشر البيانات الصحفية للجامعات فور خروج الأبحاث.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://eurekalert.org" target="_blank" class="text-amber-400 hover:underline">eurekalert.org</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Popular Science</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">مجلة تغطي العلوم والتقنيات والمخترعات بلغة غاية في التبسيط ومصحوبة برسوم تفاعلية.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://popsci.com" target="_blank" class="text-amber-400 hover:underline">popsci.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">National Geographic</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">مقالات استكشافية ومواد مرئية حائزة على جوائز تغطي الطبيعة، الجغرافيا، الأنثروبولوجيا، والعلوم.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://nationalgeographic.com" target="_blank" class="text-amber-400 hover:underline">nationalgeographic.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Scientific American</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">أقدم منصة تبسيط ومقالات علمية مراجعة؛ تقدم أوراقاً وتحليلات لكبار العلماء والحاصلين على نوبل.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://scientificamerican.com" target="_blank" class="text-amber-400 hover:underline">scientificamerican.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">New Scientist</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">موقع إخباري يرصد طليعة الاكتشافات والابتكارات والتوجهات العلمية المستقبلية والبيئية.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://newscientist.com" target="_blank" class="text-amber-400 hover:underline">newscientist.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">MIT Technology Review</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">صادرة عن MIT؛ تركز على التكنولوجيا الناشئة، الذكاء الاصطناعي، الحوسبة الكمومية، والابتكارات الهندسية.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://technologyreview.com" target="_blank" class="text-amber-400 hover:underline">technologyreview.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Live Science</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">يقدم مقالات علمية بالغة الوضوح وتغطيات حية للأخبار الحيوية والطبية والبيئية تلائم الجميع.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://livescience.com" target="_blank" class="text-amber-400 hover:underline">livescience.com</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- CAT 22 -->
+                    <div id="cat-22" class="cyber-card p-6 rounded-xl card-item border-rose-500/30" data-category="المرحلة VI">
+                        <div class="flex items-center gap-3 mb-4 border-b border-rose-500/30 pb-2">
+                            <span class="text-2xl">🛡️</span>
+                            <h3 class="text-base font-extrabold text-rose-300 font-cairo">الفئة 22: محركات الفحص والتحقق ومقاييس المجلات العلمية وحماية الأوراق (Verification)</h3>
+                        </div>
+                        <div class="overflow-x-auto rounded-lg border border-rose-900/30">
+                            <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                <thead class="text-rose-200">
+                                    <tr>
+                                        <th class="px-3 py-2.5 w-[220px]">الأداة الفاحصة والمعيارية</th>
+                                        <th class="px-3 py-2.5">آلية التدقيق والتحقق وعزل المجلات الزائفة والافتراسية</th>
+                                        <th class="px-3 py-2.5 text-center w-[120px]">الرابط (Link)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-purple-950/40">
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">SJR (Scimago Journal Rank)</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">تقييم المجلات بناءً على Scopus؛ يوضح ترتيب المجلة، معامل التأثير، وأرباعها المعيارية (Q1-Q4).</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://scimagojr.com" target="_blank" class="text-amber-400 hover:underline">scimagojr.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Retraction Watch Database</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">الأرشيف المخصص لتعقب وتسجيل الأوراق التي سحبت من المجلات لحماية الباحث من الاستشهاد بدراسات ملوثة.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://retractiondatabase.org" target="_blank" class="text-amber-400 hover:underline">retractiondatabase.org</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Think. Check. Submit.</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">مبادرة توجيهية تمكّن صغار الباحثين من فحص نزاهة وموثوقية المجلات قبل النشر بها وتجنب النشر الافتراسي.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://thinkchecksubmit.org" target="_blank" class="text-amber-400 hover:underline">thinkchecksubmit.org</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- CAT 23 -->
+                    <div id="cat-23" class="cyber-card p-6 rounded-xl card-item" data-category="المرحلة VI">
+                        <div class="flex items-center gap-3 mb-4 border-b border-purple-500/30 pb-2">
+                            <span class="text-2xl">✍️</span>
+                            <h3 class="text-base font-extrabold text-purple-300 font-cairo">الفئة 23: أدوات التدقيق اللغوي والكتابة والتوثيق المرجعي الأكاديمي (Citation Mechanics)</h3>
+                        </div>
+                        <div class="overflow-x-auto rounded-lg border border-purple-900/30">
+                            <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                <thead class="text-purple-200">
+                                    <tr>
+                                        <th class="px-3 py-2.5 w-[220px]">الأداة التحريرية</th>
+                                        <th class="px-3 py-2.5">الخصائص لضبط الأوراق وتفادي الانتحال اللغوي وتوليد المراجع</th>
+                                        <th class="px-3 py-2.5 text-center w-[120px]">الرابط (Link)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-purple-950/40">
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Grammarly Academic</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">المساعد والمدقق الإملائي والنحوي الأشهر؛ يختص بضبط النبرة اللغوية الأكاديمية (Academic Formal Tone).</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://grammarly.com" target="_blank" class="text-amber-400 hover:underline">grammarly.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">QuillBot</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">أداة لإعادة صياغة الجمل والفقرات (Paraphrasing) وتعديل التراكيب مع الحفاظ الكامل على المعنى أصلياً.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://quillbot.com" target="_blank" class="text-amber-400 hover:underline">quillbot.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">DeepL Write</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">محرر لغوي بالشبكات العصبية العميقة؛ يفهم السياقات التقنية ويقترح صياغات فصيحة تفوق الأدوات العامة.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://deepl.com/write" target="_blank" class="text-amber-400 hover:underline">deepl.com/write</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Overleaf</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">المحرر السحابي التشاركي الأهم لكتابة الأوراق بواسطة لغة ترميز LaTeX؛ لإنشاء معادلات هندسية فائقة الدقة.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://overleaf.com" target="_blank" class="text-amber-400 hover:underline">overleaf.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Zotero</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">برنامج مفتوح المصدر لإدارة وتنظيم المراجع وقوائم المصادر واستخراج البيانات تلقائياً للمستندات.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://zotero.org" target="_blank" class="text-amber-400 hover:underline">zotero.org</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Mendeley</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">برنامج إدارة المراجع المطور من Elsevier؛ يتميز بشبكة تواصل تشاركية تسمح بمشاركة البيانات مع الفرق.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://mendeley.com" target="_blank" class="text-amber-400 hover:underline">mendeley.com</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- ================= PHASE VII: الذكاء الاصطناعي والمبادرات العربية ================= -->
+
+                    <!-- CAT 24 -->
+                    <div id="cat-24" class="cyber-card p-6 rounded-xl card-item" data-category="المرحلة VII">
+                        <div class="flex items-center gap-3 mb-4 border-b border-purple-500/30 pb-2">
+                            <span class="text-2xl animate-pulse">🤖</span>
+                            <h3 class="text-base font-extrabold text-purple-300 font-cairo">الفئة 24: مساعدات ومحركات البحث بالذكاء الاصطناعي الفائق (AI Research Assistants)</h3>
+                        </div>
+                        <div class="overflow-x-auto rounded-lg border border-purple-900/30">
+                            <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                <thead class="text-purple-200">
+                                    <tr>
+                                        <th class="px-3 py-2.5 w-[220px]">المساعد الذكي (AI System)</th>
+                                        <th class="px-3 py-2.5">الخصائص المنهجية لتلخيص وتفهم الأبحاث وتصميم البروتوكولات</th>
+                                        <th class="px-3 py-2.5 text-center w-[120px]">الرابط (Link)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-purple-950/40">
+                                    <tr class="bg-purple-950/10">
+                                        <td class="px-3 py-3 font-bold text-amber-300">⭐ Co-Scientist from Google</td>
+                                        <td class="px-3 py-3 text-amber-200 leading-relaxed font-semibold">نظام عميل ذكاء اصطناعي متعدد الوكلاء (Multi-Agent System) مطور بواسطة Google لتسريع الاكتشافات وتصميم بروتوكولات تجريبية معقدة لتركيب المركبات واختبار الفرضيات.</td>
+                                        <td class="px-3 py-3 text-center"><span class="text-amber-400 font-bold">-</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Google Labs</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">الدفيئة المركزية لـ Google لاختبار وطرح تقنيات الذكاء الاصطناعي التوليدي والبرمجيات التجريبية كـ Gemini.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://labs.google" target="_blank" class="text-amber-400 hover:underline">labs.google</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">NotebookLM (Google)</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">أداة بحث تعتمد كلياً على مصادرك المرفوعة لحمايتها من الهلوسة (Grounding)؛ تلخص أكثر من 50 مصدراً وتولد أوراقاً وبودكاست صوتي.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://notebooklm.google/" target="_blank" class="text-amber-400 hover:underline">notebooklm.google</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">SciSpace</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">مساعد قراءة واستخلاص النتائج وفك طلاسم المعادلات الرياضية بداخل متون الـ PDF وشرح الرسوم البيانية.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://scispace.com/" target="_blank" class="text-amber-400 hover:underline">scispace.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Consensus</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">محرك يقدم خاصية مقياس الإجماع العلمي (Consensus Meter) لحساب النسبة المئوية لإجماع أبحاث العلماء حول فرضية.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://consensus.app/" target="_blank" class="text-amber-400 hover:underline">consensus.app</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">ResearchRabbit</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">يرسم شبكات وخرائط بصرية تفاعلية ثلاثية الأبعاد للأبحاث المترابطة تاريخياً ومستقبلياً بناءً على الاقتباسات.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://researchrabbit.ai/" target="_blank" class="text-amber-400 hover:underline">researchrabbit.ai</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">Jenni AI</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">مساعد متميز في الكتابة وتحرير الأطروحات؛ يقترح التكملة اللغوية المناسبة بناءً على متون أوراق حقيقية.</td>
+                                        <td class="px-3 py-3 text-center"><a href="https://jenni.ai/" target="_blank" class="text-amber-400 hover:underline">jenni.ai</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- CAT 25 -->
+                    <div id="cat-25" class="cyber-card p-6 rounded-xl card-item border-emerald-500/30" data-category="المرحلة VII">
+                        <div class="flex items-center gap-3 mb-4 border-b border-emerald-500/30 pb-2">
+                            <span class="text-2xl">🌍</span>
+                            <h3 class="text-base font-extrabold text-emerald-300 font-cairo">الفئة 25: المنصات والمبادرات العلمية العربية الرائدة ودحض الخرافات</h3>
+                        </div>
+                        <div class="overflow-x-auto rounded-lg border border-emerald-900/30">
+                            <table class="min-w-full text-xs text-right text-gray-200 academic-table">
+                                <thead class="text-emerald-200">
+                                    <tr>
+                                        <th class="px-3 py-2.5 w-[220px]">المبادرة / المنصة العربية</th>
+                                        <th class="px-3 py-2.5">الدور المعرفي، التخصص، والخصائص المنهجية المتبعة</th>
+                                        <th class="px-3 py-2.5 text-center w-[120px]">نوع المحتوى</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-purple-950/40">
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">أنا أصدق العلم</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">المشروع العلمي العربي الأكبر انتشاراً؛ يركز على مواكبة آخر الاكتشافات وترجمتها الفورية برصانة.</td>
+                                        <td class="px-3 py-3 text-center"><span class="px-2 py-0.5 rounded text-[9px] neon-badge-violet">ترجمة وتبسيط عام</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-emerald-300">العلوم الحقيقية</td>
+                                        <td class="px-3 py-3 text-emerald-100 leading-relaxed font-semibold">الموقع العلمي العربي الأول؛ يتخصص في الرد الصارم والمنهجي على الخرافات والعلوم الزائفة وتعميق ثقافة الدليل والشكوكية الأكاديمية.</td>
+                                        <td class="px-3 py-3 text-center"><span class="px-2 py-0.5 rounded text-[9px] neon-badge-emerald">منهجية ودحض زيف</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">شمسنا العربية</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">منصة تركز على ترجمة ونقل المناهج والمساقات الجامعية والأكاديمية الكاملة الصادرة عن MIT لتسهيل الفهم الطلابي.</td>
+                                        <td class="px-3 py-3 text-center"><span class="px-2 py-0.5 rounded text-[9px] neon-badge-violet">تعليم ومساقات كاملة</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">السعودي العلمي</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">مبادرة علمية وطنية رائدة تهدف إلى تبسيط العلوم الحديثة والمعارف والابتكارات لربط الفهم العام بالطليعة الأكاديمية.</td>
+                                        <td class="px-3 py-3 text-center"><span class="px-2 py-0.5 rounded text-[9px] neon-badge-violet">تبسيط وصناعة وعي</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-gray-500">مترجم (مغلق حالياً)</td>
+                                        <td class="px-3 py-3 text-gray-500 leading-relaxed">منصة ترجمة تشاركية سابقة جمعت مجتمعات من المترجمين لتوطين وترجمة المقالات البحثية والمعارف المتنوعة.</td>
+                                        <td class="px-3 py-3 text-center"><span class="px-2 py-0.5 rounded text-[9px] bg-zinc-900 text-gray-500 border border-zinc-800">أرشيف مغلق</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">الباحثون المصريون</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">منصة معرفية وثقافية شاملة تمتد لتغطي العلوم البحتة والإنسانية والتاريخية والاجتماعية بموجب ضوابط تحريرية.</td>
+                                        <td class="px-3 py-3 text-center"><span class="px-2 py-0.5 rounded text-[9px] neon-badge-violet">معرفة إنسانية وعامة</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">المشروع العراقي للترجمة</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">مشروع يعنى بترجمة الأبحاث العلمية بعد التحقق الكامل والمسبق من مصادر المادة ومدى دقتها الأكاديمية.</td>
+                                        <td class="px-3 py-3 text-center"><span class="px-2 py-0.5 rounded text-[9px] neon-badge-violet">ترجمة محققة بمصادر</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">الفضائيون</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">مبادرة لنشر المنهج العلمي وبناء التفكير النقدي لدى الشباب وتبسيط علوم الفضاء والطبيعة بأسلوب تفاعلي.</td>
+                                        <td class="px-3 py-3 text-center"><span class="px-2 py-0.5 rounded text-[9px] neon-badge-violet">منهج تفكير نقدي</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">أخبار العلوم</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">موقع يجمع بين مواكبة التطورات والمستجدات العلمية المعاصرة وتغطية الأنشطة التعليمية والمنوعات المفتوحة.</td>
+                                        <td class="px-3 py-3 text-center"><span class="px-2 py-0.5 rounded text-[9px] neon-badge-violet">أخبار عامة وتبسيط</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">علوم مصطفى الطيب</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">مدونة تخصصية دقيقة للغاية تركز على الشروحات الفنية المرتبطة بالخوارزميات، التشفير الرياضي والأمن السيبراني.</td>
+                                        <td class="px-3 py-3 text-center"><span class="px-2 py-0.5 rounded text-[9px] neon-badge-gold">تخصصي / حاسوبي</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">علومي لمصطفى عابدين</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">مدونة شخصية تهتم بتبسيط العلوم الطبيعية المعقدة عبر صياغة مقالات جذابة بصرياً لتنمية الشغف المعرفي.</td>
+                                        <td class="px-3 py-3 text-center"><span class="px-2 py-0.5 rounded text-[9px] neon-badge-violet">مدونة تبسيطية</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">مرصد المستقبل</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">الشريك العربي الرسمي لـ Futurism؛ يركز بكثافة على التكنولوجيا الناشئة، الذكاء الاصطناعي، والعلوم المتقدمة.</td>
+                                        <td class="px-3 py-3 text-center"><span class="px-2 py-0.5 rounded text-[9px] neon-badge-violet">تكنولوجيات المستقبل</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">النادي الليبي للعلوم</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">مبادرة تنشط لتبسيط العلوم الفيزيائية والطبيعية والترجمات البحثية وتوفير سياق معرفي لربط الطلاب بالمستجدات.</td>
+                                        <td class="px-3 py-3 text-center"><span class="px-2 py-0.5 rounded text-[9px] neon-badge-violet">تبسيط علوم ونشر</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">الباحثون الجزائريون</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">مجموعة تفاعلية وموقع علمي نشر المقالات العلمية والطبية لمكافحة زيف المعلومات وتوطين المنهج العلمي.</td>
+                                        <td class="px-3 py-3 text-center"><span class="px-2 py-0.5 rounded text-[9px] neon-badge-violet">مقالات وترجمات</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">ناسا بالعربي</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">مشروع تطوعي تعنى بالترجمة والتدقيق المعجمي الصارم للأبحاث والصور والبيانات الصادرة عن وكالات الفضاء.</td>
+                                        <td class="px-3 py-3 text-center"><span class="px-2 py-0.5 rounded text-[9px] neon-badge-gold">تخصصي / فلك وفضاء</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">ساينتفك أمريكان بالعربية</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">النسخة العربية الرسمية لـ Scientific American؛ تتميز بترجمة احترافية وتدقيق لغوي غاية في الدقة تحت إشراف هيئة رصينة.</td>
+                                        <td class="px-3 py-3 text-center"><span class="px-2 py-0.5 rounded text-[9px] neon-badge-emerald">مراجعة وترجمة رسمية</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-white">قطر للعلوم</td>
+                                        <td class="px-3 py-3 text-gray-300 leading-relaxed">منصة تهدف إلى رعاية الثقافة العلمية وتبسيط الأبحاث الأكاديمية المعاصرة وتسهيل وصولها وتأثيرها الاجتماعي.</td>
+                                        <td class="px-3 py-3 text-center"><span class="px-2 py-0.5 rounded text-[9px] neon-badge-violet">ثقافة وتبسيط مجتمعي</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-3 py-3 font-bold text-emerald-300">نيتشر العربية (Nature Arabic Edition)</td>
+                                        <td class="px-3 py-3 text-emerald-100 leading-relaxed font-semibold">الترجمة العربية والتحرير الرسمي الكامل لمجلة Nature العالمية؛ وتمثل النخبة المعرفية لصرامة الترجمات الأكاديمية.</td>
+                                        <td class="px-3 py-3 text-center"><span class="px-2 py-0.5 rounded text-[9px] neon-badge-emerald">تحكيم وترجمة رسمية</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =================== TAB 2: METHODOLOGY & EVIDENCE =================== -->
+        <section id="tab-methodology" class="tab-content hidden">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                
+                <!-- Pyramid Card -->
+                <div class="cyber-card p-6 rounded-2xl relative overflow-hidden">
+                    <h3 class="text-lg font-bold text-purple-300 mb-4 pb-2 border-b border-purple-900/30 flex items-center gap-2 font-cairo">
+                        🔺 هرم الأدلة العلمية (Hierarchy of Evidence)
+                    </h3>
+                    <p class="text-xs text-gray-300 mb-6 leading-relaxed">
+                        تعتمد رصانة الإثبات العلمي ودحض الشوائب والتخمينات وزيف المعرفة على منزلة ونوعية التصميم التجريبي للدراسة في الهرم التصاعدي المنهجي.
+                    </p>
+
+                    <div class="flex flex-col gap-2 max-w-md mx-auto my-4 text-center text-xs font-semibold">
+                        <div class="bg-gradient-to-r from-purple-700 to-purple-900 p-3.5 rounded-lg text-white shadow-lg border border-purple-500/50">
+                            <span class="block text-sm font-black text-amber-300">المستوى I: المراجعات المنهجية والتحليل التجمّعي (Systematic Reviews & Meta-Analyses)</span>
+                        </div>
+                        <div class="bg-gradient-to-r from-indigo-750 to-purple-850 p-3 rounded-lg text-white shadow-md border border-indigo-500/30 w-[92%] mx-auto">
+                            <span class="block text-xs font-bold text-white">المستوى II: التجارب العشوائية المضبوطة (RCT)</span>
+                        </div>
+                        <div class="bg-gradient-to-r from-zinc-800 to-indigo-900/40 p-3 rounded-lg text-white shadow-sm border border-indigo-500/20 w-[84%] mx-auto">
+                            <span class="block text-xs font-bold text-gray-200">المستوى III: الدراسات الأترابية والمقارنة (Cohort Studies)</span>
+                        </div>
+                        <div class="bg-zinc-900 p-2.5 rounded text-gray-400 border border-zinc-800 w-[76%] mx-auto text-[10px]">
+                            المستوى IV: دراسات الحالات الفردية والتقارير السريرية
+                        </div>
+                        <div class="bg-zinc-950 p-2 rounded text-gray-500 border border-zinc-900 w-[68%] mx-auto text-[9px]">
+                            المستوى V: آراء الخبراء والافتراضات والنماذج الحيوانية
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Publication Types -->
+                <div class="cyber-card p-6 rounded-2xl">
+                    <h3 class="text-lg font-bold text-purple-300 mb-4 pb-2 border-b border-purple-900/30 flex items-center gap-2 font-cairo">
+                        📄 أنواع المنشورات الأكاديمية (Publication Types)
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                        <div class="bg-purple-950/20 p-4 rounded-xl border border-purple-500/20">
+                            <span class="font-bold text-amber-300 block mb-1">📜 أوراق المراجعة (Review Articles)</span>
+                            <p class="text-[11px] text-gray-400 leading-relaxed">تجمع وتلخص الأبحاث السابقة لبناء خلفية معرفية ونظرية دون بيانات تجريبية جديدة.</p>
+                        </div>
+                        <div class="bg-purple-950/20 p-4 rounded-xl border border-purple-500/20">
+                            <span class="font-bold text-amber-300 block mb-1">💬 التعليقات (Commentaries)</span>
+                            <p class="text-[11px] text-gray-400 leading-relaxed">أوراق لنقد أو توضيح نواحي قوة وضعف الأوراق البحثية المنشورة وتطوير الفكر الحر النبيل.</p>
+                        </div>
+                        <div class="bg-purple-950/20 p-4 rounded-xl border border-purple-500/20">
+                            <span class="font-bold text-purple-300 block mb-1">🔬 الأبحاث الأصلية (Original Research)</span>
+                            <p class="text-[11px] text-gray-400 leading-relaxed">أوراق تنشر بيانات وتجارب ونتائج جديدة تم إجراؤها لأول مرة بواسطة الباحثين.</p>
+                        </div>
+                        <div class="bg-purple-950/20 p-4 rounded-xl border border-purple-500/20">
+                            <span class="font-bold text-purple-300 block mb-1">📝 مسودات ما قبل التحكيم (Preprints)</span>
+                            <p class="text-[11px] text-gray-400 leading-relaxed">نسخ أولية تشارك في مستودعات لمراجعة الأفكار فوراً قبل خضوعها لمراجعة الأقران.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Formulation & Chaining -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <div class="cyber-card p-6 rounded-2xl">
+                    <h3 class="text-lg font-bold text-purple-300 mb-3 pb-2 border-b border-purple-900/30 flex items-center gap-2 font-cairo">
+                        ✍️ صياغة سؤال البحث العلمي وتحديد المتغيرات
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-rose-950/20 p-4 rounded-xl border border-rose-500/20">
+                            <span class="text-xs font-bold text-rose-400 block mb-1">❌ صياغة عامة (تلقينية)</span>
+                            <p class="text-xs text-gray-300 font-mono">"هل القهوة مفيدة للإنسان؟"</p>
+                        </div>
+                        <div class="bg-emerald-950/20 p-4 rounded-xl border border-emerald-500/20">
+                            <span class="text-xs font-bold text-emerald-400 block mb-1">✅ صياغة أكاديمية (مضبوطة)</span>
+                            <p class="text-xs text-gray-300 font-mono">"ما تأثير استهلاك 3-4 أكواب من القهوة المفلترة يومياً على ضغط الدم لدى البالغين المصابين بارتفاع ضغط الدم الطفيف؟"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cyber-card p-6 rounded-2xl">
+                    <h3 class="text-lg font-bold text-purple-300 mb-3 pb-2 border-b border-purple-900/30 flex items-center gap-2 font-cairo">
+                        🔗 تقنية تتبع خيوط الاقتباس (Citation Chaining)
+                    </h3>
+                    <div class="flex flex-col sm:flex-row gap-4 items-center justify-between text-xs">
+                        <div class="bg-purple-950/30 p-4 rounded-xl border border-purple-900/20 w-full text-center">
+                            <span class="font-bold text-amber-300 block mb-1">🔄 الاتجاه الخلفي (Backward)</span>
+                            <p class="text-gray-400 text-[11px]">مراجعة قائمة مصادر الورقة لقراءة الدراسات التاريخية والتأكد من منشأ الفكرة.</p>
+                        </div>
+                        <span class="text-2xl text-amber-400 font-bold">⚡</span>
+                        <div class="bg-purple-950/30 p-4 rounded-xl border border-purple-900/20 w-full text-center">
+                            <span class="font-bold text-amber-300 block mb-1">🔄 الاتجاه الأمامي (Forward)</span>
+                            <p class="text-gray-400 text-[11px]">استخدام "Cited by" لرؤية الأبحاث الأحدث التي اقتبست من ورقتك الحالية لمواكبة التنامي.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Predatory Warning -->
+            <div class="bg-gradient-to-r from-rose-950/40 via-zinc-900/90 to-zinc-950 p-6 rounded-2xl border border-rose-500/40 shadow-xl">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-3xl">⚠️</span>
+                    <h3 class="text-lg font-bold text-rose-400 font-cairo">الحذر من المجلات الوهمية والافتراسية (Predatory Journals)</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                    <div class="bg-zinc-950 p-4 rounded-xl border border-purple-900/20">
+                        <span class="font-bold text-amber-400 block mb-1">1. الفحص (Verify Publishing)</span>
+                        <p class="text-gray-400 text-[11px]">استخدم ThinkCheckSubmit.org للتأكد من هوية جهة النشر وتأمين البحث.</p>
+                    </div>
+                    <div class="bg-zinc-950 p-4 rounded-xl border border-purple-900/20">
+                        <span class="font-bold text-amber-400 block mb-1">2. قواعد الفهرسة (Database)</span>
+                        <p class="text-gray-400 text-[11px]">تأكد أن المجلة مفهرسة رسمياً في: Scopus, Web of Science, أو DOAJ.</p>
+                    </div>
+                    <div class="bg-zinc-950 p-4 rounded-xl border border-purple-900/20">
+                        <span class="font-bold text-amber-400 block mb-1">3. علامات الخطر (Red Flags)</span>
+                        <p class="text-gray-400 text-[11px]">الحذر إذا تلقيت وعداً بنشر بحثك خلال أيام مقابل مال ودون تحكيم حقيقي.</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- =================== TAB 3: SMART GLOSSARY =================== -->
+        <section id="tab-glossary" class="tab-content hidden">
+            
+            <div class="cyber-card p-6 rounded-2xl">
+                <div class="flex items-center justify-between mb-6 border-b border-purple-500/30 pb-3">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">📖</span>
+                        <h3 class="text-lg font-bold text-purple-300 font-cairo">مسرد المصطلحات المعرفي والمنهجي الذكي (Smart Glossary)</h3>
+                    </div>
+                    <input type="text" id="glossarySearch" onkeyup="filterGlossary()" placeholder="ابحث عن مصطلح معين..." class="bg-[#121212] border border-purple-900/40 rounded-lg py-1.5 px-3 text-xs text-gray-200 focus:outline-none focus:border-purple-500">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="glossaryList">
+                    <div class="bg-zinc-900/80 p-4 rounded-xl border border-purple-900/30 glossary-item">
+                        <span class="text-xs font-black text-amber-300 block mb-1">فلسفة العلم (Philosophy of Science)</span>
+                        <p class="text-xs text-gray-400">دراسة المبادئ المنهجية المكونة للنظريات العلمية، ومشكلة التخوم (تمريض العلم عن الخرافة)، والقطائع المعرفية والواقعية العلمية.</p>
+                    </div>
+                    <div class="bg-zinc-900/80 p-4 rounded-xl border border-purple-900/30 glossary-item">
+                        <span class="text-xs font-black text-amber-300 block mb-1">العلم الفائق (Metascience)</span>
+                        <p class="text-xs text-gray-400">تطبيق المنهج العلمي نفسه لدراسة المؤسسة العلمية وتدقيق الممارسات والتحيز وانحياز النشر وأزمة التكرار.</p>
+                    </div>
+                    <div class="bg-zinc-900/80 p-4 rounded-xl border border-purple-900/30 glossary-item">
+                        <span class="text-xs font-black text-amber-300 block mb-1">الاستدلال البيزي (Bayesian Epistemology)</span>
+                        <p class="text-xs text-gray-400">منهج إبستمولوجي يحسب درجة اليقين بالفرضيات وتحديث احتمالية صدقها استناداً للأدلة والشواهد المستجدة.</p>
+                    </div>
+                    <div class="bg-zinc-900/80 p-4 rounded-xl border border-purple-900/30 glossary-item">
+                        <span class="text-xs font-black text-white block mb-1">التحليل التجميعي (Meta-Analysis)</span>
+                        <p class="text-xs text-gray-400">طريقة إحصائية تجمع نتائج دراسات تجريبية متعددة ومستقلة حول نفس الفرضية لزيادة حجم العينة ودقة الاستنتاج.</p>
+                    </div>
+                    <div class="bg-zinc-900/80 p-4 rounded-xl border border-purple-900/30 glossary-item">
+                        <span class="text-xs font-black text-white block mb-1">التجربة العشوائية المضبوطة (RCT)</span>
+                        <p class="text-xs text-gray-400">تصميم تجريبي يقسم المشاركين عشوائياً إلى مجموعة تجريبية وضابطة، بهدف عزل أثر المتغيرات الخفية والخارجية.</p>
+                    </div>
+                    <div class="bg-zinc-900/80 p-4 rounded-xl border border-purple-900/30 glossary-item">
+                        <span class="text-xs font-black text-white block mb-1">النموذج القابل للتكرار (Reproducible Research)</span>
+                        <p class="text-xs text-gray-400">النمط الأكاديمي الذي ينشر الورقة العلمية مرفقة بالكود البرمجي والبيانات الخام لضمان إمكانية إعادة التجربة والتحقق من صحتها.</p>
+                    </div>
+                    <div class="bg-zinc-900/80 p-4 rounded-xl border border-purple-900/30 glossary-item">
+                        <span class="text-xs font-black text-white block mb-1">أزمة التكرار (Replication Crisis)</span>
+                        <p class="text-xs text-gray-400">ظاهرة منهجية واجهت العلوم النفسية والطبية تشير إلى فشل إعادة إنتاج نتائج أبحاث منشورة سابقاً عند إعادة تجربتها بشروط مماثلة.</p>
+                    </div>
+                    <div class="bg-zinc-900/80 p-4 rounded-xl border border-purple-900/30 glossary-item">
+                        <span class="text-xs font-black text-white block mb-1">معامل التأثير (Impact Factor)</span>
+                        <p class="text-xs text-gray-400">مقياس إحصائي سنوي يقيس متوسط عدد الاقتباسات للأبحاث المنشورة في مجلة معينة خلال السنتين الماضيتين.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#121212] border-t border-purple-950/40 py-8 text-center text-xs text-gray-400 mt-12">
+        <div class="max-w-7xl mx-auto px-4 space-y-4">
+            <p class="text-amber-400 font-extrabold font-cairo">AUTODIDACT INFINITE ARCHIVE CORE © 2026</p>
+            <p class="max-w-4xl mx-auto leading-relaxed text-[11px] text-gray-500">
+                تم إعادة بنائه بالكامل بموجب بروتوكول المعماري الأكاديمي المطور (V7.0 Ultra Expanded) لتأصيل قدسية البيانات الكاملة وعزل التحيز وإدراج كافة العلوم الصلبة والهندسية والقانونية والإنسانية وفلسفة العلم في 25 فئة خطية موحدة.
+            </p>
+            <div class="flex justify-center gap-4 text-[10px] text-purple-400 font-mono">
+                <span>SYSTEM: V7.0 ULTRA EXPANDED</span>
+                <span>•</span>
+                <span>25 CATEGORIES</span>
+                <span>•</span>
+                <span>7 KNOWLEDGE PHASES</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.add('hidden');
+                tab.classList.remove('block');
+            });
+            
+            const activeTab = document.getElementById('tab-' + tabId);
+            activeTab.classList.remove('hidden');
+            activeTab.classList.add('block');
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.className = 'tab-btn px-4 py-2 rounded-lg font-bold text-xs transition-all duration-200 border border-transparent text-gray-400 hover:text-white hover:bg-purple-950/20';
+            });
+
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.className = 'tab-btn px-4 py-2 rounded-lg font-bold text-xs transition-all duration-200 bg-purple-900/60 border border-purple-500 text-white shadow-lg shadow-purple-900/30';
+        }
+
+        function filterDirectory() {
+            const searchVal = document.getElementById('directorySearch').value.toLowerCase();
+            const categoryVal = document.getElementById('categoryFilter').value;
+            const cards = document.querySelectorAll('.card-item');
+
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                const category = card.getAttribute('data-category');
+                
+                const matchesSearch = text.includes(searchVal);
+                const matchesCategory = (categoryVal === 'all' || category === categoryVal);
+
+                if (matchesSearch && matchesCategory) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function filterGlossary() {
+            const searchVal = document.getElementById('glossarySearch').value.toLowerCase();
+            const items = document.querySelectorAll('.glossary-item');
+
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(searchVal)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
