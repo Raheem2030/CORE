@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>المدخل الشامل إلى الإبستمولوجيا ونظرية المعرفة</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            darkBg: '#0B0B0F',
+            lightBg: '#F8FAFC',
+            cardDark: '#171724',
+            cardLight: '#FFFFFF',
+            neonViolet: '#8B5CF6',
+            neonCyan: '#06B6D4',
+            neonAmber: '#F59E0B',
+            neonEmerald: '#10B981',
+            neonRose: '#F43F5E'
+          },
+          fontFamily: {
+            cairo: ['Cairo', 'sans-serif'],
+            arabic: ['IBM Plex Sans Arabic', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- KaTeX CDN (Math LaTeX Formulas Rendering) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Chart.js CDN (Data Visualization) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root {
+      --bg-main: #0B0B0F;
+      --text-main: #F8FAFC;
+      --card-bg: rgba(23, 23, 36, 0.85);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --header-bg: rgba(11, 11, 15, 0.85);
+      --drawer-bg: #12121A;
+      --shadow-glow: rgba(139, 92, 246, 0.25);
+    }
+
+    html:not(.dark) {
+      --bg-main: #F1F5F9;
+      --text-main: #0F172A;
+      --card-bg: #FFFFFF;
+      --card-border: rgba(0, 0, 0, 0.08);
+      --header-bg: rgba(241, 245, 249, 0.9);
+      --drawer-bg: #FFFFFF;
+      --shadow-glow: rgba(139, 92, 246, 0.12);
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: 'IBM Plex Sans Arabic', sans-serif;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    html:not(.dark) .text-slate-300 { color: #334155 !important; }
+    html:not(.dark) .text-slate-400 { color: #475569 !important; }
+    html:not(.dark) .text-slate-200 { color: #1E293B !important; }
+    html:not(.dark) .text-slate-100 { color: #0F172A !important; }
+    html:not(.dark) .text-white { color: #0F172A !important; }
+    
+    html:not(.dark) .bg-slate-800\/40, 
+    html:not(.dark) .bg-slate-900\/40, 
+    html:not(.dark) .bg-slate-900\/60, 
+    html:not(.dark) .bg-slate-900\/80 {
+      background-color: rgba(226, 232, 240, 0.7) !important;
+      border-color: rgba(203, 213, 225, 0.8) !important;
+    }
+    
+    html:not(.dark) .border-slate-700\/50, 
+    html:not(.dark) .border-slate-800 {
+      border-color: rgba(203, 213, 225, 0.8) !important;
+    }
+
+    .glass-panel {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      transition: all 0.3s ease;
+    }
+
+    .glass-header {
+      background: var(--header-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .rich-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .rich-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px var(--shadow-glow);
+      border-color: rgba(139, 92, 246, 0.4);
+    }
+
+    #right-outline-drawer {
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      background-color: var(--drawer-bg);
+    }
+
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(139, 92, 246, 0.3); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(139, 92, 246, 0.6); }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col font-arabic">
+
+  <!-- Auto-Hiding Dynamic Header Navigation Bar -->
+  <header id="main-header" class="sticky top-0 z-40 glass-header w-full transition-transform duration-300 transform translateY(0)">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      
+      <!-- Drawer Toggle Button -->
+      <button id="drawer-toggle-btn" class="flex items-center gap-2 px-3 py-2 rounded-xl bg-violet-600/10 hover:bg-violet-600/20 text-violet-500 font-cairo font-bold text-sm border border-violet-500/20 transition-all">
+        <i class="fa-solid fa-bars-staggered text-base"></i>
+        <span>فهرس المحاضرات</span>
+      </button>
+
+      <!-- Lecture Header Titles -->
+      <div class="text-center px-2">
+        <span id="chapter-tag-display" class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-violet-500/10 text-violet-400 mb-0.5 border border-violet-500/20">سلسلة الإبستمولوجيا</span>
+        <h1 id="lecture-title-display" class="font-cairo font-extrabold text-base md:text-lg leading-tight truncate max-w-[200px] sm:max-w-md">كيف نعرف أننا نعرف؟</h1>
+      </div>
+
+      <!-- Theme Toggle Button -->
+      <button id="theme-toggle-btn" class="p-2.5 rounded-xl bg-slate-800/20 dark:bg-slate-800/80 hover:bg-violet-600/20 text-amber-500 dark:text-amber-300 border border-slate-700/30 transition-all" title="تبديل المظهر">
+        <i id="theme-icon" class="fa-solid fa-sun text-lg"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 py-6">
+    
+    <!-- Subtitle / Meta Bar -->
+    <div class="mb-6 p-4 rounded-2xl glass-panel border-r-4 border-r-violet-500 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div>
+        <h2 id="lecture-subtitle-display" class="font-cairo font-bold text-lg text-violet-500 dark:text-violet-400">الدليل الأكاديمي الشامل لنظرية المعرفة</h2>
+        <p class="text-xs text-slate-400 mt-1">إعداد وبحث: أ. حسن عيسى | بروتوكول التنسيق الأكاديمي الشامل (V2.0)</p>
+      </div>
+      <div class="flex items-center gap-2 text-xs font-semibold text-slate-400 bg-slate-800/20 dark:bg-slate-900/50 px-3 py-1.5 rounded-lg w-fit">
+        <i class="fa-solid fa-layer-group text-violet-400"></i>
+        <span id="topic-count-display">0 وحدات</span>
+      </div>
+    </div>
+
+    <!-- Single Topic Active Viewport -->
+    <div id="active-topic-viewport" class="space-y-6">
+      <!-- Content dynamically injected here -->
+    </div>
+
+  </main>
+
+  <!-- Minimal Clean Footer -->
+  <footer class="mt-auto py-4 text-center text-xs text-slate-400 border-t border-slate-800/20">
+    <span>منصة دراسات الفضاء الفكري الإبستمولوجي • سلسلة: كيف نعرف أننا نعرف؟</span>
+  </footer>
+
+  <!-- Hierarchical Right Drawer Navigation -->
+  <div id="drawer-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden transition-opacity"></div>
+  
+  <aside id="right-outline-drawer" class="fixed top-0 right-0 h-full w-80 max-w-[85vw] z-50 transform translate-x-full shadow-2xl flex flex-col border-l border-slate-800/30">
+    <div class="p-4 border-b border-slate-800/40 flex items-center justify-between">
+      <div class="flex items-center gap-2 text-violet-500 dark:text-violet-400 font-cairo font-bold text-base">
+        <i class="fa-solid fa-diagram-project"></i>
+        <span>فهرس السلسلة والمحاضرات</span>
+      </div>
+      <button id="close-drawer-btn" class="p-2 rounded-lg text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+    </div>
+
+    <!-- Drawer Items List -->
+    <div id="drawer-tree-container" class="flex-grow overflow-y-auto p-4 space-y-2">
+      <!-- Tree links dynamically injected here -->
+    </div>
+  </aside>
+
+  <!-- JavaScript Engine -->
+  <script>
+    /* ==========================================================================
+       LECTURE_DATA ENGINE (Episodes 01, 02, Study, 04)
+       ========================================================================== */
+    const LECTURE_DATA = {
+      title: "سلسلة: كيف نعرف أننا نعرف؟ (الإبستمولوجيا الشاملة)",
+      subtitle: "التفريغ والهيكلة الأكاديمية لمباحث المعرفة، التحليل الثلاثي، خارطة الاعتقادات، ومصادر المعرفة",
+      chapterTag: "الموسوعة الإبستمولوجية",
+      topics: [
+        {
+          id: "ep1-intro",
+          title: "1.0 مقدمة إلى سؤال المعرفة والبحث البشري",
+          level: 1,
+          subtitle: "Introduction to Knowledge & The Existential Search",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <h3 class="font-cairo font-bold text-lg mb-3 flex items-center gap-2 text-violet-400">
+                  <i class="fa-solid fa-question-circle"></i>
+                  سؤال الإدراك الذاتي: "ماذا تعرف؟" مقابل "كيف تعرف أنك تعرف؟"
+                </h3>
+                <p class="text-slate-300 leading-relaxed mb-4 text-sm">
+                  عند سؤال أي شخص عادي الإجابة عن التساؤلات المعرفية، تبرز فروقات جوهرية في الاستجابة تعبر عن طبيعة الإدراك البشري:
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="p-4 bg-slate-800/40 rounded-xl border border-slate-700/50">
+                    <h4 class="font-bold text-cyan-400 mb-2 flex items-center gap-2">
+                      <i class="fa-solid fa-list-check"></i> السؤال الأول: "ماذا تعرف؟"
+                    </h4>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                      يبدأ الشخص فوراً بسرد كمية هائلة جداً من المعلومات التي يعتقد اعتقاداً جازماً أنه يعرفها (الأشخاص والذوات، الأماكن والجغرافيا، الذكريات والتجارب، الكتب، الدروس والعلوم، الأفلام والمشاهدات). قد يستمر هذا السرد لساعات أو أيام دون توقف.
+                    </p>
+                  </div>
+                  <div class="p-4 bg-slate-800/40 rounded-xl border border-slate-700/50">
+                    <h4 class="font-bold text-amber-400 mb-2 flex items-center gap-2">
+                      <i class="fa-solid fa-brain"></i> السؤال الثاني: "كيف تعرف أنك تعرف؟"
+                    </h4>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                      يمثل التساؤل الإشكالية العميقة والمنطلق الحقيقي لفلسفة المعرفة؛ حيث يقف الفرد عاجزاً عن تبرير يقينه المعرفي وآلية التحقق من صحة ما يدعي معرفته ومطابقته للواقع.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="rich-card p-6 border-r-4 border-r-emerald-500">
+                <h3 class="font-cairo font-bold text-base mb-3 flex items-center gap-2 text-emerald-400">
+                  <i class="fa-solid fa-dna"></i>
+                  تعريف الكائن البشري وسعيه المعرفي: من الضرورة إلى الرفاهية
+                </h3>
+                <div class="space-y-3 text-sm text-slate-300 leading-relaxed">
+                  <p>
+                    <strong class="text-emerald-400">التعريف الخاص:</strong> يُعرف الكائن البشري بأنه <em>"كائن حي يبحث دائماً وبشكل مستمر عن المعرفة"</em> (رأي شخصي ورؤية للباحث).
+                  </p>
+                  <p>
+                    <strong class="text-emerald-400">ضرورة وجودية (Existential Necessity):</strong> لا يمثل سعي البشر نحو المعرفة ترفاً، بل هو الطريقة الأساسية والوحيدة للبقاء والنجاة وتلبية حاجة تطورية ملحة يصرف في سبيلها مقادير ضخمة من الوقت والجهد.
+                  </p>
+                  <p>
+                    <strong class="text-emerald-400">التحول إلى الرفاهية:</strong> تتحول المعرفة لدى البعض من مجرد تلبية لضرورة الوجود إلى وسيلة راقية لتحقيق السعادة العقلية وإمضاء وقت معرفي ممتع ومفيد.
+                  </p>
+                </div>
+              </div>
+
+              <div class="rich-card p-6 border-r-4 border-r-cyan-500">
+                <h3 class="font-cairo font-bold text-base mb-3 flex items-center gap-2 text-cyan-400">
+                  <i class="fa-solid fa-compass"></i>
+                  معضلة التعريف والمحاور المستهدفة في السلسلة
+                </h3>
+                <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                  على الرغم من الأهمية الفائقة للمعرفة، إلا أن البشرية عاجزة عن صياغة تعريف مشترك واحد يتفق عليه الجميع بسبب المفارقات الفلسفية في تحديد طبيعة المعرفة (Nature of Knowledge)، ومعايير قياسها، وحدودها الفاصلة.
+                </p>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+                  <div class="p-3 bg-slate-900/60 rounded-lg text-center border border-slate-800">
+                    <i class="fa-solid fa-circle-question text-violet-400 text-lg mb-1 block"></i>
+                    <strong>مشكلة المعرفة</strong>
+                  </div>
+                  <div class="p-3 bg-slate-900/60 rounded-lg text-center border border-slate-800">
+                    <i class="fa-solid fa-atom text-cyan-400 text-lg mb-1 block"></i>
+                    <strong>نظرية المعرفة (Epistemology)</strong>
+                  </div>
+                  <div class="p-3 bg-slate-900/60 rounded-lg text-center border border-slate-800">
+                    <i class="fa-solid fa-flask-vial text-emerald-400 text-lg mb-1 block"></i>
+                    <strong>فلسفة العلم والبحث التجريبي</strong>
+                  </div>
+                  <div class="p-3 bg-slate-900/60 rounded-lg text-center border border-slate-800">
+                    <i class="fa-solid fa-scale-balanced text-amber-400 text-lg mb-1 block"></i>
+                    <strong>أنواع الدليل وقيمته</strong>
+                  </div>
+                  <div class="p-3 bg-slate-900/60 rounded-lg text-center border border-slate-800">
+                    <i class="fa-solid fa-lightbulb text-rose-400 text-lg mb-1 block"></i>
+                    <strong>أساليب التفكير المعرفي</strong>
+                  </div>
+                  <div class="p-3 bg-slate-900/60 rounded-lg text-center border border-slate-800">
+                    <i class="fa-solid fa-shield-halved text-indigo-400 text-lg mb-1 block"></i>
+                    <strong>التحقق ونقد الشكوك</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "ep1-types",
+          title: "1.1 التقسيم الثلاثي للمعرفة والحقائق",
+          level: 2,
+          subtitle: "Tripartite Distinction of Knowledge & Epistemical Facts",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-cyan-500">
+                <h3 class="font-cairo font-bold text-lg mb-3 flex items-center gap-2 text-cyan-400">
+                  <i class="fa-solid fa-language"></i>
+                  دلالات فعل "يعرف" (Know) والتفرقة بين المفهوم الأبستمولوجي والأونتولوجي
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs leading-relaxed">
+                  <div class="p-4 bg-slate-800/40 rounded-xl border border-slate-700/50">
+                    <span class="font-bold text-violet-400 block text-sm mb-1">الحقيقة الأبستمولوجية (Epistemical Fact):</span>
+                    <p class="text-slate-300">
+                      هي المقصودة حصراً في سياق دراستنا؛ وتركز على الحقائق من منظور الإدراك البشري، وآليات استقبال وتقييم المعلومات داخل المنظومة المعرفية للعقل.
+                    </p>
+                  </div>
+                  <div class="p-4 bg-slate-800/40 rounded-xl border border-slate-700/50">
+                    <span class="font-bold text-amber-400 block text-sm mb-1">الحقيقة الأونتولوجية (Ontological Truth):</span>
+                    <p class="text-slate-300">
+                      المنظور الوجودي الذي يتعامل مع الحقيقة كوجود موضوعي مستقل بذاته وقائم خارج الفضاء الذهني البشري بغض النظر عن إدراكنا له.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <h3 class="font-cairo font-bold text-base mb-4 flex items-center gap-2 text-violet-400">
+                  <i class="fa-solid fa-table-cells"></i>
+                  التصنيف الثلاثي العملي للمعرفة البشرية
+                </h3>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-xs text-right border-collapse">
+                    <thead>
+                      <tr class="bg-slate-800/60 text-violet-300 border-b border-slate-700">
+                        <th class="p-3">نوع المعرفة</th>
+                        <th class="p-3">المسمى العلمي</th>
+                        <th class="p-3">التعبير اللغوي</th>
+                        <th class="p-3">المفهوم الدلالي</th>
+                        <th class="p-3">أمثلة توضيحية</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-300">
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">1. المعرفة الشخصية / المعارف</td>
+                        <td class="p-3">Familiarity / Conditional Knowledge</td>
+                        <td class="p-3 font-mono text-cyan-400">Who & Where</td>
+                        <td class="p-3">إدراك الذوات، الأشخاص، والأماكن وبناء معرفة مباشرة معها عبر اللقاء والتجربة.</td>
+                        <td class="p-3">"أعرف حسن من الكلوب هاوس"، "أعرف جسر لندن".</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">2. المعرفة الإجرائية / الكيفية</td>
+                        <td class="p-3">Procedural Knowledge</td>
+                        <td class="p-3 font-mono text-emerald-400">Know-how</td>
+                        <td class="p-3">حيازة المهارة والقدرة العملية اللازمة للقيام بفعل معين وممارسة نشاط محدد بنجاح.</td>
+                        <td class="p-3">معرفة ركوب الدراجة، معرفة قيادة السيارة.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">3. المعرفة الافتراضية / التقريرية</td>
+                        <td class="p-3">Propositional / Declarative Knowledge</td>
+                        <td class="p-3 font-mono text-amber-400">Know-that</td>
+                        <td class="p-3">إدراك واكتساب الحقائق والمعلومات التوصيفية التي توصف الواقع وتخضع للصدق والكذب.</td>
+                        <td class="p-3">"أعرف أن الثلج أبيض"، تقرير حقيقة موضوعية.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "ep1-belief-vs-knowledge",
+          title: "1.2 المعرفة مقابل الاعتقاد وتجارب الغرفة المغلقة",
+          level: 2,
+          subtitle: "Belief vs Knowledge & Closed Room Thought Experiments",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-amber-500">
+                <h3 class="font-cairo font-bold text-base mb-3 flex items-center gap-2 text-amber-400">
+                  <i class="fa-solid fa-scale-unbalanced"></i>
+                  الفارق الجوهري: "أنا أعتقد" (Belief) مقابل "أنا أعرف" (Knowledge)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                  <div class="p-4 bg-slate-800/40 rounded-xl border border-slate-700/50">
+                    <span class="font-bold text-rose-400 block mb-1">صيغة "أنا أعتقد أن الجو مشمس بالخارج"</span>
+                    <p class="text-slate-300 leading-relaxed">
+                      تحتمل الصدق (True) أو الخطأ (False)؛ تمثل اعتقاداً ذاتياً مجرداً من أدوات التحقق الإلزامية الخارجية ولا يضمن مطابقة الواقع.
+                    </p>
+                  </div>
+                  <div class="p-4 bg-slate-800/40 rounded-xl border border-slate-700/50">
+                    <span class="font-bold text-emerald-400 block mb-1">صيغة "أنا أعرف أن الجو مشمس بالخارج"</span>
+                    <p class="text-slate-300 leading-relaxed">
+                      يشترط في قائلها الجزم واليقين، وتضيف إلى مجرد الاعتقاد <strong>شرط الصحة والصدق (Truth)</strong> بمطابقة الواقع الفعلي مطابقة قاطعة.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Thought Experiments -->
+              <div class="rich-card p-6 border-r-4 border-r-rose-500">
+                <h3 class="font-cairo font-bold text-base mb-4 flex items-center gap-2 text-rose-400">
+                  <i class="fa-solid fa-door-closed"></i>
+                  تجارب الغرفة المغلقة: لماذا لا يكفي الصدق مع الثقة لإنتاج المعرفة؟
+                </h3>
+                <div class="space-y-4">
+                  <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800 text-xs leading-relaxed">
+                    <div class="flex items-center justify-between font-bold text-violet-400 mb-2">
+                      <span>التجربة الأولى: الصدفة البحتة (Coincidence)</span>
+                      <span class="px-2 py-0.5 bg-rose-500/20 text-rose-300 rounded">غير كافية كمعرفة</span>
+                    </div>
+                    <p class="text-slate-300">
+                      شخص داخل غرفة معزولة بلا نوافذ قال فجأة: "الجو مشمس بالخارج"، وصادف بالواقع أن الجو مشمس. توفر شرط الاعتقاد وشرط الصدق، لكن لا يعد "معرفة" لأن إصابة الواقع تمت بمجرد المصادفة البحتة الخالية من أي رابط تبريري.
+                    </p>
+                  </div>
+
+                  <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800 text-xs leading-relaxed">
+                    <div class="flex items-center justify-between font-bold text-violet-400 mb-2">
+                      <span>التجربة الثانية: الاعتقاد + الصدق + الثقة الذاتية</span>
+                      <span class="px-2 py-0.5 bg-rose-500/20 text-rose-300 rounded">مرفوضة كمعرفة يقينية</span>
+                    </div>
+                    <p class="text-slate-300">
+                      شخص في نفس الغرفة المغلقة، شعر بتفاؤل كبير أو رأى حلماً يبشره بالشمس، فأصبح واثقاً تماماً وجازماً بأن الطقس مشمس، وصادف الواقع ذلك. اجتمع لديه (الاعتقاد + الصدق + ثقة القائل)، ومع ذلك لا يتساوى علمياً بمن فتح الباب وعاين الطقس مباشرة بحواسه.
+                    </p>
+                    <p class="mt-2 text-amber-300 font-semibold">
+                      الخلاصة: الشروط الثلاثة غير كافية، مما يفرض حتمية وجود شرط إضافي صارم هو "التبرير والتسويغ المعرفي" (Justification).
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "ep2-jtb",
+          title: "2.0 التحليل الثلاثي للمعرفة (JTB) ومفهوم الاعتماد البراجماتي",
+          level: 1,
+          subtitle: "Tripartite Analysis of Knowledge & Pragmatic Adoption",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <h3 class="font-cairo font-bold text-lg mb-3 flex items-center gap-2 text-violet-400">
+                  <i class="fa-solid fa-cube"></i>
+                  الصياغة الرمزية الفلسفية للتحليل الثلاثي التقليدي (JTB)
+                </h3>
+                <p class="text-slate-300 text-xs leading-relaxed mb-3">
+                  تنص القاعدة الإبستمولوجية على أن الذات العارفة ($S$) تعرف القضية ($P$) إذا وفقط إذا تحققت الشروط الثلاثة بالتزامن:
+                </p>
+                <div class="p-4 bg-slate-900/70 rounded-xl text-center text-cyan-300 font-mono text-sm dir-ltr border border-slate-700">
+                  $$ S \text{ knows } P \iff (P \text{ is True}) \land (S \text{ believes } P) \land (S \text{ is Justified in believing } P) $$
+                </div>
+                <div class="mt-3 text-xs text-slate-400 text-center">
+                  المعرفة = اعتقاد (Belief) + حقيقة وصدق (Truth) + تبرير وتسويغ (Justification).
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="rich-card p-5 border-r-4 border-r-emerald-500 text-xs">
+                  <h4 class="font-bold text-emerald-400 text-sm mb-2">1. شرط الصدق (Truth)</h4>
+                  <p class="text-slate-300 leading-relaxed">
+                    <strong>الشرط اللازم:</strong> يمتنع معرفياً أن يدعي أحد معرفة شيء غير حقيقي. هو شرط لازم وغير كافٍ بمفرده (Necessary but not Sufficient)؛ فنفي الحقيقة ينفي المعرفة، لكن وجود الحقيقة وحدها لا يكفي لتحويل الفكرة لمعرفة.
+                  </p>
+                </div>
+                <div class="rich-card p-5 border-r-4 border-r-cyan-500 text-xs">
+                  <h4 class="font-bold text-cyan-400 text-sm mb-2">2. شرط الاعتقاد (Belief)</h4>
+                  <p class="text-slate-300 leading-relaxed">
+                    <strong>الشرط السهل/الرخيص:</strong> يمكن لأي شخص تبني أي اعتقاد بيسر تام دون عناء فكري؛ ورغم سهولته فهو شرط لازم بالكامل، إذ يمتنع عقلاً أن يقال إنك تعرف قضية وأنت لا تعتقد في قرارة نفسك بصحتها.
+                  </p>
+                </div>
+                <div class="rich-card p-5 border-r-4 border-r-amber-500 text-xs">
+                  <h4 class="font-bold text-amber-400 text-sm mb-2">3. شرط التبرير (Justification)</h4>
+                  <p class="text-slate-300 leading-relaxed">
+                    <strong>المسوغ الإبستمولوجي:</strong> تقديم الأدلة والبراهين العقلانية الكافية التي تمنع تحول الاعتقاد الصادق إلى مجرد ضربة حظ؛ وينقسم إلى تبرير شخصي وتبرير موضوعي علمي قابل للقياس والتحقق.
+                  </p>
+                </div>
+              </div>
+
+              <div class="rich-card p-6 border-r-4 border-r-indigo-500">
+                <h3 class="font-cairo font-bold text-base mb-2 flex items-center gap-2 text-indigo-400">
+                  <i class="fa-solid fa-wrench"></i>
+                  مفهوم الاعتماد البراجماتي للمناهج (Pragmatic Adoption)
+                </h3>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                  نحن نقبل ونعتمد المنهج الإبستمولوجي المعين لأننا نجده <strong>مفيداً، فعالاً، وعملياً</strong> ويؤدي الغرض المعرفي، وليس لأنه معصوم تماماً من الطعون الفلسفية أو يمثل "الحقيقة المطلقة". وتقاس موثوقية المناهج بمدى جدواها وقدرتها على تحقيق التراكم المعرفي والتنبؤ السلوكي.
+                </p>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "ep2-cases",
+          title: "2.1 الحالات الأربعة للاعتقاد وتطبيق المسافر",
+          level: 2,
+          subtitle: "The 4 Epistemic Belief States & Traveler Scenario",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <h3 class="font-cairo font-bold text-base mb-4 flex items-center gap-2 text-violet-400">
+                  <i class="fa-solid fa-table"></i>
+                  مصفوفة الحالات الأربعة للاعتقاد البشري
+                </h3>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-xs text-right border-collapse">
+                    <thead>
+                      <tr class="bg-slate-800/60 text-violet-300 border-b border-slate-700">
+                        <th class="p-3">حالة الاعتقاد</th>
+                        <th class="p-3">الصدق (Truth)</th>
+                        <th class="p-3">التبرير (Justification)</th>
+                        <th class="p-3">المسمى الإبستمولوجي</th>
+                        <th class="p-3">التوصيف والمثال العملي (سفر فلان)</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-300">
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-emerald-400">الاعتقاد الأول (JTB)</td>
+                        <td class="p-3 text-emerald-400">صحيح (True)</td>
+                        <td class="p-3 text-emerald-400">متوفر ومبرر</td>
+                        <td class="p-3 font-bold text-emerald-300">معرفة حقيقية (Knowledge)</td>
+                        <td class="p-3">ودعك بالتذكرة وحقائبه وسافر فعلاً؛ اكتملت الأركان وتشكلت المعرفة اليقينية.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-cyan-400">الاعتقاد الثاني</td>
+                        <td class="p-3 text-emerald-400">صحيح (True)</td>
+                        <td class="p-3 text-rose-400">غير متوفر (Unjustified)</td>
+                        <td class="p-3">اعتقاد حقيقي غير مبرر</td>
+                        <td class="p-3">يعتقد بسفر فلان ويسافر فلان فعلاً، لكن دون أي دليل سوى المشاعر أو المصادفة.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-amber-400">الاعتقاد الثالث</td>
+                        <td class="p-3 text-rose-400">خاطئ (False)</td>
+                        <td class="p-3 text-emerald-400">متوفر ومبرر</td>
+                        <td class="p-3">اعتقاد خاطئ مبرر</td>
+                        <td class="p-3">عرض التذكرة والحقائب، لكن ألغيت الرحلة لظرف طارئ وبقي بالبلد. تبرير قوي لكنه كاذب.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-rose-400">الاعتقاد الرابع</td>
+                        <td class="p-3 text-rose-400">خاطئ (False)</td>
+                        <td class="p-3 text-rose-400">غير متوفر (Unjustified)</td>
+                        <td class="p-3">اعتقاد خاطئ غير مبرر</td>
+                        <td class="p-3">جهل تام؛ ادعاء كاذب لم يحدث ولم يقم عليه أي برهان منطقي أو سياقي.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "ep2-burden",
+          title: "2.2 التحقق الإبستمولوجي وقانون الحمل المعرفي",
+          level: 2,
+          subtitle: "Epistemic Burden & Proportionality Law",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-cyan-500">
+                <h3 class="font-cairo font-bold text-base mb-3 flex items-center gap-2 text-cyan-400">
+                  <i class="fa-solid fa-earth-americas"></i>
+                  إمكانية التحقق: مقارنة الصين وقارة أتلانتا الغارقة
+                </h3>
+                <p class="text-xs text-slate-300 leading-relaxed mb-3">
+                  ليس من الضرورة المعرفية أن تجرب كل ظاهرة بيدك لتثبت معرفتها، بل الشرط الحاسم هو أن يكون الادعاء <strong>قابلاً للتجريب والتحقق المنهجي (Verifiable)</strong>:
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                  <div class="p-4 bg-slate-800/40 rounded-xl border border-slate-700/50">
+                    <span class="font-bold text-emerald-400 block mb-1">وجود الصين (معرفة مبررة):</span>
+                    <p class="text-slate-300">لم تزر الصين شخصياً، لكن توجد أدلة متراكمة وتواصل وخرائط وإمكانية حجز تذكرة والسفر الفعلي للتحقق متى أردت.</p>
+                  </div>
+                  <div class="p-4 bg-slate-800/40 rounded-xl border border-slate-700/50">
+                    <span class="font-bold text-rose-400 block mb-1">وجود أتلانتا الغارقة (أسطورة غير مبررة):</span>
+                    <p class="text-slate-300">يفتقر الادعاء لأي مبررات موضوعية أو أدلة قابلة للتحقق المادي المباشر، فيسقط عن حيز المعرفة.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Law of Epistemic Burden -->
+              <div class="rich-card p-6 border-r-4 border-r-amber-500">
+                <h3 class="font-cairo font-bold text-base mb-3 flex items-center gap-2 text-amber-400">
+                  <i class="fa-solid fa-scale-balanced"></i>
+                  قانون التناسب الإبستمولوجي ومستويات الالتزام (حالة الصديق أحمد)
+                </h3>
+                <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800 text-xs font-mono text-amber-300 mb-4 text-center">
+                  يتناسب الحمل المعرفي / الالتزام المعرفي (Epistemic Burden / Commitment) طردياً مع صرامة وموثوقية شروط التحقق المطلوبة.
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                  <div class="p-3 bg-slate-800/30 rounded-xl border border-slate-700/40">
+                    <span class="font-bold text-slate-200 block mb-1">1. حمل منخفض (Low)</span>
+                    <p class="text-slate-400 text-[11px] mb-2">صديق يخبرك برؤية أحمد صدفة في الشارع. لا يترتب عليك أي قرار.</p>
+                    <span class="px-2 py-0.5 bg-slate-700 text-slate-300 rounded text-[10px]">يكتفى باعتقاد بسيط (Belief)</span>
+                  </div>
+                  <div class="p-3 bg-slate-800/30 rounded-xl border border-slate-700/40">
+                    <span class="font-bold text-amber-300 block mb-1">2. حمل متوسط (Medium)</span>
+                    <p class="text-slate-400 text-[11px] mb-2">يخبرك بأن أحمد سيزورك في الـ 5:00 مساءً (التزام عملي محدود).</p>
+                    <span class="px-2 py-0.5 bg-amber-500/20 text-amber-300 rounded text-[10px]">يتطلب تسويغاً (Justified Belief)</span>
+                  </div>
+                  <div class="p-3 bg-slate-800/30 rounded-xl border border-slate-700/40">
+                    <span class="font-bold text-rose-400 block mb-1">3. حمل مرتفع (High)</span>
+                    <p class="text-slate-400 text-[11px] mb-2">يخبرك بأن هناك امتحاناً مصيرياً تم تحديده بعد 3 أيام (قرار كبير).</p>
+                    <span class="px-2 py-0.5 bg-rose-500/20 text-rose-300 rounded text-[10px]">اشتراط المعرفة الصارمة (JTB)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "ep3-formulation",
+          title: "3.0 هندسة الصياغة وخارطة التوزع المعرفي",
+          level: 1,
+          subtitle: "Belief Formulation & Cognitive Distribution Map",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <h3 class="font-cairo font-bold text-lg mb-3 flex items-center gap-2 text-violet-400">
+                  <i class="fa-solid fa-pen-ruler"></i>
+                  هندسة الصياغة اللغوية: الحامل المعرفي للأفكار
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs leading-relaxed">
+                  <div class="p-4 bg-slate-800/40 rounded-xl border border-emerald-500/30">
+                    <h4 class="font-bold text-emerald-400 mb-1">االعتقادات المصاغة بسليمة (Well-Formed Beliefs)</h4>
+                    <p class="text-slate-300">
+                      تقع داخل الإطار الهيكلي السليم؛ تتصف بالوضوح المفاهيمي والتماسك الداخلي للبناء اللغوي والمنطقي، وتمتلك القدرة على تبيان الحجج ونقلها بفعالية للمستمع.
+                    </p>
+                  </div>
+                  <div class="p-4 bg-slate-800/40 rounded-xl border border-rose-500/30">
+                    <h4 class="font-bold text-rose-400 mb-1">الاعتقادات المشوهة الرديئة (Ill-Formed Beliefs)</h4>
+                    <p class="text-slate-300">
+                      تقع خارج الإطار السليم وتُعزل ضمن منطقة الهراء؛ تفتقر للتماسك والاتساق اللفظي أو المنطقي، وتؤدي صياغتها الرديئة إلى إعدام الحجة معرفياً حتى لو انطوت في أصلها على حقيقة.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 7 Zones Table -->
+              <div class="rich-card p-6 border-r-4 border-r-cyan-500">
+                <h3 class="font-cairo font-bold text-base mb-4 flex items-center gap-2 text-cyan-400">
+                  <i class="fa-solid fa-map-location-dot"></i>
+                  خارطة المناطق السبعة للتوزع المعرفي (Cognitive Distribution Map)
+                </h3>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-xs text-right border-collapse">
+                    <thead>
+                      <tr class="bg-slate-800/60 text-cyan-300 border-b border-slate-700">
+                        <th class="p-2.5">المنطقة</th>
+                        <th class="p-2.5">المسمى المعرفي</th>
+                        <th class="p-2.5">الشروط المحققة</th>
+                        <th class="p-2.5">الشرط الغائب</th>
+                        <th class="p-2.5">مثال توضيحي وتاريخي</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-300 text-[11px]">
+                      <tr class="hover:bg-slate-800/20 bg-emerald-500/5">
+                        <td class="p-2.5 font-bold text-emerald-400">Knowledge</td>
+                        <td class="p-2.5 font-bold text-emerald-300">المعرفة الحقيقية الكلاسيكية</td>
+                        <td class="p-2.5">اعتقاد + حقيقة + تبرير + صياغة سليمة</td>
+                        <td class="p-2.5 text-emerald-400 font-bold">لا يوجد</td>
+                        <td class="p-2.5">النظريات والقوانين العلمية المثبتة بالأدلة القاطعة.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-2.5 font-bold text-cyan-400">Region A</td>
+                        <td class="p-2.5">التخمينات الجيدة (Good Guess)</td>
+                        <td class="p-2.5">اعتقاد + حقيقة + صياغة سليمة</td>
+                        <td class="p-2.5 text-rose-400 font-bold">التبرير (Justification)</td>
+                        <td class="p-2.5">اعتقاد عامي بكروية الأرض سماعاً دون دليل أو برهان فيزيائي.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-2.5 font-bold text-amber-400">Region B</td>
+                        <td class="p-2.5">الإيجابيات الكاذبة (False Positives)</td>
+                        <td class="p-2.5">اعتقاد + تبرير + صياغة سليمة</td>
+                        <td class="p-2.5 text-rose-400 font-bold">الحقيقة (Truth)</td>
+                        <td class="p-2.5">الاعتقاد التاريخي بتسطح الأرض استناداً لأفق المشاهدة الظاهري.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-2.5 font-bold text-slate-300">Region C</td>
+                        <td class="p-2.5">الاعتقاد الصرف المنسق (Pure Belief)</td>
+                        <td class="p-2.5">اعتقاد + صياغة سليمة</td>
+                        <td class="p-2.5 text-rose-400 font-bold">الحقيقة + التبرير</td>
+                        <td class="p-2.5">ادعاء شخص بصياغة ممتازة أن أمواج البحر تندفع بفعل وحش أسطوري.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-2.5 font-bold text-indigo-400">Region D</td>
+                        <td class="p-2.5">الحقائق المرفوضة (Truths Not Believed)</td>
+                        <td class="p-2.5">الحقيقة فقط</td>
+                        <td class="p-2.5 text-rose-400 font-bold">الاعتقاد + التبرير</td>
+                        <td class="p-2.5">ادعاء قلة تاريخياً كروية الأرض فرفضها العامة لغياب براهين تثبتها آنذاك.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-2.5 font-bold text-teal-400">Region E</td>
+                        <td class="p-2.5">الإنكار المحظوظ (Lucky Denial)</td>
+                        <td class="p-2.5">التبرير + صياغة سليمة</td>
+                        <td class="p-2.5 text-rose-400 font-bold">الاعتقاد + الحقيقة</td>
+                        <td class="p-2.5">إنكار تسطح الأرض في القرون الوسطى مصادفة أو تشكيكاً دون دليل.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-2.5 font-bold text-rose-400">Region F</td>
+                        <td class="p-2.5">منطقة الإنكار الصريح (Denial)</td>
+                        <td class="p-2.5">الحقيقة + التبرير + صياغة سليمة</td>
+                        <td class="p-2.5 text-rose-400 font-bold">الاعتقاد (Belief)</td>
+                        <td class="p-2.5">رفض حقائق علمية مثبتة ومفهومة لمجرد التنشئة أو الهوى النفسي.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20 bg-rose-500/5">
+                        <td class="p-2.5 font-bold text-rose-500">Region G</td>
+                        <td class="p-2.5">منطقة الهراء المعرفي (Nonsense Zone)</td>
+                        <td class="p-2.5">صياغة سيئة (Ill-Formed)</td>
+                        <td class="p-2.5 text-rose-400 font-bold">الاعتقاد المنظم + الحقيقة + التبرير</td>
+                        <td class="p-2.5">معتقدات متوارثة تلقينياً يحظر نقدها وتُنقل بصيغ غامضة مفككة.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "ep3-math-reduction",
+          title: "3.1 التحليل الكمي وهندسة تقليص نسب الخطأ",
+          level: 2,
+          subtitle: "Epistemic Error Rate Reduction & Quantitative Modeling",
+          chartConfig: {
+            type: 'bar',
+            data: {
+              labels: [
+                'المسار 1: التبني الأعمى والتلقين',
+                'المسار 2: المطالبة الإجبارية بالتبرير',
+                'المسار 3: المنهج العلمي والتحقق التام'
+              ],
+              datasets: [{
+                label: 'نسبة الخطأ المعرفي المحتمل (%)',
+                data: [60, 50, 0],
+                backgroundColor: [
+                  'rgba(244, 63, 94, 0.7)',
+                  'rgba(245, 158, 11, 0.7)',
+                  'rgba(16, 185, 129, 0.7)'
+                ],
+                borderColor: ['#F43F5E', '#F59E0B', '#10B981'],
+                borderWidth: 1.5
+              }]
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: { display: false },
+                tooltip: {
+                  callbacks: {
+                    label: function(context) {
+                      return ` نسبة احتمالية الخطأ: ${context.parsed.y}%`;
+                    }
+                  }
+                }
+              },
+              scales: {
+                y: { 
+                  beginAtZero: true, 
+                  max: 100,
+                  grid: { color: 'rgba(150,150,150,0.1)' } 
+                },
+                x: { grid: { display: false } }
+              }
+            }
+          },
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-cyan-500">
+                <h3 class="font-cairo font-bold text-base mb-3 text-cyan-400 flex items-center gap-2">
+                  <i class="fa-solid fa-chart-column"></i>
+                  مخطط تقليص نسب الخطأ الإبستمولوجي في المسارات المعرفية
+                </h3>
+                <p class="text-slate-400 text-xs mb-4 leading-relaxed">
+                  عند عزل دائرة الاعتقاد الشخصي، نجد 5 مناطق ينشط فيها الاعتقاد (G, C, B, A, Knowledge). 3 مناطق منها خاطئة تماماً و2 صحيحة:
+                </p>
+                <div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800 mb-4">
+                  <canvas id="topicChart" class="w-full max-h-64"></canvas>
+                </div>
+              </div>
+
+              <!-- Mathematical Breakdown -->
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                <div class="rich-card p-4 border-r-4 border-r-rose-500">
+                  <span class="font-bold text-rose-400 block mb-1">المسار الأول (التبني والتلقين)</span>
+                  <div class="text-center py-2 font-mono text-rose-300">
+                    $$ \text{Error Rate} = \frac{3}{5} = 60\% $$
+                  </div>
+                  <p class="text-slate-300 text-[11px] mt-2">
+                    اعتقاد فردي بلا تبرير؛ مفتوح على 5 مناطق (3 خاطئة: G, C, B)، مما يجعل احتمالية الخطأ فادحة.
+                  </p>
+                </div>
+
+                <div class="rich-card p-4 border-r-4 border-r-amber-500">
+                  <span class="font-bold text-amber-400 block mb-1">المسار الثاني (فرض التبرير)</span>
+                  <div class="text-center py-2 font-mono text-amber-300">
+                    $$ \text{Error Rate} = \frac{1}{2} = 50\% $$
+                  </div>
+                  <p class="text-slate-300 text-[11px] mt-2">
+                    يسقط فوراً الهراء (G) والاعتقاد الصرف (C) والتخمين (A). تنحصر الخيارات بين المعرفة الحقيقية والمنطقة B.
+                  </p>
+                </div>
+
+                <div class="rich-card p-4 border-r-4 border-r-emerald-500">
+                  <span class="font-bold text-emerald-400 block mb-1">المسار الثالث (التحقق العلمي)</span>
+                  <div class="text-center py-2 font-mono text-emerald-300">
+                    $$ \text{Error Rate} \approx 0\% $$
+                  </div>
+                  <p class="text-slate-300 text-[11px] mt-2">
+                    التحقق التام من مطابقة الحقيقة والتبرير؛ استقرار كامل في منطقة المعرفة الحقيقية المبررة (JTB).
+                  </p>
+                </div>
+              </div>
+
+              <!-- Interactive Simulator -->
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <h3 class="font-cairo font-bold text-base mb-3 text-violet-400 flex items-center gap-2">
+                  <i class="fa-solid fa-calculator"></i>
+                  حاسبة الفرز والتصفية المعرفية للاعتقادات
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                  <div>
+                    <label class="block mb-1 text-slate-300">حالة الصياغة اللغوية:</label>
+                    <select id="sim-form" class="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-violet-500">
+                      <option value="good">سليمة (Well-Formed)</option>
+                      <option value="bad">رديئة (Ill-Formed)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block mb-1 text-slate-300">توفر التبرير العقلاني:</label>
+                    <select id="sim-just" class="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-violet-500">
+                      <option value="yes">متوفر (Justified)</option>
+                      <option value="no">غير متوفر (Unjustified)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block mb-1 text-slate-300">مطابقة الواقع (الصدق):</label>
+                    <select id="sim-truth" class="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-violet-500">
+                      <option value="yes">صحيح واقعياً (True)</option>
+                      <option value="no">غير صحيح (False)</option>
+                    </select>
+                  </div>
+                </div>
+                <button id="calc-run-btn" class="mt-4 px-4 py-2 bg-violet-600 hover:bg-violet-700 text-white font-cairo font-bold rounded-lg text-xs transition-all flex items-center gap-2">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                  تحديد المنطقة المعرفية فوراً
+                </button>
+                <div id="calc-result" class="mt-3 p-3 bg-slate-900/90 rounded-lg text-xs font-mono text-violet-300 border border-violet-500/30 hidden"></div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "ep4-sources",
+          title: "4.0 مصادر المعرفة الستة الكلاسيكية",
+          level: 1,
+          subtitle: "The Six Classical Sources of Knowledge",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <h3 class="font-cairo font-bold text-base mb-3 flex items-center gap-2 text-violet-400">
+                  <i class="fa-solid fa-umbrella-beach"></i>
+                  النموذج التطبيقي التخيلي (مجاز شاطئ البحر)
+                </h3>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                  تخيل أنك في إجازة هادئة على شاطئ البحر: تشاهد المياه وتلمس قدميك (<strong>الإدراك الحسي</strong>)، تتذكر نشرة الأخبار الجوية (<strong>الذاكرة</strong>) التي أذاعها المذيع (<strong>الشهادة والخبر</strong>)، يراودك شعور مفاجئ بحدث ما (<strong>الحدس</strong>)، تشعر بالبهجة واللذة الباطنية (<strong>الاستبطان</strong>)، وتحسب الأيام الستة المنقضية لتستنتج بقاء يوم واحد (<strong>الاستنباط العقلي</strong>). في هذا المشهد اجتمعت كافة مصادر المعرفة.
+                </p>
+              </div>
+
+              <!-- 6 Sources Details -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                <div class="rich-card p-5 border-r-4 border-r-cyan-500">
+                  <h4 class="font-bold text-cyan-400 text-sm mb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-eye"></i> 1. الإدراك الحسي (Perception)
+                  </h4>
+                  <ul class="space-y-1.5 text-slate-300 list-disc list-inside text-[11px]">
+                    <li><strong>طبيعته:</strong> مصدر بعدي أصيل ومستقل؛ لا يتطلب وساطة مصادر أخرى.</li>
+                    <li><strong>آلية العمل:</strong> استقبال المثيرات عبر الحواس الخمس وتأسيس علاقة سببية.</li>
+                    <li><strong>العثرات:</strong> الهلوسة، الخداع البصري (مثال النظارة الزرقاء التي تغير لون البحر).</li>
+                  </ul>
+                </div>
+
+                <div class="rich-card p-5 border-r-4 border-r-indigo-500">
+                  <h4 class="font-bold text-indigo-400 text-sm mb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-floppy-disk"></i> 2. الذاكرة (Memory)
+                  </h4>
+                  <ul class="space-y-1.5 text-slate-300 list-disc list-inside text-[11px]">
+                    <li><strong>طبيعتها:</strong> مصدر بعدي تابع ومشتق؛ يعتمد على تلقي مسبق عبر الحس أو الخبر.</li>
+                    <li><strong>المعرفة المنتجة:</strong> المعرفة التذكارية (Memorial Knowledge).</li>
+                    <li><strong>العثرات:</strong> التحلل الزمني (Memory Decay)، واختلاط الذكريات الحقيقية بالكاذبة.</li>
+                  </ul>
+                </div>
+
+                <div class="rich-card p-5 border-r-4 border-r-emerald-500">
+                  <h4 class="font-bold text-emerald-400 text-sm mb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-bullhorn"></i> 3. الشهادة أو الخبر (Testimony)
+                  </h4>
+                  <ul class="space-y-1.5 text-slate-300 list-disc list-inside text-[11px]">
+                    <li><strong>طبيعته:</strong> بعدي ومشترك اجتماعي؛ أكثر المصادر شيوعاً في تاريخ الإنسانية.</li>
+                    <li><strong>أقسامه:</strong> خبر الآحاد الفردي، الخبر المتواتر (Mutawatir)، والخبر المعرفي التخصصي.</li>
+                    <li><strong>العثرات:</strong> احتمال الكذب، الجهل، والتنازع حول إفادة التواتر لليقين المطلق.</li>
+                  </ul>
+                </div>
+
+                <div class="rich-card p-5 border-r-4 border-r-rose-500">
+                  <h4 class="font-bold text-rose-400 text-sm mb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> 4. الحدس الشخصي (Intuition)
+                  </h4>
+                  <ul class="space-y-1.5 text-slate-300 list-disc list-inside text-[11px]">
+                    <li><strong>طبيعته:</strong> شعور داخلي غامض مفاجئ دون مقدمات منطقية واضحة.</li>
+                    <li><strong>التقييم المعرفي:</strong> أضعف المصادر إبستمولوجياً وأقلها موثوقية.</li>
+                    <li><strong>العثرات:</strong> عجز التبرير؛ وحتى لو صدق يظل اعتقاداً صادقاً بالصدفة المحضة.</li>
+                  </ul>
+                </div>
+
+                <div class="rich-card p-5 border-r-4 border-r-amber-500">
+                  <h4 class="font-bold text-amber-400 text-sm mb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-heart-pulse"></i> 5. الاستبطان الباطني (Introspection)
+                  </h4>
+                  <ul class="space-y-1.5 text-slate-300 list-disc list-inside text-[11px]">
+                    <li><strong>طبيعته:</strong> مراقبة وتأمل العمليات النفسية الباطنية والشعور باللذة أو الألم.</li>
+                    <li><strong>المعرفة الآمنة (Safe Knowledge):</strong> منيعة تماماً ضد التكذيب الخارجي.</li>
+                    <li><strong>العثرات:</strong> الاستعصاء التام على النقل اللغوي الحرفي لوجدان شخص آخر.</li>
+                  </ul>
+                </div>
+
+                <div class="rich-card p-5 border-r-4 border-r-teal-500">
+                  <h4 class="font-bold text-teal-400 text-sm mb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-gears"></i> 6. التعقل والاستنباط (Reasoning)
+                  </h4>
+                  <ul class="space-y-1.5 text-slate-300 list-disc list-inside text-[11px]">
+                    <li><strong>طبيعته:</strong> مصدر قبلي أولي (A Priori) لا يتطلب رصداً تجريبياً مسبقاً.</li>
+                    <li><strong>آلية العمل:</strong> استنتاج نتيجة حتمية من مقدمات منطقية ومبرهنات رياضية.</li>
+                    <li><strong>العثرات:</strong> قد يكون تحصيلاً حاصلاً؛ والنزاع حول كفايته دون العالم الحسي.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "ep4-theories",
+          title: "4.1 نظريات التبرير والتسويغ الإبستمولوجي التسعة",
+          level: 2,
+          subtitle: "The 9 Epistemic Theories of Justification",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-amber-500">
+                <h3 class="font-cairo font-bold text-base mb-3 flex items-center gap-2 text-amber-400">
+                  <i class="fa-solid fa-list-ol"></i>
+                  مدارس ونظريات التبرير المعرفي (Justification Theories)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+                    <span class="font-bold text-cyan-400 block mb-1">1. التأسيسية (Foundationalism)</span>
+                    <p class="text-slate-300 text-[11px]">تقسيم المعتقدات إلى أساسية مبررة بذاتها، وغير أساسية تستند لنقطة ارتكاز يقينية صلبة.</p>
+                  </div>
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+                    <span class="font-bold text-cyan-400 block mb-1">2. التماسك (Coherentism)</span>
+                    <p class="text-slate-300 text-[11px]">يكتسب المعتقد تبريره من اتساقه وتماسكه الكلي مع نسيج الشبكة المعرفية للمجتمع.</p>
+                  </div>
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+                    <span class="font-bold text-cyan-400 block mb-1">3. الفوندهيرنتية (Foundherentism)</span>
+                    <p class="text-slate-300 text-[11px]">مدرسة هجينة تجمع بين متطلبات التأسيس والتماسك معاً لضمان الموثوقية المعرفية.</p>
+                  </div>
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+                    <span class="font-bold text-violet-400 block mb-1">4. اللانهائية (Infinitism)</span>
+                    <p class="text-slate-300 text-[11px]">التبرير يستند إلى سلسلة لامتناهية متصلة من الأسباب والدلائل دون الوقوف عند حد.</p>
+                  </div>
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+                    <span class="font-bold text-violet-400 block mb-1">5. الإثباتية (Evidentialism)</span>
+                    <p class="text-slate-300 text-[11px]">التناسب المباشر بين درجة الاعتقاد وقوة وكمية الأدلة المادية أو العقلية الحاضرة.</p>
+                  </div>
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+                    <span class="font-bold text-violet-400 block mb-1">6. الموثوقية (Reliabilism)</span>
+                    <p class="text-slate-300 text-[11px]">التبرير مشروط بنشوء الفكرة عن ميكانيكية معرفية موثوقة ومجربة سلفاً كالمنهج العلمي.</p>
+                  </div>
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+                    <span class="font-bold text-rose-400 block mb-1">7. مدرسة العصمة (Infallibilism)</span>
+                    <p class="text-slate-300 text-[11px]">اشتراط النفي الكلي لاحتمالية الخطأ والشك؛ التبرير يتطلب عصمة مطلقة للمصدر.</p>
+                  </div>
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+                    <span class="font-bold text-rose-400 block mb-1">8. اللا تبريرية (Non-justificationism)</span>
+                    <p class="text-slate-300 text-[11px]">التبرير لا يتم بجمع الأدلة، بل بصمود الفكرة المستمر أمام محاولات التفنيد والدحض.</p>
+                  </div>
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+                    <span class="font-bold text-rose-400 block mb-1">9. مدرسة الشك (Skepticism)</span>
+                    <p class="text-slate-300 text-[11px]">المدرسة الراديكالية التي تنكر قدرة البشر على تأسيس يقين معرفي وتعلن استحالة التبرير.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "ep4-truth-gettier",
+          title: "4.2 مدارس الصدق المعرفي ومعضلة غيتيه (Gettier Problem)",
+          level: 2,
+          subtitle: "Theories of Truth & The Epic Gettier Dilemma",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-cyan-500">
+                <h3 class="font-cairo font-bold text-base mb-3 flex items-center gap-2 text-cyan-400">
+                  <i class="fa-solid fa-check-double"></i>
+                  المدارس الكبرى لتعريف وقياس الصدق الإبستمولوجي (Epistemic Truth)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs leading-relaxed">
+                  <div class="p-4 bg-slate-800/40 rounded-xl border border-slate-700/50">
+                    <span class="font-bold text-cyan-300 block mb-1 text-sm">المدرسة التحققية (Verificationism)</span>
+                    <p class="text-slate-300 text-[11px]">
+                      تؤكد وجود آلية موضوعية صارمة للتحقق عبر: الوضعية الكلاسيكية الحسية، القبلية المنطقية الرياضية، أو الوضعية المنطقية المدمجة.
+                    </p>
+                  </div>
+                  <div class="p-4 bg-slate-800/40 rounded-xl border border-slate-700/50">
+                    <span class="font-bold text-amber-300 block mb-1 text-sm">المدرسة المنظورية (Perspectivism)</span>
+                    <p class="text-slate-300 text-[11px]">
+                      الصدق نسبي خاضع لزاوية الرؤية: المنظورية الفردية، منظور الخطاب الثقافي، المنظورية الجمعية (الإجماع / القوة / الماركسية)، والمنظور التجاوزي اللاهوتي.
+                    </p>
+                  </div>
+                  <div class="p-4 bg-slate-800/40 rounded-xl border border-slate-700/50">
+                    <span class="font-bold text-emerald-300 block mb-1 text-sm">المدرسة البراجماتية (Pragmatism)</span>
+                    <p class="text-slate-300 text-[11px]">
+                      معيار الصدق هو مدى الفاعلية والأثر التطبيقي والإنتاجي الإيجابي في الحياة العملية، مع التطلع نحو "العلم المكتمل".
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Gettier Problem Highlight -->
+              <div class="rich-card p-6 border-r-4 border-r-rose-500 bg-rose-500/5">
+                <div class="flex items-center gap-3 mb-3">
+                  <i class="fa-solid fa-bomb text-rose-500 text-2xl"></i>
+                  <div>
+                    <h3 class="font-cairo font-extrabold text-base text-rose-400">اللغز المعرفي المزلزل: معضلة غيتيه (Gettier Problem)</h3>
+                    <span class="text-[11px] text-slate-400">هل "الاعتقاد الحقيقي المبرر" (JTB) كافٍ دائماً لتشكيل المعرفة؟</span>
+                  </div>
+                </div>
+                <div class="p-4 bg-slate-900/80 rounded-xl border border-rose-500/30 text-xs text-slate-200 leading-relaxed space-y-2">
+                  <p>
+                    إذا اجتمعت الشروط الثلاثة: تشكل لديك <strong>اعتقاد (Belief)</strong>، وكان الاعتقاد <strong>صحيحاً بالواقع (True)</strong>، ومبنياً على أدلة قاطعة <strong>(Justified)</strong>... هل نستطيع دائماً الجزم بأننا وصلنا للمعرفة اليقينية؟
+                  </p>
+                  <p class="text-rose-300 font-bold">
+                    الإجابة الصادمة لعلماء الإبستمولوجيا هي: "لا"!
+                  </p>
+                  <p class="text-slate-300">
+                    أثبت الفيلسوف إدموند غيتيه (Edmund Gettier) وجود سيناريوهات معرفية تتحقق فيها الشروط الثلاثة معاً، ومع ذلك تفشل في منحنا معرفة حقيقية بل تمنحنا "صدفاً محظوظة"، لتهدم التحليل الثلاثي وتفتح أفق البحث المعرفي على مصراعيه!
+                  </p>
+                </div>
+              </div>
+            </div>
+          `
+        }
+      ]
+    };
+
+    /* ==========================================================================
+       UI CONTROLLER ENGINE
+       ========================================================================== */
+    let activeTopicId = LECTURE_DATA.topics[0]?.id || '';
+    let currentChartInstance = null;
+    let lastScrollY = window.scrollY;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      renderLectureMetadata();
+      renderDrawerTree();
+      renderTopic(activeTopicId);
+      setupEventListeners();
+      setupHeaderAutoHiding();
+    });
+
+    function initTheme() {
+      const savedTheme = localStorage.getItem('app-theme') || 'dark';
+      const htmlEl = document.documentElement;
+      const themeIcon = document.getElementById('theme-icon');
+
+      if (savedTheme === 'dark') {
+        htmlEl.classList.add('dark');
+        if (themeIcon) themeIcon.className = 'fa-solid fa-sun text-amber-400';
+      } else {
+        htmlEl.classList.remove('dark');
+        if (themeIcon) themeIcon.className = 'fa-solid fa-moon text-slate-700';
+      }
+    }
+
+    function toggleTheme() {
+      triggerHaptic();
+      const htmlEl = document.documentElement;
+      const themeIcon = document.getElementById('theme-icon');
+      
+      if (htmlEl.classList.contains('dark')) {
+        htmlEl.classList.remove('dark');
+        localStorage.setItem('app-theme', 'light');
+        if (themeIcon) themeIcon.className = 'fa-solid fa-moon text-slate-700';
+      } else {
+        htmlEl.classList.add('dark');
+        localStorage.setItem('app-theme', 'dark');
+        if (themeIcon) themeIcon.className = 'fa-solid fa-sun text-amber-400';
+      }
+    }
+
+    function setupHeaderAutoHiding() {
+      const header = document.getElementById('main-header');
+      window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > lastScrollY && currentScrollY > 70) {
+          header.classList.add('-translate-y-full');
+        } else {
+          header.classList.remove('-translate-y-full');
+        }
+        lastScrollY = currentScrollY;
+      });
+    }
+
+    function triggerHaptic() {
+      try {
+        if (window.Telegram?.WebApp?.HapticFeedback) {
+          window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
+        }
+      } catch (e) {}
+    }
+
+    function renderLectureMetadata() {
+      document.getElementById('lecture-title-display').innerText = LECTURE_DATA.title;
+      document.getElementById('lecture-subtitle-display').innerText = LECTURE_DATA.subtitle;
+      document.getElementById('chapter-tag-display').innerText = LECTURE_DATA.chapterTag;
+      document.getElementById('topic-count-display').innerText = `${LECTURE_DATA.topics.length} وحدات تفصيلية`;
+    }
+
+    function renderDrawerTree() {
+      const container = document.getElementById('drawer-tree-container');
+      container.innerHTML = '';
+
+      LECTURE_DATA.topics.forEach((topic) => {
+        const isLevel2 = topic.level === 2;
+        const isLevel3 = topic.level === 3;
+        const indentClass = isLevel3 ? 'mr-6' : isLevel2 ? 'mr-3' : 'mr-0';
+        
+        const btn = document.createElement('button');
+        btn.className = `w-full text-right p-3 rounded-xl transition-all flex items-center justify-between text-xs font-cairo font-bold ${indentClass} ${
+          topic.id === activeTopicId 
+            ? 'bg-violet-600/20 text-violet-500 dark:text-violet-400 border border-violet-500/40 shadow-sm' 
+            : 'hover:bg-slate-800/20 dark:hover:bg-slate-800/40 text-slate-400'
+        }`;
+        
+        btn.innerHTML = `
+          <span class="truncate ml-2">${topic.title}</span>
+          <i class="fa-solid fa-chevron-left text-[10px] opacity-60"></i>
+        `;
+
+        btn.onclick = () => {
+          triggerHaptic();
+          switchTopic(topic.id);
+          closeDrawer();
+        };
+
+        container.appendChild(btn);
+      });
+    }
+
+    function renderTopic(topicId) {
+      const topic = LECTURE_DATA.topics.find(t => t.id === topicId);
+      if (!topic) return;
+
+      activeTopicId = topicId;
+      const viewport = document.getElementById('active-topic-viewport');
+
+      if (currentChartInstance) {
+        currentChartInstance.destroy();
+        currentChartInstance = null;
+      }
+
+      viewport.innerHTML = `
+        <div class="rich-card p-6 border-b-2 border-b-violet-500/30">
+          <span class="text-[11px] font-bold text-violet-500 dark:text-violet-400 uppercase tracking-wider block mb-1">${topic.subtitle || ''}</span>
+          <h2 class="font-cairo font-extrabold text-xl md:text-2xl">${topic.title}</h2>
+        </div>
+        <div>
+          ${topic.content}
+        </div>
+      `;
+
+      if (window.renderMathInElement) {
+        try {
+          renderMathInElement(viewport, {
+            delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false}
+            ],
+            throwOnError: false
+          });
+        } catch (e) {}
+      }
+
+      if (topic.chartConfig && document.getElementById('topicChart')) {
+        const ctx = document.getElementById('topicChart').getContext('2d');
+        currentChartInstance = new Chart(ctx, topic.chartConfig);
+      }
+
+      setupWidgetListeners();
+      renderDrawerTree();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function switchTopic(topicId) {
+      renderTopic(topicId);
+    }
+
+    function openDrawer() {
+      triggerHaptic();
+      document.getElementById('right-outline-drawer').classList.remove('translate-x-full');
+      document.getElementById('drawer-overlay').classList.remove('hidden');
+    }
+
+    function closeDrawer() {
+      document.getElementById('right-outline-drawer').classList.add('translate-x-full');
+      document.getElementById('drawer-overlay').classList.add('hidden');
+    }
+
+    function setupWidgetListeners() {
+      const calcBtn = document.getElementById('calc-run-btn');
+      if (calcBtn) {
+        calcBtn.onclick = () => {
+          triggerHaptic();
+          const form = document.getElementById('sim-form')?.value;
+          const just = document.getElementById('sim-just')?.value;
+          const truth = document.getElementById('sim-truth')?.value;
+          const resultDiv = document.getElementById('calc-result');
+
+          if (resultDiv) {
+            let zoneName = "";
+            let explanation = "";
+
+            if (form === 'bad') {
+              zoneName = "المنطقة G: منطقة الهراء المعرفي (Nonsense Zone)";
+              explanation = "الصياغة السيئة تعدم الفكرة معرفياً وتجعلها هراء غير قابل للتداول المنطقي.";
+            } else if (truth === 'yes' && just === 'yes') {
+              zoneName = "النواة المركزية: المعرفة الحقيقية الكلاسيكية (JTB)";
+              explanation = "تحقق متزامن وتراكمي لكافة شروط المعرفة؛ أعلى مراتب اليقين المعرفي.";
+            } else if (truth === 'yes' && just === 'no') {
+              zoneName = "المنطقة A: منطقة التخمينات الجيدة (Good Guess)";
+              explanation = "فكرة صحيحة واقعياً لكنها ضربة حظ مجردة من التبرير والدليل.";
+            } else if (truth === 'no' && just === 'yes') {
+              zoneName = "المنطقة B: منطقة الإيجابيات الكاذبة (False Positives)";
+              explanation = "اعتقاد مبرر بقوة لكنه يخالف الواقع والحقيقة الموضوعية (مثل تسطح الأرض تاريخياً).";
+            } else {
+              zoneName = "المنطقة C: منطقة الاعتقاد الصرف المنسق (Pure Belief)";
+              explanation = "فكرة مصاغة جيداً ولكنها تفتقر للصدق والتبرير معاً (مثل الأساطير والخرافات).";
+            }
+
+            resultDiv.innerHTML = `<span class="font-bold text-emerald-400">${zoneName}</span><p class="mt-1 text-slate-300">${explanation}</p>`;
+            resultDiv.classList.remove('hidden');
+          }
+        };
+      }
+    }
+
+    function setupEventListeners() {
+      document.getElementById('drawer-toggle-btn').onclick = openDrawer;
+      document.getElementById('close-drawer-btn').onclick = closeDrawer;
+      document.getElementById('drawer-overlay').onclick = closeDrawer;
+      document.getElementById('theme-toggle-btn').onclick = toggleTheme;
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeDrawer();
+      });
+    }
+  </script>
+</body>
+</html>
