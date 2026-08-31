@@ -1,0 +1,1725 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الفصل الثاني: البحث في الأدبيات العلمية - المنظومة التعليمية الشاملة</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            darkBg: '#0B0B0F',
+            lightBg: '#F8FAFC',
+            cardDark: '#171724',
+            cardLight: '#FFFFFF',
+            neonViolet: '#8B5CF6',
+            neonCyan: '#06B6D4',
+            neonAmber: '#F59E0B',
+            neonEmerald: '#10B981',
+            neonRose: '#F43F5E'
+          },
+          fontFamily: {
+            cairo: ['Cairo', 'sans-serif'],
+            arabic: ['IBM Plex Sans Arabic', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- KaTeX CDN (Math LaTeX Formulas Rendering) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Chart.js CDN (Data Visualization) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    /* Dynamic Theme Variables */
+    :root {
+      --bg-main: #0B0B0F;
+      --text-main: #F8FAFC;
+      --card-bg: rgba(23, 23, 36, 0.85);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --header-bg: rgba(11, 11, 15, 0.85);
+      --drawer-bg: #12121A;
+      --shadow-glow: rgba(139, 92, 246, 0.25);
+    }
+
+    html:not(.dark) {
+      --bg-main: #F1F5F9;
+      --text-main: #0F172A;
+      --card-bg: #FFFFFF;
+      --card-border: rgba(0, 0, 0, 0.08);
+      --header-bg: rgba(241, 245, 249, 0.9);
+      --drawer-bg: #FFFFFF;
+      --shadow-glow: rgba(139, 92, 246, 0.12);
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: 'IBM Plex Sans Arabic', sans-serif;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Light Mode Dynamic Text Contrast Overrides */
+    html:not(.dark) .text-slate-300 { color: #334155 !important; }
+    html:not(.dark) .text-slate-400 { color: #475569 !important; }
+    html:not(.dark) .text-slate-200 { color: #1E293B !important; }
+    html:not(.dark) .text-slate-100 { color: #0F172A !important; }
+    html:not(.dark) .text-white { color: #0F172A !important; }
+    
+    html:not(.dark) .bg-slate-800\/40, 
+    html:not(.dark) .bg-slate-800\/60,
+    html:not(.dark) .bg-slate-900\/40, 
+    html:not(.dark) .bg-slate-900\/60, 
+    html:not(.dark) .bg-slate-900\/80 {
+      background-color: rgba(226, 232, 240, 0.7) !important;
+      border-color: rgba(203, 213, 225, 0.8) !important;
+    }
+    
+    html:not(.dark) .border-slate-700\/50, 
+    html:not(.dark) .border-slate-800,
+    html:not(.dark) .border-slate-700 {
+      border-color: rgba(203, 213, 225, 0.8) !important;
+    }
+
+    /* UI Structural Components */
+    .glass-panel {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      transition: all 0.3s ease;
+    }
+
+    .glass-header {
+      background: var(--header-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .rich-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .rich-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px var(--shadow-glow);
+      border-color: rgba(139, 92, 246, 0.4);
+    }
+
+    #right-outline-drawer {
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      background-color: var(--drawer-bg);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(139, 92, 246, 0.3); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(139, 92, 246, 0.6); }
+
+    .dir-ltr { direction: ltr; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col font-arabic">
+
+  <!-- Auto-Hiding Dynamic Header Navigation Bar -->
+  <header id="main-header" class="sticky top-0 z-40 glass-header w-full transition-transform duration-300 transform translateY(0)">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      
+      <!-- Drawer Toggle Button -->
+      <button id="drawer-toggle-btn" class="flex items-center gap-2 px-3 py-2 rounded-xl bg-violet-600/10 hover:bg-violet-600/20 text-violet-500 font-cairo font-bold text-sm border border-violet-500/20 transition-all">
+        <i class="fa-solid fa-bars-staggered text-base"></i>
+        <span>فهرس المحاضرة</span>
+      </button>
+
+      <!-- Lecture Header Titles -->
+      <div class="text-center px-2">
+        <span id="chapter-tag-display" class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-violet-500/10 text-violet-400 mb-0.5 border border-violet-500/20">الفصل الثاني</span>
+        <h1 id="lecture-title-display" class="font-cairo font-extrabold text-base md:text-lg leading-tight truncate max-w-[200px] sm:max-w-md">البحث في الأدبيات العلمية</h1>
+      </div>
+
+      <!-- Theme Toggle Button -->
+      <button id="theme-toggle-btn" class="p-2.5 rounded-xl bg-slate-800/20 dark:bg-slate-800/80 hover:bg-violet-600/20 text-amber-500 dark:text-amber-300 border border-slate-700/30 transition-all" title="تبديل المظهر">
+        <i id="theme-icon" class="fa-solid fa-sun text-lg"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 py-6">
+    
+    <!-- Subtitle / Meta Bar -->
+    <div class="mb-6 p-4 rounded-2xl glass-panel border-r-4 border-r-violet-500 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div>
+        <h2 id="lecture-subtitle-display" class="font-cairo font-bold text-lg text-violet-500 dark:text-violet-400">دليل تطويع الغابة المعلوماتية وهندسة استرجاع الأدلة السريرية</h2>
+        <p class="text-xs text-slate-400 mt-1">تطبيق شامل لتقنيات البحث المنهجي، مستويات الأدلة، المصادر التوليفية، والذكاء الاصطناعي.</p>
+      </div>
+      <div class="flex items-center gap-2 text-xs font-semibold text-slate-400 bg-slate-800/20 dark:bg-slate-900/50 px-3 py-1.5 rounded-lg w-fit">
+        <i class="fa-solid fa-book-open text-violet-400"></i>
+        <span id="topic-count-display">0 مواضيع</span>
+      </div>
+    </div>
+
+    <!-- Single Topic Active Viewport -->
+    <div id="active-topic-viewport" class="space-y-6">
+      <!-- Content dynamically injected here -->
+    </div>
+
+  </main>
+
+  <!-- Minimal Clean Footer -->
+  <footer class="mt-auto py-4 text-center text-xs text-slate-400 border-t border-slate-800/20">
+    <span>الرعاية الصحية المبنية على الأدلة (EBHC) - المنصة التفاعلية المتقدمة</span>
+  </footer>
+
+  <!-- Hierarchical Right Drawer Navigation -->
+  <div id="drawer-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden transition-opacity"></div>
+  
+  <aside id="right-outline-drawer" class="fixed top-0 right-0 h-full w-80 max-w-[85vw] z-50 transform translate-x-full shadow-2xl flex flex-col border-l border-slate-800/30">
+    <div class="p-4 border-b border-slate-800/40 flex items-center justify-between">
+      <div class="flex items-center gap-2 text-violet-500 dark:text-violet-400 font-cairo font-bold text-base">
+        <i class="fa-solid fa-list-ul"></i>
+        <span>محتويات المحاضرة</span>
+      </div>
+      <button id="close-drawer-btn" class="p-2 rounded-lg text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+    </div>
+
+    <!-- Drawer Items List -->
+    <div id="drawer-tree-container" class="flex-grow overflow-y-auto p-4 space-y-2">
+      <!-- Tree links dynamically injected here -->
+    </div>
+  </aside>
+
+  <!-- JavaScript Engine -->
+  <script>
+    /* ==========================================================================
+       COMPLETE LECTURE DATA (PARTS 1, 2, AND 3 MERGED & STRUCTURED)
+       ========================================================================== */
+    const LECTURE_DATA = {
+      title: "الفصل الثاني: البحث في الأدبيات العلمية",
+      subtitle: "Searching the Literature: The Information Jungle & Evidence Retrieval",
+      chapterTag: "الفصل الثاني الشامل",
+      topics: [
+        {
+          id: "topic-1",
+          title: "1.0 الغابة المعلوماتية وتحديات البحث السريري",
+          level: 1,
+          subtitle: "The Information Jungle & Physician Search Behavior",
+          chartConfig: {
+            type: 'radar',
+            data: {
+              labels: ['الكتب التقليدية (Textbooks)', 'استشارة الزملاء (Colleagues)', 'محرك جوجل العام (Google)', 'قاعدة PubMed / Medline', 'مصادر الرعاية الفورية (POC)'],
+              datasets: [
+                {
+                  label: 'تفضيل وسلوك الأطباء الواقعي (%)',
+                  data: [85, 78, 65, 45, 30],
+                  backgroundColor: 'rgba(244, 63, 94, 0.2)',
+                  borderColor: '#F43F5E',
+                  borderWidth: 2,
+                  pointBackgroundColor: '#F43F5E'
+                },
+                {
+                  label: 'الموثوقية والسرعة في EBM (%)',
+                  data: [25, 35, 15, 75, 95],
+                  backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                  borderColor: '#10B981',
+                  borderWidth: 2,
+                  pointBackgroundColor: '#10B981'
+                }
+              ]
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: { position: 'bottom', labels: { font: { family: 'IBM Plex Sans Arabic' } } }
+              },
+              scales: {
+                r: {
+                  angleLines: { color: 'rgba(150,150,150,0.15)' },
+                  grid: { color: 'rgba(150,150,150,0.15)' },
+                  pointLabels: { font: { family: 'IBM Plex Sans Arabic', size: 10 } },
+                  ticks: { display: false }
+                }
+              }
+            }
+          },
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <h3 class="font-cairo font-bold text-lg mb-3 flex items-center gap-2 text-violet-500 dark:text-violet-400">
+                  <i class="fa-solid fa-tree text-violet-500"></i>
+                  تحدي تراكم الأدلة والتدفق المعرفي الهائل
+                </h3>
+                <p class="text-slate-300 leading-relaxed text-sm">
+                  تتراكم الأدلة العلمية في عصرنا الحالي بسرعة فائقة غير مسبوقة في التاريخ الطبي. تعد متابعة المستجدات أمراً جوهرياً لتقديم أفضل رعاية صحية، إلا أن الممارس الصحي يجد نفسه تائهاً في <strong>غابة معلوماتية (Information Jungle)</strong> معقدة؛ حيث تضم قاعدة بيانات ميدلاين (Medline) وحدها اليوم ما يزيد عن <strong>29 مليون مرجع طبي مفهرس</strong>.
+                </p>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="rich-card p-5 border-r-4 border-r-rose-500">
+                  <h4 class="font-cairo font-bold text-base mb-2 text-rose-500 flex items-center gap-2">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    سلوكيات البحث التقليدية وعوائق الممارسة
+                  </h4>
+                  <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+                    <li><strong class="text-rose-400">• تفضيل المصادر السريعة:</strong> تؤكد دراسات سلوك الأطباء (مثل مراجعة Davies [1]) أن الكتب المدرسية الطبية والتواصل الشفهي مع الزملاء لا تزال الأكثر تفضيلاً لديهم، بينما تأتي المجلات في مرتبة تالية.</li>
+                    <li><strong class="text-rose-400">• الفجوة المهارية:</strong> تزايد استخدام الإنترنت دون تطور موازٍ في مهارات البحث؛ حيث يروي أمناء المكتبات قصصاً مقلقة عن أطباء يجيبون على أسئلة حرجة عبر محرك جوجل العام.</li>
+                    <li><strong class="text-rose-400">• حواجز الوصول الخمسة:</strong> ضيق الوقت السريري، غياب المرافق المكتبية، ضعف مهارات البحث، غياب الدافع والتحفيز، والتخم المعرفي المفرط (Information overload) [2].</li>
+                  </ul>
+                </div>
+
+                <div class="rich-card p-5 border-r-4 border-r-amber-500">
+                  <h4 class="font-cairo font-bold text-base mb-2 text-amber-500 flex items-center gap-2">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    محدودية وتشتت قواعد البيانات الكبرى
+                  </h4>
+                  <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+                    <li><strong class="text-amber-400">• تحفظ وبطء ميدلاين:</strong> تُعد ميدلاين مصدراً محافظاً للغاية (Very conservative)؛ حيث تتسم بالبطء في إدراج المجلات الجديدة أو تلك الصادرة خارج أمريكا، مما يحرم الأطباء من آلاف الأوراق عالية الجودة [2].</li>
+                    <li><strong class="text-amber-400">• تشتت القواعد:</strong> تتبنى كل قاعدة بيانات متخصصة مجموعة مستقلة من المجلات وبروتوكولات بحث وخوارزميات متباينة تماماً.</li>
+                    <li><strong class="text-emerald-400">• بصيص الأمل:</strong> تطويع الفوضى من خلال الطرق السريعة للمعلومات (Information highways)، والمنصات التوليفية، وأدوات الذكاء الاصطناعي [3, 4].</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Visual Radar Chart -->
+              <div class="rich-card p-6 border-r-4 border-r-cyan-500">
+                <h4 class="font-cairo font-bold text-base mb-3 text-cyan-500 flex items-center gap-2">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  الموازنة البيانية: تفضيل الأطباء الواقعي مقابل موثوقية الطب المبني على الأدلة
+                </h4>
+                <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                  يقارن المخطط أدناه بين مصادر المعلومات الأكثر استخداماً من قِبل الأطباء في الممارسة اليومية مقابل القيمة المنهجية الحقيقية وسرعة الدليل المعتمد في الرعاية الصحية:
+                </p>
+                <div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800 flex justify-center">
+                  <div class="w-full max-w-md">
+                    <canvas id="topicChart" class="w-full max-h-72"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-2",
+          title: "1.1 نموذج التفكير العكسي: تشريح أخطاء البحث الكارثية",
+          level: 2,
+          subtitle: "Inversion Model: Why Clinicians Fail in Literature Search",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-rose-500">
+                <h3 class="font-cairo font-bold text-lg mb-3 flex items-center gap-2 text-rose-500">
+                  <i class="fa-solid fa-rotate-left text-rose-500"></i>
+                  بوابة الفهم: نموذج التفكير العكسي (Inversion Model)
+                </h3>
+                <p class="text-slate-300 leading-relaxed text-sm">
+                  لتفادي التيه والضياع في الغابة المعلوماتية المترامية الأطراف، يقتضي <strong>"نموذج التفكير العكسي"</strong> ألا نسأل فقط "كيف نبحث بنجاح؟"، بل أن ندرس بنشاط <strong>"كيف يفشل الأطباء بامتياز في الوصول إلى الحقيقة الطبية؟"</strong>. من خلال دراسة وباء البحث العشوائي والبدائل الفاشلة، يمكننا بناء جدار حماية معرفي لحماية مرضانا.
+                </p>
+              </div>
+
+              <!-- Comprehensive Inversion Table -->
+              <div class="rich-card p-5 border-r-4 border-r-cyan-500 overflow-x-auto">
+                <table class="w-full text-right text-xs">
+                  <thead class="bg-slate-800/60 text-cyan-400 font-cairo">
+                    <tr>
+                      <th class="p-3 rounded-r-lg">الممارسة البحثية الفاشلة</th>
+                      <th class="p-3">الآلية والخلل السلوكي</th>
+                      <th class="p-3">العواقب والنتائج السريرية الكارثية</th>
+                      <th class="p-3 rounded-l-lg">البديل المنهجي الصحيح (EBHC)</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-800 text-slate-300">
+                    <tr class="hover:bg-slate-800/20 transition-all">
+                      <td class="p-3 font-bold text-rose-400">البحث العشوائي عبر جوجل العام (Unsystematic Google Search)</td>
+                      <td class="p-3">كتابة السؤال السريري كعبارة نثريّة عادية في محرك بحث تجاري دون محددات منطقية.</td>
+                      <td class="p-3">• استرجاع مقالات تجارية أو مدونات غير علمية.<br>• الانخداع بأدلة ضعيفة الجودة غرضها التسويق.</td>
+                      <td class="p-3 font-semibold text-emerald-400">استخدام محركات البحث الطبية المخصصة وقواعد البيانات الممنهجة مثل PubMed وTRIP.</td>
+                    </tr>
+                    <tr class="hover:bg-slate-800/20 transition-all">
+                      <td class="p-3 font-bold text-rose-400">الاعتماد المطلق على أول صفحتين (First Two Screens Bias)</td>
+                      <td class="p-3">الاكتفاء بمراجعة العناوين القليلة الأولى المسترجعة دون النظر لمدى مطابقتها للمنهجية.</td>
+                      <td class="p-3">• تفويت الدراسات الكبرى ذات المنهجية الرصينة.<br>• الانحياز للأبحاث الأكثر حداثة أو شهرة فقط.</td>
+                      <td class="p-3 font-semibold text-emerald-400">تطبيق أدوات التصفية المتقدمة (Filters) والحدود (Limits) لتقليص النتائج علمياً.</td>
+                    </tr>
+                    <tr class="hover:bg-slate-800/20 transition-all">
+                      <td class="p-3 font-bold text-rose-400">الوهم المعرفي والاكتفاء بالكتب (Textbook Dependency)</td>
+                      <td class="p-3">الاعتماد الحصري على الكتب الورقية القديمة الموجودة في العيادة واستشارة الزملاء شفهياً.</td>
+                      <td class="p-3">• تطبيق ممارسات طبية تجاوزها العلم أو ثبت ضررها.<br>• جمود المعرفة وتأخر تطبيق الاكتشافات الحديثة.</td>
+                      <td class="p-3 font-semibold text-emerald-400">الانتقال التدريجي لمصادر الرعاية الفورية الحية والمعاد تحديثها باستمرار (Point-of-Care).</td>
+                    </tr>
+                    <tr class="hover:bg-slate-800/20 transition-all">
+                      <td class="p-3 font-bold text-rose-400">تجاهل تشتت القواعد (Single Database Bias)</td>
+                      <td class="p-3">الاكتفاء بالبحث في ميدلاين فقط وافتراض أن ما لا يوجد فيه غير موجود في العلم مطلقاً.</td>
+                      <td class="p-3">• تفويت أوراق علمية عالية الجودة منشورة خارج أمريكا.<br>• بناء استنتاجات طبية ناقصة أو متحيزة جغرافياً.</td>
+                      <td class="p-3 font-semibold text-emerald-400">البحث المتزامن في قواعد متعددة أو استخدام محركات بحث موحدة (Federated engines).</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-3",
+          title: "2.0 غايات البحث السريري الثلاث وهندسة المسار",
+          level: 1,
+          subtitle: "What Are You Looking For? The 3 Primary Search Goals",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <h3 class="font-cairo font-bold text-lg mb-3 flex items-center gap-2 text-violet-500 dark:text-violet-400">
+                  <i class="fa-solid fa-compass text-violet-500"></i>
+                  تحديد الغاية: نقطة الانطلاق في هندسة البحث
+                </h3>
+                <p class="text-slate-300 leading-relaxed text-sm">
+                  تختلف طريقة وهندسة البحث بشكل جذري بناءً على الهدف المعرفي الذي يسعى الممارس الصحي لتحقيقه. تنقسم الغايات التي تدفع الطبيب لدخول الأدبيات الطبية إلى ثلاثة مسارات كبرى:
+                </p>
+              </div>
+
+              <!-- 3 Goals Cards -->
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="rich-card p-5 border-r-4 border-r-cyan-500">
+                  <div class="flex items-center gap-2 text-cyan-500 font-cairo font-bold text-base mb-2">
+                    <i class="fa-solid fa-newspaper"></i>
+                    <span>1. التصفح العابر (Browsing)</span>
+                  </div>
+                  <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+                    <li><strong class="text-cyan-400">• عنصر المصادفة السعيدة (Serendipity):</strong> ملاحقة الفضول العلمي الذاتي ومواكبة المستجدات دون وجود سؤال مريض محدد.</li>
+                    <li><strong class="text-cyan-400">• الأدوات الرقمية:</strong> تفعيل خدمات التنبيه (Alerting services)، وخلاصات المواقع الغنية (RSS Feeds) التي ترسل الملخصات للبريد أو البودكاست.</li>
+                    <li><strong class="text-cyan-400">• التواصل الاجتماعي:</strong> استخدام منصة إكس (X) ونوادي المجلات الرقمية (مثل JOSPT Insights).</li>
+                  </ul>
+                </div>
+
+                <div class="rich-card p-5 border-r-4 border-r-emerald-500">
+                  <div class="flex items-center gap-2 text-emerald-500 font-cairo font-bold text-base mb-2">
+                    <i class="fa-solid fa-bed-pulse"></i>
+                    <span>2. إجابة سريرية (Looking)</span>
+                  </div>
+                  <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+                    <li><strong class="text-emerald-400">• التركيز السريري المباشر:</strong> بحث موجه ومحدد لحل مشكلة تشخيصية أو علاجية لمريض حقيقي في العيادة.</li>
+                    <li><strong class="text-emerald-400">• قاعدة الوقوف الذاتي (Stopping Rule):</strong> بمجرد الوصول لدليل موثوق وكافٍ، <span class="underline decoration-emerald-400">توقف فوراً</span>؛ فلا داعي لقراءة كل ورقة في العالم.</li>
+                    <li><strong class="text-emerald-400">• الخيار المثالي:</strong> استخدام المصادر التوليفية الفورية (Point-of-Care) كـ UpToDate وDynaMed.</li>
+                  </ul>
+                </div>
+
+                <div class="rich-card p-5 border-r-4 border-r-amber-500">
+                  <div class="flex items-center gap-2 text-amber-500 font-cairo font-bold text-base mb-2">
+                    <i class="fa-solid fa-microscope"></i>
+                    <span>3. مسح شامل (Surveying)</span>
+                  </div>
+                  <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+                    <li><strong class="text-amber-400">• الهدف الأكاديمي والبحثي:</strong> إعداد مراجعات منهجية، كتابة أطروحة ماجستير/دكتوراه، وتحديد الفجوات المعرفية (Knowledge gaps).</li>
+                    <li><strong class="text-amber-400">• الصرامة المنهجية:</strong> البحث المتزامن في قواعد بيانات متعددة وتتبع الاستشهادات (Citation chaining).</li>
+                    <li><strong class="text-amber-400">• الاستعانة الإلزامية:</strong> استشارة أخصائي معلومات طبي أو أمين مكتبة صحية لضمان الشمولية وعدم التحيز.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-4",
+          title: "2.1 شجرة القرار ثنائية التفريع للاختيار المنهجي",
+          level: 2,
+          subtitle: "Decision Tree Model & Bifurcation for Clinical Search",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-cyan-500">
+                <h3 class="font-cairo font-bold text-lg mb-3 flex items-center gap-2 text-cyan-500">
+                  <i class="fa-solid fa-network-wired text-cyan-500"></i>
+                  بوابة الفهم: نموذج شجرة القرار والفرع الثنائي (Decision Tree Model)
+                </h3>
+                <p class="text-slate-300 leading-relaxed text-sm">
+                  إن الوقت المتاح للطبيب أثناء ممارسته اليومية لإيجاد المعلومة لا يتعدى بضع دقائق. لمواجهة معضلة التشتت، يوجه هذا النموذج الممارس الصحي مباشرة للمنصة أو الأداة المثالية بناءً على غايته وسياق مريضه:
+                </p>
+              </div>
+
+              <!-- SVG Interactive Decision Tree Diagram -->
+              <div class="rich-card p-6 border-r-4 border-r-violet-500 flex flex-col items-center">
+                <h4 class="font-cairo font-bold text-sm text-violet-400 mb-4 text-center">
+                  <i class="fa-solid fa-sitemap ml-2"></i>مخطط شجرة القرار للملاحة في غابة الأدلة السريرية
+                </h4>
+                <div class="w-full overflow-x-auto py-2">
+                  <svg viewBox="0 0 800 380" class="w-full min-w-[700px] text-xs font-arabic">
+                    <!-- Root Node -->
+                    <rect x="275" y="10" width="250" height="45" rx="10" fill="#8B5CF6" fill-opacity="0.2" stroke="#8B5CF6" stroke-width="2"/>
+                    <text x="400" y="38" fill="#F8FAFC" font-weight="bold" text-anchor="middle">ما هي غايتك الأساسية من البحث السريري؟</text>
+
+                    <!-- Branch Lines from Root -->
+                    <line x1="300" y1="55" x2="130" y2="105" stroke="#94A3B8" stroke-width="2"/>
+                    <line x1="400" y1="55" x2="400" y2="105" stroke="#94A3B8" stroke-width="2"/>
+                    <line x1="500" y1="55" x2="670" y2="105" stroke="#94A3B8" stroke-width="2"/>
+
+                    <!-- Level 1 Nodes -->
+                    <!-- Left: Browsing -->
+                    <rect x="30" y="105" width="200" height="40" rx="8" fill="#06B6D4" fill-opacity="0.2" stroke="#06B6D4" stroke-width="1.5"/>
+                    <text x="130" y="130" fill="#06B6D4" font-weight="bold" text-anchor="middle">تصفح ومواكبة (Browsing)</text>
+
+                    <!-- Middle: Looking for Answers -->
+                    <rect x="300" y="105" width="200" height="40" rx="8" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="1.5"/>
+                    <text x="400" y="130" fill="#10B981" font-weight="bold" text-anchor="middle">إجابة لمريض (Point-of-Care)</text>
+
+                    <!-- Right: Systematic Survey -->
+                    <rect x="570" y="105" width="200" height="40" rx="8" fill="#F59E0B" fill-opacity="0.2" stroke="#F59E0B" stroke-width="1.5"/>
+                    <text x="670" y="130" fill="#F59E0B" font-weight="bold" text-anchor="middle">مسح أكاديمي (Surveying)</text>
+
+                    <!-- Browsing Actions -->
+                    <line x1="130" y1="145" x2="130" y2="190" stroke="#06B6D4" stroke-width="1.5" stroke-dasharray="4"/>
+                    <rect x="20" y="190" width="220" height="75" rx="8" fill="#1E293B" stroke="#06B6D4" stroke-width="1"/>
+                    <text x="130" y="215" fill="#E2E8F0" text-anchor="middle">• خلاصات RSS وتنبيهات البريد</text>
+                    <text x="130" y="235" fill="#E2E8F0" text-anchor="middle">• منصة X والتواصل المهني</text>
+                    <text x="130" y="255" fill="#E2E8F0" text-anchor="middle">• مجلات منتقاة (POEMS / ACP)</text>
+
+                    <!-- Looking for Answers Bifurcation -->
+                    <line x1="400" y1="145" x2="400" y2="180" stroke="#10B981" stroke-width="1.5"/>
+                    <rect x="310" y="180" width="180" height="35" rx="6" fill="#0F172A" stroke="#10B981" stroke-width="1"/>
+                    <text x="400" y="202" fill="#6EE7B7" text-anchor="middle">هل الموضوع شائع أم نادر؟</text>
+
+                    <line x1="350" y1="215" x2="310" y2="255" stroke="#10B981" stroke-width="1.5"/>
+                    <line x1="450" y1="215" x2="490" y2="255" stroke="#10B981" stroke-width="1.5"/>
+
+                    <rect x="230" y="255" width="150" height="50" rx="8" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="1"/>
+                    <text x="305" y="275" fill="#A7F3D0" font-weight="bold" text-anchor="middle">شائع ومحدد</text>
+                    <text x="305" y="295" fill="#F8FAFC" text-anchor="middle">UpToDate / DynaMed</text>
+
+                    <rect x="420" y="255" width="150" height="50" rx="8" fill="#06B6D4" fill-opacity="0.2" stroke="#06B6D4" stroke-width="1"/>
+                    <text x="495" y="275" fill="#67E8F9" font-weight="bold" text-anchor="middle">نادر أو مبهم</text>
+                    <text x="495" y="295" fill="#F8FAFC" text-anchor="middle">TRIP / Google Scholar</text>
+
+                    <!-- Systematic Survey Actions -->
+                    <line x1="670" y1="145" x2="670" y2="190" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="4"/>
+                    <rect x="560" y="190" width="220" height="75" rx="8" fill="#1E293B" stroke="#F59E0B" stroke-width="1"/>
+                    <text x="670" y="215" fill="#E2E8F0" text-anchor="middle">• PubMed Clinical Queries</text>
+                    <text x="670" y="235" fill="#E2E8F0" text-anchor="middle">• تتبع الاستشهادات (Citation Chaining)</text>
+                    <text x="670" y="255" fill="#E2E8F0" text-anchor="middle">• استشارة أخصائي المكتبات الطبية</text>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-5",
+          title: "3.0 مستويات الأدلة وهرم الـ 6S ونموذج حلقة المناهج",
+          level: 1,
+          subtitle: "Levels of Evidence: Traditional vs 6S Pyramid & Circle of Methods",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <h3 class="font-cairo font-bold text-lg mb-3 flex items-center gap-2 text-violet-500 dark:text-violet-400">
+                  <i class="fa-solid fa-layer-group text-violet-500"></i>
+                  مفهوم مستوى الدليل (Level of Evidence)
+                </h3>
+                <p class="text-slate-300 leading-relaxed text-sm">
+                  يشير هذا المفهوم المنهجي إلى <strong>درجة الثقة والأمان التي يمكن منحها لنتائج ورقة علمية محددة</strong>، وتُحدد هذه الدرجة بالدرجة الأولى بناءً على جودة وقوة تصميم الدراسة ومنهجيتها (Study design). ليست كل الأدلة متكافئة في صدقها السريري (Believability).
+                </p>
+              </div>
+
+              <!-- Pyramids Structural Comparison -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Traditional Pyramid -->
+                <div class="rich-card p-5 border-r-4 border-r-cyan-500">
+                  <h4 class="font-cairo font-bold text-base mb-3 text-cyan-500 flex items-center gap-2">
+                    <i class="fa-solid fa-mountain"></i>
+                    1. الهرم التقليدي الكلاسيكي (Traditional Hierarchy)
+                  </h4>
+                  <div class="space-y-2 text-xs">
+                    <div class="p-2.5 bg-slate-800/60 rounded-lg border border-violet-500/40 text-violet-300 font-bold">
+                      1. المراجعات المنهجية (Systematic Reviews) والتحليلات التلوية [القمة]
+                    </div>
+                    <div class="p-2.5 bg-slate-800/40 rounded-lg border border-cyan-500/30 text-cyan-300 font-semibold">
+                      2. التجارب العشوائية ذات الشواهد (Randomised Controlled Trials - RCTs)
+                    </div>
+                    <div class="p-2.5 bg-slate-800/40 rounded-lg border border-slate-700 text-slate-300">
+                      3. الدراسات القائمة على الملاحظة (Cohort & Case-Control Studies)
+                    </div>
+                    <div class="p-2.5 bg-slate-800/40 rounded-lg border border-slate-700 text-slate-400">
+                      4. تقارير الحالات والآراء المخبرية وآراء الخبراء (Case Reports & Expert Opinion) [القاعدة]
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 6S Contemporary Pyramid -->
+                <div class="rich-card p-5 border-r-4 border-r-emerald-500">
+                  <h4 class="font-cairo font-bold text-base mb-3 text-emerald-500 flex items-center gap-2">
+                    <i class="fa-solid fa-cubes-stacked"></i>
+                    2. هرم الـ 6S المعاصر لأخصائيي المكتبات (DiCenso 6S Model)
+                  </h4>
+                  <div class="space-y-1.5 text-xs">
+                    <div class="p-2 bg-emerald-950/40 rounded-lg border border-emerald-500/40 text-emerald-300 font-bold">
+                      1. الأنظمة (Systems): دعم القرار السريري المحوسب التفاعلي
+                    </div>
+                    <div class="p-2 bg-slate-800/60 rounded-lg border border-cyan-500/30 text-cyan-300 font-semibold">
+                      2. الإرشادات الملخصة (Summaries / Guidelines): إرشادات الممارسة المبنية على الأدلة
+                    </div>
+                    <div class="p-2 bg-slate-800/40 rounded-lg border border-slate-700 text-slate-300">
+                      3. خلاصات المراجعات (Synopses of SRs): تقييم وجيز ومسبق للمراجعات
+                    </div>
+                    <div class="p-2 bg-slate-800/40 rounded-lg border border-slate-700 text-slate-300">
+                      4. المراجعات المنهجية (Syntheses / Standard SRs): مراجعات كوكرين القياسية
+                    </div>
+                    <div class="p-2 bg-slate-800/40 rounded-lg border border-slate-700 text-slate-400">
+                      5. خلاصات الدراسات الأولية (Synopses of Single Studies): مثل ملخصات ACP
+                    </div>
+                    <div class="p-2 bg-slate-800/40 rounded-lg border border-slate-700 text-slate-400">
+                      6. الدراسات الفردية (Single Studies): تجارب RCTs ودراسات أولية منفردة [القاعدة]
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Circle of Methods & Comparison Table -->
+              <div class="rich-card p-5 border-r-4 border-r-amber-500 overflow-x-auto">
+                <h4 class="font-cairo font-bold text-base mb-3 text-amber-500 flex items-center gap-2">
+                  <i class="fa-solid fa-circle-nodes"></i>
+                  مقارنة هيكلية بين الأهرام الطبية ونموذج حلقة المناهج (Circle of Methods)
+                </h4>
+                <table class="w-full text-right text-xs">
+                  <thead class="bg-slate-800/60 text-amber-400 font-cairo">
+                    <tr>
+                      <th class="p-3 rounded-r-lg">وجه المقارنة</th>
+                      <th class="p-3">الهرم التقليدي الكلاسيكي</th>
+                      <th class="p-3">هرم الـ 6S المعاصر [5]</th>
+                      <th class="p-3 rounded-l-lg">نموذج حلقة المنهجيات البديل [6, 8]</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-800 text-slate-300">
+                    <tr class="hover:bg-slate-800/20 transition-all">
+                      <td class="p-3 font-bold text-violet-400">التركيز الأساسي</td>
+                      <td class="p-3">قوة تصميم الدراسة المنهجي وخطر الانحياز البيولوجي.</td>
+                      <td class="p-3">الوصول السريع والتقييم المسبق ودعم القرار عند سرير المريض.</td>
+                      <td class="p-3 font-semibold text-emerald-400">التعددية المنهجية وملاءمة المنهج لطبيعة السؤال السريري.</td>
+                    </tr>
+                    <tr class="hover:bg-slate-800/20 transition-all">
+                      <td class="p-3 font-bold text-violet-400">قمة الهرم</td>
+                      <td class="p-3">المراجعات المنهجية والتحليلات التلوية.</td>
+                      <td class="p-3">أنظمة دعم القرار السريري المحوسبة (Systems).</td>
+                      <td class="p-3 font-semibold text-emerald-400">لا توجد قمة؛ جميع المناهج على محيط دائرة متساوية القيمة.</td>
+                    </tr>
+                    <tr class="hover:bg-slate-800/20 transition-all">
+                      <td class="p-3 font-bold text-violet-400">موقفها من الـ RCTs</td>
+                      <td class="p-3">مرتبة عليا مقدسة فوق كافة الدراسات الفردية.</td>
+                      <td class="p-3">دراسات أولية تحتاج لتوليف وتقييم مسبق في أسفل الهرم.</td>
+                      <td class="p-3 font-semibold text-emerald-400">تتحدى تفوقها وتعتبرها غير صالحة لبعض الأسئلة المعقدة [7].</td>
+                    </tr>
+                    <tr class="hover:bg-slate-800/20 transition-all">
+                      <td class="p-3 font-bold text-violet-400">التحديات والعيوب</td>
+                      <td class="p-3">يهمل تفضيلات المرضى والظروف البيولوجية الخاصة.</td>
+                      <td class="p-3">يتطلب بنية تحتية رقمية باهظة غير متوفرة في كل المشافي.</td>
+                      <td class="p-3">صعوبة الموازنة لغياب معيار موحد للمفاضلة بين الأدلة.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-6",
+          title: "4.0 المصادر المركبة والتوليفية: المراجعات ومكتبة كوكرين",
+          level: 1,
+          subtitle: "Synthesised Sources: Systematic Reviews & The Cochrane Collaboration",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <h3 class="font-cairo font-bold text-lg mb-3 flex items-center gap-2 text-violet-500 dark:text-violet-400">
+                  <i class="fa-solid fa-box-archive text-violet-500"></i>
+                  المصادر المركبة والتوليفية (Synthesised Resources)
+                </h3>
+                <p class="text-slate-300 leading-relaxed text-sm">
+                  تُشكل مصادر المعلومات التي يتم تركيبها وتوليفها من الدراسات الأولية مستوى عالياً جداً من الأدلة العلمية. تهدف بشكل أساسي إلى ترجمة نتائج البحوث المعقدة وتطبيقها في الممارسة اليومية وتوجيه القرار المشترك بين الطبيب والمريض [11].
+                </p>
+              </div>
+
+              <!-- Cochrane & Systematic Reviews Breakdown -->
+              <div class="rich-card p-6 border-r-4 border-r-emerald-500">
+                <div class="flex items-center gap-2 text-emerald-500 font-cairo font-bold text-base mb-3">
+                  <i class="fa-solid fa-medal"></i>
+                  <span>المراجعات المنهجية ومكتبة كوكرين (The Cochrane Collaboration)</span>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                  نشأ المفهوم في ثمانينيات القرن الماضي بإلهام من الطبيب والباحث <strong>آرشي كوكرين (Archie Cochrane)</strong> الذي انتقد تشتت التجارب السريرية الفردية. تطورت هذه الجهود لتأسيس "مكتبة كوكرين" في منتصف التسعينيات، والتي أصبحت تمثل <strong>المعيار الذهبي (Gold Standard)</strong> للمراجعات الكمية عالية الجودة [11].
+                </p>
+
+                <!-- Cochrane Reading Tips -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700">
+                    <h5 class="font-bold text-cyan-400 text-xs flex items-center gap-1 mb-1">
+                      <i class="fa-solid fa-file-lines"></i>
+                      الملخص اللغوي المبسط (Plain Language Summary)
+                    </h5>
+                    <p class="text-[11px] text-slate-400">يوجد مباشرة بعد الملخص الأكاديمي، ويختصر جوهر المراجعة بكلمات مبسطة خالية من المصطلحات المعقدة [12].</p>
+                  </div>
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700">
+                    <h5 class="font-bold text-emerald-400 text-xs flex items-center gap-1 mb-1">
+                      <i class="fa-solid fa-chart-gantt"></i>
+                      مخطط الغابة (Forest Plot)
+                    </h5>
+                    <p class="text-[11px] text-slate-400">رسم بياني يوضح نتائج كل دراسة أولية بجانب النتيجة الكلية المجمعة، مما يمنح ملخصاً بصرياً فورياً ودقيقاً [13].</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Pros & Cons Table -->
+              <div class="rich-card p-5 border-r-4 border-r-cyan-500 overflow-x-auto">
+                <h4 class="font-cairo font-bold text-base mb-3 text-cyan-500 flex items-center gap-2">
+                  <i class="fa-solid fa-scale-balanced"></i>
+                  موازنة منهجية: مزايا وعيوب المراجعات المنهجية (Pros & Cons)
+                </h4>
+                <table class="w-full text-right text-xs">
+                  <thead class="bg-slate-800/60 text-cyan-400 font-cairo">
+                    <tr>
+                      <th class="p-3 rounded-r-lg">وجه المقارنة</th>
+                      <th class="p-3">المزايا والفوائد السريرية</th>
+                      <th class="p-3 rounded-l-lg">العيوب والمحاذير المنهجية</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-800 text-slate-300">
+                    <tr class="hover:bg-slate-800/20 transition-all">
+                      <td class="p-3 font-bold text-emerald-400">تجنب الانحياز والتفسير</td>
+                      <td class="p-3">سهلة التفسير نسبياً، والاختيار الصارم والتقييم النقدي يقلل الانحياز (Bias) [12].</td>
+                      <td class="p-3 text-rose-400">قد تكرر وتضخم العيوب المنهجية الكامنة في الدراسات الأولية الأصلية [12].</td>
+                    </tr>
+                    <tr class="hover:bg-slate-800/20 transition-all">
+                      <td class="p-3 font-bold text-emerald-400">القوة الإحصائية</td>
+                      <td class="p-3">التحليل التلوي (Meta-analysis) يجمع الدراسات الصغيرة ليولد دلالة إحصائية غابت عنها منفرداً.</td>
+                      <td class="p-3 text-rose-400">إذا اعتمدت تجارب استخدمت جرعات غير علاجية (Subtherapeutic dose)، ستخلص خطأً لعدم الفاعلية [12].</td>
+                    </tr>
+                    <tr class="hover:bg-slate-800/20 transition-all">
+                      <td class="p-3 font-bold text-emerald-400">حل التناقضات السريرية</td>
+                      <td class="p-3">تساعد في تسوية وحل النتائج المتناقضة بين الدراسات حول نفس السؤال [12].</td>
+                      <td class="p-3 text-rose-400">طويلة ومفصلة جداً وتتطلب وقتاً طويلاً لإعدادها وتحديثها مما يعيق مواكبة الأدلة السريعة.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Supporting Databases in Cochrane -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="rich-card p-4 border-r-4 border-r-amber-500">
+                  <h5 class="font-cairo font-bold text-sm text-amber-400 mb-1">قاعدة DARE (Reviews of Effects):</h5>
+                  <p class="text-xs text-slate-300 leading-relaxed">تُدرج تحت مسمى "المراجعات الأخرى"، وتقدم ببليوغرافيا واسعة للمراجعات المنهجية غير التابعة لكوكرين مع تقديم تقييم نقدي وجيز ومستقل لمصداقيتها [13, 22].</p>
+                </div>
+                <div class="rich-card p-4 border-r-4 border-r-violet-500">
+                  <h5 class="font-cairo font-bold text-sm text-violet-400 mb-1">تقييمات التكنولوجيا الصحية (HTA):</h5>
+                  <p class="text-xs text-slate-300 leading-relaxed">مراجعات تبحث في التبعات الاقتصادية والسياسية والتنظيمية للأدوية والتقنيات الطبية والأنظمة الصحية [13, 23].</p>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-7",
+          title: "4.1 مصادر الرعاية الفورية وإرشادات الممارسة السريرية",
+          level: 2,
+          subtitle: "Point-of-Care Resources & Clinical Practice Guidelines",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <h3 class="font-cairo font-bold text-lg mb-3 flex items-center gap-2 text-violet-500 dark:text-violet-400">
+                  <i class="fa-solid fa-laptop-medical text-violet-500"></i>
+                  مصادر الرعاية الفورية (Point-of-Care Resources): كتب المستقبل الطبية
+                </h3>
+                <p class="text-slate-300 leading-relaxed text-sm">
+                  تُشابه الكتب المرجعية الإلكترونية أو الأدلة السريرية المحمولة، لكنها تتميز ببنائها المباشر على الأدلة العلمية، وخضوعها لمراجعة الأقران، وتحديثها المستمر، وتوفر تطبيقات ذكية لاستخدامها الفوري عند سرير المريض (Bedside) [14, 16].
+                </p>
+              </div>
+
+              <!-- Comparison Table of Point-of-Care Platforms -->
+              <div class="rich-card p-5 border-r-4 border-r-cyan-500 overflow-x-auto">
+                <h4 class="font-cairo font-bold text-base mb-3 text-cyan-500 flex items-center gap-2">
+                  <i class="fa-solid fa-table-columns"></i>
+                  مقارنة ثلاثية بين كبرى منصات الرعاية الفورية (BMJ vs DynaMed vs UpToDate)
+                </h4>
+                <table class="w-full text-right text-xs">
+                  <thead class="bg-slate-800/60 text-cyan-400 font-cairo">
+                    <tr>
+                      <th class="p-3 rounded-r-lg">وجه المقارنة</th>
+                      <th class="p-3">منصة BMJ Best Practice</th>
+                      <th class="p-3">منصة DynaMed (DynaMedex)</th>
+                      <th class="p-3 rounded-l-lg">منصة UpToDate</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-800 text-slate-300">
+                    <tr class="hover:bg-slate-800/20 transition-all">
+                      <td class="p-3 font-bold text-violet-400">الجهة المصنعة</td>
+                      <td class="p-3">المجموعة الطبية البريطانية (BMJ Group) [15].</td>
+                      <td class="p-3">مؤسسة إبسكو للمعلومات (EBSCO) [15].</td>
+                      <td class="p-3">مؤسسة ولترز كلوفر (Wolters Kluwer) [16].</td>
+                    </tr>
+                    <tr class="hover:bg-slate-800/20 transition-all">
+                      <td class="p-3 font-bold text-violet-400">طريقة التنظيم</td>
+                      <td class="p-3">معلومات فائقة التركيز السريري ومقارنات فورية بين جودة التدخلات [15].</td>
+                      <td class="p-3">هيكل كتيب وقاموس طبي شامل يبرز مستويات أدلة واضحة لكل توصية [15].</td>
+                      <td class="p-3">حلول دعم قرار شاملة وتكامل مع السجلات الصحية للمشافي [16].</td>
+                    </tr>
+                    <tr class="hover:bg-slate-800/20 transition-all">
+                      <td class="p-3 font-bold text-violet-400">قوة المحتوى والخبراء</td>
+                      <td class="p-3">مسارات مخصصة للأطباء والممرضين والصيادلة والمرضى [15].</td>
+                      <td class="p-3">تغطية تشخيصية وعلاجية مع روابط مباشرة لتثقيف المرضى [15].</td>
+                      <td class="p-3">أكثر من مليوني ممارس ككتّاب ومراجعين في 190 دولة [16].</td>
+                    </tr>
+                    <tr class="hover:bg-slate-800/20 transition-all">
+                      <td class="p-3 font-bold text-violet-400">الاشتراك المالي</td>
+                      <td class="p-3">اشتراك مدفوع فردي أو مؤسسي [15].</td>
+                      <td class="p-3">منصة تجارية مدفوعة (قد تمنح اشتراكاً للمساهمين) [15].</td>
+                      <td class="p-3">اشتراك سنوي باهظ، وهي الأوسع انتشاراً عالمياً [16].</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Clinical Practice Guidelines -->
+              <div class="rich-card p-6 border-r-4 border-r-emerald-500">
+                <h4 class="font-cairo font-bold text-base mb-2 text-emerald-500 flex items-center gap-2">
+                  <i class="fa-solid fa-book-medical"></i>
+                  إرشادات الممارسة السريرية (Clinical Practice Guidelines)
+                </h4>
+                <p class="text-xs text-slate-300 leading-relaxed mb-3">
+                  تُعرف بأنها: <em>«بيانات تم تطويرها بشكل منهجي لمساعدة الممارسين والمرضى في اتخاذ القرارات الملائمة حول الرعاية الصحية في ظروف سريرية محددة»</em> [17]. يجب ربط توصياتها صراحة بالأدلة العلمية المحددة.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700">
+                    <strong class="text-cyan-400 block mb-1">NICE البريطاني:</strong>
+                    وكالة حكومية تطور إرشادات وطنية وتتيح منصة ملخصات المعرفة السريرية (CKS) لممارسي الرعاية الأولية [18].
+                  </div>
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700">
+                    <strong class="text-emerald-400 block mb-1">منظمة الصحة العالمية (WHO):</strong>
+                    تطور إرشادات عالمية للأوبئة الكبرى (مثل تدبير الدفتيريا، والتدبير غير الجراحي لآلام الظهر المزمنة) [12, 13].
+                  </div>
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700">
+                    <strong class="text-amber-400 block mb-1">المركز الأمريكي NCCIH:</strong>
+                    يوفر منصة لتجميع إرشادات الممارسة الصادرة عن الجمعيات الطبية مصنفة حسب التخصصات [19].
+                  </div>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-8",
+          title: "4.2 مصفوفة الموازنة والتبادل بين مصادر المعلومات",
+          level: 2,
+          subtitle: "Medical Information Sources Trade-off Matrix",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-amber-500">
+                <h3 class="font-cairo font-bold text-lg mb-3 flex items-center gap-2 text-amber-500">
+                  <i class="fa-solid fa-arrows-split-up-and-left text-amber-500"></i>
+                  بوابة الفهم: مصفوفة الموازنة والتبادل (Trade-Off Matrix)
+                </h3>
+                <p class="text-slate-300 leading-relaxed text-sm">
+                  لا يوجد مصدر معلومات كامل ومثالي؛ فكل أداة تملك مزايا تقابلها عيوب وتكلفة زمنية أو مالية. يساعد تطبيق هذا النموذج الطبيب على اتخاذ قرار واعٍ ومفاضلة الأداة الأنسب لسياق مريضه وظروفه الميدانية:
+                </p>
+              </div>
+
+              <!-- Full Master Trade-off Matrix Table -->
+              <div class="rich-card p-5 border-r-4 border-r-cyan-500 overflow-x-auto">
+                <table class="w-full text-right text-xs">
+                  <thead class="bg-slate-800/60 text-cyan-400 font-cairo">
+                    <tr>
+                      <th class="p-3 rounded-r-lg">نوع مصدر الأدلة</th>
+                      <th class="p-3">أمثلة عملية</th>
+                      <th class="p-3">التكلفة المالية</th>
+                      <th class="p-3">الوقت والجهد</th>
+                      <th class="p-3">التقييم النقدي المسبق</th>
+                      <th class="p-3">الاستخدام السريري الأمثل</th>
+                      <th class="p-3 rounded-l-lg">التبادل والتضحية (Trade-off)</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-800 text-slate-300">
+                    <tr class="hover:bg-slate-800/20 transition-all">
+                      <td class="p-3 font-bold text-violet-400">الأبحاث الأولية (Primary)</td>
+                      <td class="p-3">PubMed, Medline, SPORTDiscus</td>
+                      <td class="p-3">مجاني للبحث (جدران دفع للمقالات) [28]</td>
+                      <td class="p-3 text-rose-400">مرتفع جداً يتطلب مهارة قراءة ونقد [28]</td>
+                      <td class="p-3 text-rose-400">منعدم؛ يقع التقييم على عاتق الطبيب [26]</td>
+                      <td class="p-3">الأبحاث الأكاديمية والمواضيع النادرة [7]</td>
+                      <td class="p-3">تفاصيل كاملة مقابل استنزاف وقت وجهد عقلي عالي.</td>
+                    </tr>
+                    <tr class="hover:bg-slate-800/20 transition-all">
+                      <td class="p-3 font-bold text-violet-400">المراجعات المنهجية (SRs)</td>
+                      <td class="p-3">Cochrane Library, DARE, HTA</td>
+                      <td class="p-3">مأجور أو اشتراك مؤسسي [13]</td>
+                      <td class="p-3 text-amber-400">متوسط (قراءة ملخصات مبسطة ومخططات) [12]</td>
+                      <td class="p-3 text-emerald-400">مرتفع جداً وفق بروتوكولات صارمة [12]</td>
+                      <td class="p-3">التحقق القطعي من فاعلية علاج أو تدخل [11]</td>
+                      <td class="p-3">أدلة ذهبية مقابل احتمال تكرار عيوب الدراسات الأولية [12].</td>
+                    </tr>
+                    <tr class="hover:bg-slate-800/20 transition-all">
+                      <td class="p-3 font-bold text-violet-400">مصادر الرعاية الفورية (POC)</td>
+                      <td class="p-3">UpToDate, DynaMed, BMJ Best Practice</td>
+                      <td class="p-3 text-rose-400">باهظ التكلفة جداً للأفراد [15, 16]</td>
+                      <td class="p-3 text-emerald-400">منخفض جداً (إجابة خلال ثوانٍ) [14]</td>
+                      <td class="p-3 text-emerald-400">فائق ومحدث دورياً عبر خبراء [14]</td>
+                      <td class="p-3">اتخاذ قرار علاجي مباشر أثناء العيادة [14]</td>
+                      <td class="p-3">سرعة فائقة مقابل تكلفة مالية مرتفعة وخطر تثبيط النقد الفردي.</td>
+                    </tr>
+                    <tr class="hover:bg-slate-800/20 transition-all">
+                      <td class="p-3 font-bold text-violet-400">إرشادات الممارسة (Guidelines)</td>
+                      <td class="p-3">NICE CKS, WHO Guidelines</td>
+                      <td class="p-3 text-emerald-400">مجاني ومتاح رسمياً للعامة [18]</td>
+                      <td class="p-3 text-emerald-400">منخفض إلى متوسط عبر توصيات واضحة [17]</td>
+                      <td class="p-3 text-cyan-400">متوسط إلى مرتفع عبر لجان خبراء [17]</td>
+                      <td class="p-3">صياغة بروتوكولات وطنية والالتزام القانوني [18]</td>
+                      <td class="p-3">بروتوكولات مجانية واضحة مقابل احتمالية تحيز اللجان أو جمودها.</td>
+                    </tr>
+                    <tr class="hover:bg-slate-800/20 transition-all">
+                      <td class="p-3 font-bold text-violet-400">محرك البحث الموحد (Federated)</td>
+                      <td class="p-3">TRIP database</td>
+                      <td class="p-3 text-emerald-400">مجاني للخصائص الأساسية [33]</td>
+                      <td class="p-3 text-emerald-400">سريع وبسيط بكلمات مفتاحية [33]</td>
+                      <td class="p-3 text-cyan-400">ممتاز يفرز المصادر حسب هرم الأدلة [33]</td>
+                      <td class="p-3">البحث الشامل السريع في مئات القواعد بنقرة واحدة [33]</td>
+                      <td class="p-3">تغطية واسعة وتصنيف منهجي مقابل آلية معالجة كلمات بدائية [33].</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-9",
+          title: "5.0 المصادر المقيمة مسبقاً والمصادر المتخصصة",
+          level: 1,
+          subtitle: "Pre-appraised Synopses & Specialised Information Platforms",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <h3 class="font-cairo font-bold text-lg mb-3 flex items-center gap-2 text-violet-500 dark:text-violet-400">
+                  <i class="fa-solid fa-filter text-violet-500"></i>
+                  المصادر المقيمة مسبقاً (Pre-appraised Sources)
+                </h3>
+                <p class="text-slate-300 leading-relaxed text-sm">
+                  إذا كان الموضوع السريري أكثر تحديداً وضيقاً (More circumscribed) مما تغطيه المنصات التوليفية الكبرى، أو إذا كنت تتصفح لمواكبة المستجدات، فإن المصادر المقيمة مسبقاً هي الخيار الأمثل؛ حيث تظهر كـ <strong>ملخصات سريرية مهضومة (Clinical Digests)</strong> منتقاة بعناية من المجلات المحورية مع تقييم نقدي وجيز [21].
+                </p>
+              </div>
+
+              <!-- Digests & Cochrane Integration -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="rich-card p-5 border-r-4 border-r-cyan-500">
+                  <h4 class="font-cairo font-bold text-base mb-3 text-cyan-500 flex items-center gap-2">
+                    <i class="fa-solid fa-newspaper"></i>
+                    أبرز مجلات الهضم والتقييم السريع
+                  </h4>
+                  <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+                    <li><strong class="text-cyan-400">• BMJ Evidence-Based Medicine & BMJ Mental Health:</strong> مراجعات نقدية للأبحاث المؤثرة على القرارات السريرية [21].</li>
+                    <li><strong class="text-cyan-400">• نادي مجلات الكلية الأمريكية للأطباء (ACP Journal Club):</strong> أحد أعرق مصادر التقييم النقدي السريع للأبحاث الباطنية [21].</li>
+                    <li><strong class="text-emerald-400">• خلاصات POEMS:</strong> "أدلة موجهة للمريض وتهم الممارسة" تركز حصرياً على النتائج السريرية الحقيقية (وفيات، جودة حياة) وليس النتائج المخبرية البديلة [21].</li>
+                    <li><strong class="text-amber-400">• تحديثات PCORI Evidence Updates:</strong> تحديثات موجزة وعميقة لخدمة الأطباء والمرضى في اتخاذ القرار [21, 22].</li>
+                  </ul>
+                </div>
+
+                <div class="rich-card p-5 border-r-4 border-r-emerald-500">
+                  <h4 class="font-cairo font-bold text-base mb-3 text-emerald-500 flex items-center gap-2">
+                    <i class="fa-solid fa-server"></i>
+                    البحث الموحد في مكتبة كوكرين
+                  </h4>
+                  <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+                    <li><strong class="text-emerald-400">• CDSR:</strong> قاعدة بيانات مراجعات كوكرين المنهجية (المعيار الذهبي) [23].</li>
+                    <li><strong class="text-emerald-400">• Cochrane Clinical Answers:</strong> إجابات سريرية مقتضبة ومباشرة عند bedside المريض.</li>
+                    <li><strong class="text-cyan-400">• CENTRAL:</strong> السجل المركزي للتجارب العشوائية ذات الشواهد؛ يضم دليلاً جامعاً للتجارب المستخدمة بكوكرين [23].</li>
+                    <li><strong class="text-amber-400">• NHS EED:</strong> قاعدة التقييم الاقتصادي الصحي التابعة لـ NHS وتضم ملخصات مقيمة لدراسات التكلفة والجدوى [23].</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Specialised Resources Table -->
+              <div class="rich-card p-5 border-r-4 border-r-violet-500 overflow-x-auto">
+                <h4 class="font-cairo font-bold text-base mb-3 text-violet-400 flex items-center gap-2">
+                  <i class="fa-solid fa-stethoscope"></i>
+                  المصادر المتخصصة وعوائدها السريرية (Specialised Resources)
+                </h4>
+                <table class="w-full text-right text-xs">
+                  <thead class="bg-slate-800/60 text-violet-400 font-cairo">
+                    <tr>
+                      <th class="p-3 rounded-r-lg">المنصة المتخصصة</th>
+                      <th class="p-3">طبيعة ونوع المحتوى</th>
+                      <th class="p-3 rounded-l-lg">الفوائد والعوائد السريرية والتشخيصية</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-800 text-slate-300">
+                    <tr class="hover:bg-slate-800/20 transition-all">
+                      <td class="p-3 font-bold text-cyan-400">شبكة الأوبئة والأمراض المعدية العالمية (GIDEON)</td>
+                      <td class="p-3">قاعدة بيانات تفاعلية مدعومة بالأدلة للأمراض المعدية وعلم الأوبئة [24].</td>
+                      <td class="p-3">• التشخيص التفريقي للأمراض المعدية والعلاجات.<br>• تتبع انتشار الأوبئة جغرافياً ومقاومة المضادات الحيوية [24].</td>
+                    </tr>
+                    <tr class="hover:bg-slate-800/20 transition-all">
+                      <td class="p-3 font-bold text-cyan-400">المكتبة النفسية المتخصصة (Psychiatry Online)</td>
+                      <td class="p-3">مستودع رقمي يضم كتب ومجلات الجمعية الأمريكية للطب النفسي (APA) [25].</td>
+                      <td class="p-3">• الوصول المباشر لكتاب الدليل التشخيصي والإحصائي الكامل (DSM-5).<br>• إرشادات الممارسة والنقد المنهجي للأدوية النفسية [25].</td>
+                    </tr>
+                    <tr class="hover:bg-slate-800/20 transition-all">
+                      <td class="p-3 font-bold text-cyan-400">مستودعات كوفيد-19 (LitCOVID & Lancet Collection)</td>
+                      <td class="p-3">محاور أدبية متخصصة تابعة لـ NLM ومجلة The Lancet لتتبع الوباء [25].</td>
+                      <td class="p-3">• تتبع فوري ومجاني لكافة أبحاث فيروس كورونا.<br>• تقليص فجوة النشر ومواكبة بروتوكولات اللقاحات الناشئة [25].</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-10",
+          title: "6.0 الدراسات الأولية: إتقان PubMed والباحث العلمي و SPORTDiscus",
+          level: 1,
+          subtitle: "Primary Studies: Mastering PubMed, Google Scholar & SPORTDiscus",
+          chartConfig: {
+            type: 'bar',
+            data: {
+              labels: ['بحث بوبميد البسيط (Unfiltered)', 'تطبيق مرشح Limits فقط', 'الاستعلامات السريرية (Clinical Queries)'],
+              datasets: [{
+                label: 'عدد الأوراق المسترجعة في موضوع Hypercholesterolaemia',
+                data: [154200, 3200, 159],
+                backgroundColor: [
+                  'rgba(244, 63, 94, 0.7)',
+                  'rgba(245, 158, 11, 0.7)',
+                  'rgba(16, 185, 129, 0.7)'
+                ],
+                borderColor: ['#F43F5E', '#F59E0B', '#10B981'],
+                borderWidth: 1.5
+              }]
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: { display: false }
+              },
+              scales: {
+                y: {
+                  type: 'logarithmic',
+                  grid: { color: 'rgba(150,150,150,0.15)' },
+                  ticks: { font: { family: 'IBM Plex Sans Arabic' } }
+                },
+                x: {
+                  grid: { display: false },
+                  ticks: { font: { family: 'IBM Plex Sans Arabic', size: 10 } }
+                }
+              }
+            }
+          },
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <h3 class="font-cairo font-bold text-lg mb-3 flex items-center gap-2 text-violet-500 dark:text-violet-400">
+                  <i class="fa-solid fa-magnifying-glass-chart text-violet-500"></i>
+                  مواجهة غابة الدراسات الأولية (Primary Studies)
+                </h3>
+                <p class="text-slate-300 leading-relaxed text-sm">
+                  عندما لا تتوفر إجابة واضحة في المصادر التوليفية، أو عندما يرغب الطبيب في فحص ونقد منهجية الأبحاث بنفسه، يصبح من الحتمي الغوص في الدراسات الأولية ومواجهة جدران الدفع المالية (Paywalls) وتطبيق مهارات البحث الذكية لتلافي الغرق في النتائج غير ذات الصلة [26].
+                </p>
+              </div>
+
+              <!-- PubMed Advanced Searching Tactics -->
+              <div class="rich-card p-6 border-r-4 border-r-cyan-500">
+                <h4 class="font-cairo font-bold text-base mb-3 text-cyan-500 flex items-center gap-2">
+                  <i class="fa-solid fa-bolt"></i>
+                  تكتيكات البحث الذكية في PubMed / Medline
+                </h4>
+                <div class="space-y-4 text-xs">
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700">
+                    <strong class="text-rose-400 block mb-1">أ. معضلة البحث البسيط (Simple Search Dilemma):</strong>
+                    كتابة كلمتين أو ثلاث فقط تؤدي لظهور آلاف النتائج غير المفلترة التي لا يراجع منها الطبيب سوى أول شاشتين. <em>الحل العملي:</em> إضافة مصطلح أو مصطلحين إضافيين ومحددين يحسن من دقة النتائج فورياً [28].
+                  </div>
+
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700">
+                    <strong class="text-amber-400 block mb-1">ب. أداة التصفية وتحديد القيود (The 'Limit' Function):</strong>
+                    قصر البحث على تصميم دراسي معين (RCTs أو مراجعات منهجية)، أو خصائص ديموغرافية (فئات عمرية، جنس)، أو لغة محددة، أو حصر النتائج في المجلات السريرية المحورية (Core clinical journals) [29].
+                  </div>
+
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700">
+                    <strong class="text-emerald-400 block mb-1">ج. مرشحات البحث المنهجية: الاستعلامات السريرية (Clinical Queries):</strong>
+                    واحدة من أذكى أدوات PubMed؛ حيث تركب مرشحات برمجية معقدة ومنهجية فوق كلماتك لعزل أقوى الدراسات سريرياً بحسب نوع سؤالك (علاج، تشخيص، مآل) [30].
+                    <div class="mt-2 p-2 bg-slate-900/80 rounded border border-slate-700 dir-ltr text-left font-mono text-[11px] text-emerald-300">
+                      (hypercholesterolaemia) AND (randomised controlled trial [Publication Type] OR (randomised [Title/Abstract] AND controlled [Title/Abstract] AND trial [Title/Abstract]))
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bar Chart for Clinical Queries -->
+              <div class="rich-card p-6 border-r-4 border-r-emerald-500">
+                <h4 class="font-cairo font-bold text-base mb-2 text-emerald-500 flex items-center gap-2">
+                  <i class="fa-solid fa-chart-column"></i>
+                  الأثر الفوري للاستعلامات السريرية (Clinical Queries) في تصفية النتائج
+                </h4>
+                <p class="text-xs text-slate-400 mb-4">
+                  تصفية فورية لمئات الآلاف من الأوراق غير المنهجية وإخراج 159 ورقة علمية دقيقة فقط (مقياس لوغاريتمي):
+                </p>
+                <div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800">
+                  <canvas id="topicChart" class="w-full max-h-60"></canvas>
+                </div>
+              </div>
+
+              <!-- SPORTDiscus & Google Scholar -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="rich-card p-4 border-r-4 border-r-violet-500">
+                  <h5 class="font-cairo font-bold text-sm text-violet-400 mb-2">قاعدة SPORTDiscus:</h5>
+                  <p class="text-xs text-slate-300 leading-relaxed">المرجع الأول عالمياً لبحوث الطب الرياضي، الإصابات الرياضية، والعلاج الطبيعي والعلوم الحركية، وتستضيفها مؤسسة EBSCO [32].</p>
+                </div>
+
+                <div class="rich-card p-4 border-r-4 border-r-rose-500">
+                  <h5 class="font-cairo font-bold text-sm text-rose-400 mb-2">الباحث العلمي من جوجل (Google Scholar):</h5>
+                  <ul class="text-xs text-slate-300 space-y-1 leading-relaxed">
+                    <li><strong class="text-emerald-400">• الميزة:</strong> بديل دفاعي ممتاز للمواضيع السريرية النادرة والمبهمة (Obscure topics) ومسح الأدبيات الرمادية [32].</li>
+                    <li><strong class="text-rose-400">• الخطر:</strong> غياب مرشحات الجودة الأكاديمية وغياب أدوات القيود الدقيقة؛ فيعامل الأبحاث الركيكة بنفس وزن المراجعات الرصينة [32].</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-11",
+          title: "6.1 مهارة سلسلة الاقتباسات وتتبع الاستشهادات (WOSCOPS)",
+          level: 2,
+          subtitle: "Citation Chaining & Tracking: The 20-Year WOSCOPS Journey",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <h3 class="font-cairo font-bold text-lg mb-3 flex items-center gap-2 text-violet-500 dark:text-violet-400">
+                  <i class="fa-solid fa-link text-violet-500"></i>
+                  مهارة سلسلة الاقتباسات وتتبع الاستشهادات (Citation Chaining)
+                </h3>
+                <p class="text-slate-300 leading-relaxed text-sm">
+                  تعد مهارة تتبع الاستشهادات أحد أقوى الأساليب المنهجية لتتبع تطور فكرة أو علاج طبي عبر الزمن [31]:
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3 text-xs">
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700">
+                    <strong class="text-cyan-400 block mb-1">1. التتبع التراجعي (Backward Chaining):</strong>
+                    قراءة قائمة المراجع في نهاية الورقة العلمية للوصول للدراسات الأقدم التي بُنيت عليها.
+                  </div>
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700">
+                    <strong class="text-emerald-400 block mb-1">2. التتبع التقدمي (Forward Chaining):</strong>
+                    البحث عن الأبحاث الحديثة التي نُشرت لاحقاً واقتبست من الورقة العلمية الحالية [31].
+                  </div>
+                </div>
+              </div>
+
+              <!-- WOSCOPS Case Study Journey -->
+              <div class="rich-card p-6 border-r-4 border-r-emerald-500">
+                <h4 class="font-cairo font-bold text-base mb-3 text-emerald-500 flex items-center gap-2">
+                  <i class="fa-solid fa-timeline"></i>
+                  دراسة حالة واقعية: تتبع دراسة WOSCOPS لمدى 20 عاماً عبر Web of Science
+                </h4>
+                <div class="relative border-r border-emerald-500/40 pr-6 space-y-6 text-xs text-slate-300">
+                  <div class="relative">
+                    <div class="absolute -right-[31px] top-0 w-4 h-4 rounded-full bg-emerald-500 border-4 border-slate-900"></div>
+                    <span class="text-emerald-400 font-mono font-bold">1995م - الدراسة الأصلية (NEJM):</span>
+                    <p class="mt-1">نشر دراسة غرب اسكتلندا للوقاية من الشرايين التاجية (WOSCOPS) لإثبات دور عقار برافاستاتين (Pravastatin) في خفض الكوليسترول والوقاية من الجلطات [31, 46].</p>
+                  </div>
+
+                  <div class="relative">
+                    <div class="absolute -right-[31px] top-0 w-4 h-4 rounded-full bg-cyan-500 border-4 border-slate-900"></div>
+                    <span class="text-cyan-400 font-mono font-bold">2007م - ورقة المتابعة لـ 10 سنوات (NEJM):</span>
+                    <p class="mt-1">باستخدام تتبع الاستشهادات باسم المؤلف الرئيسي (I. Ford)، عثر الباحثون على ورقة متابعة لمدة 10 سنوات للمرضى تؤكد استمرار الفاعلية والأمان [31, 46].</p>
+                  </div>
+
+                  <div class="relative">
+                    <div class="absolute -right-[31px] top-0 w-4 h-4 rounded-full bg-violet-500 border-4 border-slate-900"></div>
+                    <span class="text-violet-400 font-mono font-bold">2016م - ورقة المتابعة الكبرى لـ 20 عاماً (Circulation):</span>
+                    <p class="mt-1">بالاستمرار في البحث المرجعي المقتبس (Cited Reference Search)، قاد المسار مباشرة إلى ورقة بالغة الأهمية تستعرض أمان وفاعلية الستاتين لمدى <strong>20 عاماً كاملة</strong> [31, 47].</p>
+                  </div>
+                </div>
+
+                <div class="mt-4 p-3 bg-amber-500/10 rounded-xl border border-amber-500/20 text-xs text-amber-400">
+                  <strong class="font-bold">تنبيه منهجي حاسم:</strong> عدد الاستشهادات الضخم لورقة ما ليس دليلاً قاطعاً على جودتها السريرية؛ ففي أحيان كثيرة يتم الاقتباس بكثافة من ورقة معينة لتفنيد خطأ نتائجها أو دحض رداءة منهجيتها [31]!
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-12",
+          title: "7.0 محركات البحث الموحدة (TRIP Database) والذكاء الاصطناعي",
+          level: 1,
+          subtitle: "Federated Search Engines & Artificial Intelligence in Literature",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <h3 class="font-cairo font-bold text-lg mb-3 flex items-center gap-2 text-violet-500 dark:text-violet-400">
+                  <i class="fa-solid fa-network-wired text-violet-500"></i>
+                  البوابة الشاملة: محركات البحث الموحدة (Federated Search Engines)
+                </h3>
+                <p class="text-slate-300 leading-relaxed text-sm">
+                  تتيح محركات البحث الاتحادية للطبيب كتابة سؤاله السريري مرة واحدة ليقوم المحرك بالبحث الآلي والمتزامن في عشرات المنصات المفتوحة والمأجورة وإخراج النتائج مصنفة بحسب مستوى الأدلة وجودتها [33].
+                </p>
+              </div>
+
+              <!-- TRIP Database Strategies -->
+              <div class="rich-card p-6 border-r-4 border-r-emerald-500">
+                <h4 class="font-cairo font-bold text-base mb-3 text-emerald-500 flex items-center gap-2">
+                  <i class="fa-solid fa-route"></i>
+                  محرك بحث TRIP Database (Turning Research into Practice)
+                </h4>
+                <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                  يعد محرك TRIP البوابة الأكثر فاعلية لخدمة ممارسي الرعاية الطبية؛ لكونه يجمع مجانية الاستخدام مع ذكاء التصنيف المنهجي [20, 33]:
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700">
+                    <strong class="text-cyan-400 block mb-1">1. مسح متزامن شامل:</strong>
+                    يمسح مراجعات كوكرين، وإرشادات الممارسة الدولية، والكتب المعتمدة، ومجلات POEMS، وقواعد بوبميد السريرية في نفس اللحظة [33].
+                  </div>
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700">
+                    <strong class="text-emerald-400 block mb-1">2. التصنيف المنهجي التلقائي:</strong>
+                    بمجرد البحث عن موضوع (مثل سكر الحمل Gestational diabetes)، يفرز النتائج في القائمة الجانبية إلى مراجعات منهجية، خلاصات، وإرشادات [33].
+                  </div>
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700">
+                    <strong class="text-amber-400 block mb-1">3. التصفية الجغرافية:</strong>
+                    إمكانية فرز إرشادات الممارسة السريرية بحسب بلد المنشأ (NICE بريطانيا، كندا، أمريكا، أستراليا، أوروبا) [20, 33].
+                  </div>
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700">
+                    <strong class="text-violet-400 block mb-1">4. الفرز بحسب التخصص:</strong>
+                    حصر النتائج في تخصص طبي محدد (كالجراحة أو الأطفال) لملاءمة الطبيب الممارس [33].
+                  </div>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-13",
+          title: "7.1 توظيف الذكاء الاصطناعي (Scite.ai) ومخاطر الهلوسة العلمية",
+          level: 2,
+          subtitle: "AI-Powered Literature Search & Ethical Warnings",
+          chartConfig: {
+            type: 'doughnut',
+            data: {
+              labels: ['اقتباسات داعمة ومؤيدة (Supporting)', 'اقتباسات ذكر وسياق عام (Mentioning)', 'اقتباسات تشكيك ودحض (Contrasting)'],
+              datasets: [{
+                data: [65, 25, 10],
+                backgroundColor: [
+                  'rgba(16, 185, 129, 0.8)',
+                  'rgba(6, 182, 212, 0.8)',
+                  'rgba(244, 63, 94, 0.8)'
+                ],
+                borderColor: ['#10B981', '#06B6D4', '#F43F5E'],
+                borderWidth: 2
+              }]
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: { position: 'bottom', labels: { font: { family: 'IBM Plex Sans Arabic', size: 10 } } }
+              }
+            }
+          },
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <h3 class="font-cairo font-bold text-lg mb-3 flex items-center gap-2 text-violet-500 dark:text-violet-400">
+                  <i class="fa-solid fa-robot text-violet-500"></i>
+                  ثورة الذكاء الاصطناعي في مسح الأدبيات (Artificial Intelligence)
+                </h3>
+                <p class="text-slate-300 leading-relaxed text-sm">
+                  تمثل نماذج اللغة الكبيرة وأدوات الذكاء الاصطناعي ثورة واعدة لتسهيل البحث وتخفيف وطأة الغابة المعلوماتية [3, 34]. ومع ذلك، تؤكد تجارب الهاكاثون السريرية المقارنة أن الذكاء الاصطناعي يقدم نتائج أكثر تركيزاً لكنه لم يظهر تفوقاً إحصائياً في الحجم الكلي مقارنة بالبحث المنهجي التقليدي [34].
+                </p>
+              </div>
+
+              <!-- Scite.ai Breakdown -->
+              <div class="rich-card p-6 border-r-4 border-r-cyan-500">
+                <h4 class="font-cairo font-bold text-base mb-3 text-cyan-500 flex items-center gap-2">
+                  <i class="fa-solid fa-microchip"></i>
+                  منصة Scite.ai وميزاتها السريرية المتطورة
+                </h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700">
+                    <strong class="text-emerald-400 block mb-1">1. مؤشر سياق الاقتباسات الذكي (Smart Citations):</strong>
+                    تصنيف الاقتباسات آلياً إلى: داعمة (Supporting)، مجرد ذكر (Mentioning)، أو داحضة ومشككة (Contrasting) [34].
+                  </div>
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700">
+                    <strong class="text-cyan-400 block mb-1">2. المساعد الذكي (AI Assistant):</strong>
+                    شريك بحثي يجيب على الأسئلة السريرية مع إرفاق الاقتباسات والأوراق الداعمة لكل جملة [34].
+                  </div>
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700">
+                    <strong class="text-rose-400 block mb-1">3. أداة فحص المراجع (Reference Check):</strong>
+                    فحص مسودتك وتنبيهك فوراً إذا استشهدت بورقة تم سحبها لاحقاً (Retracted) [34].
+                  </div>
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700">
+                    <strong class="text-amber-400 block mb-1">4. لوحات التحكم المخصصة (Dashboards):</strong>
+                    تتبع النزعات السريرية والمؤشرات لمجموعات مخصصة من الأبحاث [34].
+                  </div>
+                </div>
+              </div>
+
+              <!-- Doughnut Chart for Smart Citations -->
+              <div class="rich-card p-6 border-r-4 border-r-emerald-500">
+                <h4 class="font-cairo font-bold text-base mb-2 text-emerald-500 flex items-center gap-2">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  تصنيف مؤشر الاقتباسات الذكي (Smart Citations Sentiment) في Scite.ai
+                </h4>
+                <div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800 flex justify-center">
+                  <div class="w-full max-w-xs">
+                    <canvas id="topicChart" class="w-full max-h-56"></canvas>
+                  </div>
+                </div>
+              </div>
+
+              <!-- AI Hallucination Warning -->
+              <div class="rich-card p-6 border-r-4 border-r-rose-500">
+                <h4 class="font-cairo font-bold text-base mb-2 text-rose-500 flex items-center gap-2">
+                  <i class="fa-solid fa-triangle-exclamation"></i>
+                  المخاطر والقيود الأخلاقية للذكاء الاصطناعي (AI Hallucination)
+                </h4>
+                <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+                  <li><strong class="text-rose-400">• خطر التهلوس العلمي:</strong> من الموثق أن النماذج قد تبتكر مراجع طبية وأسماء مؤلفين ودراسات وأرقام إحصائية وهمية تماماً لا وجود لها [34].</li>
+                  <li><strong class="text-rose-400">• الضوابط واللوائح الأكاديمية:</strong> تحظر العديد من المجلات والجامعات استخدام مساعدي الذكاء الاصطناعي دون إفصاح دقيق وتوثيق كامل [34].</li>
+                </ul>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-14",
+          title: "8.0 الاستشارة الأكاديمية، الأدبيات الرمادية، وشبكة CHAIN",
+          level: 1,
+          subtitle: "Asking for Help, Grey Literature & Online Search Tutorials",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <h3 class="font-cairo font-bold text-lg mb-3 flex items-center gap-2 text-violet-500 dark:text-violet-400">
+                  <i class="fa-solid fa-handshake-angle text-violet-500"></i>
+                  طلب المساعدة والاستشارة الأكاديمية (Asking for Help)
+                </h3>
+                <p class="text-slate-300 leading-relaxed text-sm">
+                  لا تطلب ممارسة الطب المبني على الأدلة من الكادر الطبي العمل بمفرده وبمعزل عن المنظومة الداعمة؛ فالوصول للأدلة عالية الجودة يتطلب بناء شبكة علاقات وتكامل مهني مستمر [35, 37].
+                </p>
+              </div>
+
+              <!-- Librarians, Grey Literature, CHAIN -->
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="rich-card p-5 border-r-4 border-r-cyan-500">
+                  <h4 class="font-cairo font-bold text-sm mb-2 text-cyan-400 flex items-center gap-1">
+                    <i class="fa-solid fa-user-tie"></i>
+                    أخصائيو المكتبات والمعلوماتية
+                  </h4>
+                  <p class="text-xs text-slate-300 leading-relaxed">
+                    الشريك الأكثر أهمية للطبيب؛ يملكون معرفة دقيقة بهيكلية القواعد وخوارزميات البحث المعقدة واستراتيجيات استرجاع الأدلة [7, 35].
+                  </p>
+                </div>
+
+                <div class="rich-card p-5 border-r-4 border-r-amber-500">
+                  <h4 class="font-cairo font-bold text-sm mb-2 text-amber-400 flex items-center gap-1">
+                    <i class="fa-solid fa-ghost"></i>
+                    الأدبيات الرمادية (Grey Literature)
+                  </h4>
+                  <p class="text-xs text-slate-300 leading-relaxed">
+                    تقارير حكومية ومسودات غير منشورة في المجلات التجارية ولا مفهرسة في PubMed. استشارة الخبراء هي السبيل الوحيد للعثور عليها [36, 37].
+                  </p>
+                </div>
+
+                <div class="rich-card p-5 border-r-4 border-r-emerald-500">
+                  <h4 class="font-cairo font-bold text-sm mb-2 text-emerald-400 flex items-center gap-1">
+                    <i class="fa-solid fa-users-rays"></i>
+                    شبكة CHAIN Network
+                  </h4>
+                  <p class="text-xs text-slate-300 leading-relaxed">
+                    شبكة دولية مجانية تضم آلاف الممارسين الصحيين لطرح الأسئلة السريرية المعقدة وتوجيهها مباشرة إلى كبار الخبراء حول العالم [36].
+                  </p>
+                </div>
+              </div>
+
+              <!-- Online Search Tutorials -->
+              <div class="rich-card p-5 border-r-4 border-r-violet-500">
+                <h4 class="font-cairo font-bold text-base mb-3 text-violet-400 flex items-center gap-2">
+                  <i class="fa-solid fa-graduation-cap"></i>
+                  البرامج والمنصات التعليمية للبحث الفعال عبر الإنترنت (Tutorials)
+                </h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700">
+                    <strong class="text-cyan-400 block mb-1">دورة أكسفورد (Oxford CEBM - Finding the Evidence):</strong>
+                    مراجعة مكثفة وسريعة للمهارات الأساسية للبحث وتنشيط الذاكرة الأكاديمية [38].
+                  </div>
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700">
+                    <strong class="text-emerald-400 block mb-1">دورة مكتبة جامعة ولاية جورجيا:</strong>
+                    شروحات مخصصة لـ PubMed وتكتيكات متقدمة لتخصيص واجهة المستخدم السريرية [39].
+                  </div>
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700">
+                    <strong class="text-amber-400 block mb-1">الدليل التعليمي الرسمي لـ PubMed Tutorial:</strong>
+                    تمارين تفاعلية رسمية لتطوير قدرات البحث وصياغة الكلمات [39].
+                  </div>
+                  <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700">
+                    <strong class="text-violet-400 block mb-1">دليل الخطوات العشر للتمريض (RCN 10-steps guide):</strong>
+                    تفكيك عملية البحث كاملة لـ 10 خطوات متسلسلة من صياغة السؤال لحفظ النتائج [39].
+                  </div>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-15",
+          title: "9.0 التمارين والمواقف السريرية التطبيقية",
+          level: 1,
+          subtitle: "Practical Clinical Exercises & Interactive Exploration",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-emerald-500">
+                <h3 class="font-cairo font-bold text-lg mb-3 flex items-center gap-2 text-emerald-500">
+                  <i class="fa-solid fa-dumbbell text-emerald-500"></i>
+                  تمارين تطبيقية لترسيخ مهارات الملاحة والبحث المنهجي
+                </h3>
+                <p class="text-slate-300 leading-relaxed text-sm">
+                  مجموعة من السيناريوهات السريرية والتمارين الواقعية المستمدة من الكتاب لتطبيق المفاهيم المدروسة عملياً [40, 41]:
+                </p>
+              </div>
+
+              <!-- Exercise 1 -->
+              <div class="rich-card p-6 border-r-4 border-r-cyan-500">
+                <h4 class="font-cairo font-bold text-base mb-2 text-cyan-400 flex items-center gap-2">
+                  <i class="fa-solid fa-user-doctor"></i>
+                  التمرين الأول: سيناريو طبيب الأسرة وضيق الوقت
+                </h4>
+                <p class="text-xs text-slate-300 leading-relaxed mb-3">
+                  <strong>السيناريو:</strong> إذا كنت طبيب أسرة مشغولاً للغاية في عيادتك وترغب بشدة في مواكبة أحدث المستجدات العلمية في تخصصك بأقل جهد، فما هي مصادر الأدلة التي ستعتمد عليها للتصفح ومواكبة الأبحاث؟ وما هي عيوب ومميزات كل خيار تختاره من حيث التكلفة والوقت والدقة؟
+                </p>
+                <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700 text-xs text-slate-400">
+                  <strong class="text-emerald-400 block mb-1">الحل المنهجي المقترح:</strong>
+                  الاعتماد على مجلات الهضم السريري المقيمة مسبقاً (مثل POEMS وACP Journal Club) وتفعيل خلاصات RSS للمجلات المحورية لتقليل الجهد، مع الاستعانة بمصادر الرعاية الفورية (DynaMed/UpToDate) عند فحص المرضى.
+                </div>
+              </div>
+
+              <!-- Exercise 2 -->
+              <div class="rich-card p-6 border-r-4 border-r-amber-500">
+                <h4 class="font-cairo font-bold text-base mb-2 text-amber-400 flex items-center gap-2">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                  التمرين الثاني: استكشاف وتفكيك محرك TRIP
+                </h4>
+                <p class="text-xs text-slate-300 leading-relaxed mb-3">
+                  <strong>المطلوب:</strong> قم بالدخول إلى محرك TRIP database وكتابة مصطلح بحثي بسيط مثل <em>"سكر الحمل" (Gestational diabetes)</em>. راجع القائمة الجانبية اليسرى ولاحظ كيف قام المحرك بتصنيف النتائج تلقائياً إلى مراجعات منهجية، إرشادات دولية (Guidelines)، وخلاصات سريعة مقسمة جغرافياً.
+                </p>
+              </div>
+
+              <!-- Exercise 3 -->
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <h4 class="font-cairo font-bold text-base mb-2 text-violet-400 flex items-center gap-2">
+                  <i class="fa-solid fa-book-open-reader"></i>
+                  التمرين الثالث: تفكيك مكتبة كوكرين والملخص اللغوي المبسط
+                </h4>
+                <p class="text-xs text-slate-300 leading-relaxed mb-3">
+                  <strong>المطلوب:</strong> ابحث في مكتبة كوكرين عن مراجعة منهجية في تخصصك، ثم قارن بين صعوبة قراءة النص الأكاديمي الكامل وسهولة استيعاب <strong>"الملخص اللغوي المبسط" (Plain Language Summary)</strong> و<strong>"مخطط الغابة" (Forest Plot)</strong> المرفق.
+                </p>
+              </div>
+
+              <!-- Interactive Search Simulator Widget -->
+              <div class="rich-card p-6 border-r-4 border-r-emerald-500">
+                <h4 class="font-cairo font-bold text-base mb-3 text-emerald-400 flex items-center gap-2">
+                  <i class="fa-solid fa-sliders"></i>
+                  محاكي كفاءة البحث السريري التفاعلي
+                </h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                  <div>
+                    <label class="block mb-1 font-semibold text-slate-300">الاستراتيجية المتبعة:</label>
+                    <select id="sim-strategy" class="w-full px-3 py-2 rounded-lg bg-slate-900/80 border border-slate-700 text-white focus:outline-none focus:border-emerald-500">
+                      <option value="google">بحث جوجل عام (Google Search)</option>
+                      <option value="simple-pubmed">بحث بوبميد بسيط (2-3 كلمات)</option>
+                      <option value="queries">استعلامات سريرية (PubMed Queries)</option>
+                      <option value="trip">محرك بحث TRIP الموحد</option>
+                      <option value="poc">مصدر رعاية فورية (UpToDate / DynaMed)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block mb-1 font-semibold text-slate-300">الوقت المتاح لديك (بالدقائق):</label>
+                    <input type="number" id="sim-time" value="5" class="w-full px-3 py-2 rounded-lg bg-slate-900/80 border border-slate-700 text-white focus:outline-none focus:border-emerald-500">
+                  </div>
+                </div>
+                <button id="sim-run-btn" class="mt-4 px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-cairo font-bold rounded-lg text-xs transition-all">
+                  تقييم كفاءة الاستراتيجية
+                </button>
+                <div id="sim-result" class="mt-3 p-3 bg-slate-900/80 rounded-lg text-xs leading-relaxed text-emerald-400 hidden border border-slate-700"></div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-16",
+          title: "10.0 المراجع الأكاديمية والتوثيق الببليوغرافي",
+          level: 1,
+          subtitle: "Complete Academic References & Bibliography",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <h3 class="font-cairo font-bold text-lg mb-3 flex items-center gap-2 text-violet-500 dark:text-violet-400">
+                  <i class="fa-solid fa-book-bookmark text-violet-500"></i>
+                  المراجع الأكاديمية الموثقة للفصل الثاني
+                </h3>
+                <p class="text-slate-300 leading-relaxed text-sm">
+                  قائمة المراجع العلمية والتوثيقات الببليوغرافية للأبحاث والدراسات المعتمدة في صياغة هذا الفصل [42-47]:
+                </p>
+              </div>
+
+              <!-- References Ordered List -->
+              <div class="rich-card p-6 border-r-4 border-r-cyan-500">
+                <ol class="space-y-3 text-xs text-slate-300 leading-relaxed list-decimal list-inside font-mono">
+                  <li><span class="font-sans">Davies K. The information-seeking behaviour of doctors: a review of the evidence. <em>Health Information and Libraries Journal</em> 2007; 24: 78–94.</span></li>
+                  <li><span class="font-sans">Del Fiol G, Workman TE, Gorman PN. Clinical questions raised by clinicians at the point of care: a systematic review. <em>JAMA Internal Medicine</em> 2014; 174: 710–18.</span></li>
+                  <li><span class="font-sans">Blaizot A, Veettil SK, Saidoung P, et al. Using artificial intelligence methods for systematic review in health sciences: a systematic review. <em>Research Synthesis Methods</em> 2022; 13: 353–62.</span></li>
+                  <li><span class="font-sans">Schoeb D, Suarez-Ibarrola R, Hein S, et al. Use of artificial intelligence for medical literature search: randomized controlled trial using the hackathon format. <em>Interactive Journal of Medical Research</em> 2020; 9: e16606.</span></li>
+                  <li><span class="font-sans">DiCenso A, Bayley L, Haynes RB. Accessing preappraised evidence: fine-tuning the 5S model into a 6S model. <em>Evidence Based Nursing</em> 2009; 12(4): 99–101.</span></li>
+                  <li><span class="font-sans">Tugwell P, Knottnerus JA. Is the 'evidence-pyramid' now dead? <em>Journal of Clinical Epidemiology</em> 2015; 68: 1247–50.</span></li>
+                  <li><span class="font-sans">Frieden TR. Evidence for health decision making: beyond randomized, controlled trials. <em>New England Journal of Medicine</em> 2017; 377: 465–75.</span></li>
+                  <li><span class="font-sans">Greenhalgh T, Thorne S, Malterud K. Time to challenge the spurious hierarchy of systematic over narrative reviews? <em>European Journal of Clinical Investigation</em> 2018; 48(6): e12931.</span></li>
+                  <li><span class="font-sans">Levin A. The Cochrane Collaboration. <em>Annals of Internal Medicine</em> 2001; 135: 309–12.</span></li>
+                  <li><span class="font-sans">US Institute of Medicine, Committee to Advise the Public Health Service on Clinical Practice Guidelines. <em>Clinical Practice Guidelines: Directions for a new program</em>. Washington, DC: National Academies Press; 1990.</span></li>
+                  <li><span class="font-sans">Grimshaw J, Freemantle N, Wallace S, et al. Developing and implementing clinical practice guidelines. <em>Quality and Safety in Health Care</em> 1995; 4(1): 55–64.</span></li>
+                  <li><span class="font-sans">World Health Organization. <em>Clinical Management of Diphtheria</em>. Geneva: WHO; 2024.</span></li>
+                  <li><span class="font-sans">World Health Organization. <em>WHO Guideline for Non-Surgical Management of Chronic Primary Low Back Pain in Adults in Primary and Community Care Settings</em>. Geneva: WHO; 2023.</span></li>
+                  <li><span class="font-sans">Hoogendam A, Stalenhoef A, Robbé P de V, et al. Answers to questions posed during daily patient care are more likely to be answered by UpToDate than PubMed. <em>Journal of Medical Internet Research</em> 2008; 10: e1012.</span></li>
+                  <li><span class="font-sans">Shepherd J, Cobbe SM, Ford I, et al. Prevention of coronary heart disease with pravastatin in men with hypercholesterolemia. <em>New England Journal of Medicine</em> 1995; 333: 1301–8.</span></li>
+                  <li><span class="font-sans">Ford I, Murray H, Packard CJ, et al. Long-term follow-up of the West of Scotland Coronary Prevention Study. <em>New England Journal of Medicine</em> 2007; 357: 1477–86.</span></li>
+                  <li><span class="font-sans">Ford I, Murray H, McCowan C, et al. Long-term safety and efficacy of lowering low-density lipoprotein cholesterol with statin therapy. <em>Circulation</em> 2016; 133: 1073–80.</span></li>
+                  <li><span class="font-sans">Scite. Using scite to speed up literature reviews and critical analysis [blog post]. 2024.</span></li>
+                </ol>
+              </div>
+            </div>
+          `
+        }
+      ]
+    };
+
+    /* ==========================================================================
+       UI CONTROLLER ENGINE
+       ========================================================================== */
+    let activeTopicId = LECTURE_DATA.topics[0]?.id || '';
+    let currentChartInstance = null;
+    let lastScrollY = window.scrollY;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      renderLectureMetadata();
+      renderDrawerTree();
+      renderTopic(activeTopicId);
+      setupEventListeners();
+      setupHeaderAutoHiding();
+    });
+
+    // Theme Switcher Logic
+    function initTheme() {
+      const savedTheme = localStorage.getItem('app-theme') || 'dark';
+      const htmlEl = document.documentElement;
+      const themeIcon = document.getElementById('theme-icon');
+
+      if (savedTheme === 'dark') {
+        htmlEl.classList.add('dark');
+        if (themeIcon) themeIcon.className = 'fa-solid fa-sun text-amber-400 text-lg';
+      } else {
+        htmlEl.classList.remove('dark');
+        if (themeIcon) themeIcon.className = 'fa-solid fa-moon text-slate-700 text-lg';
+      }
+    }
+
+    function toggleTheme() {
+      triggerHaptic();
+      const htmlEl = document.documentElement;
+      const themeIcon = document.getElementById('theme-icon');
+      
+      if (htmlEl.classList.contains('dark')) {
+        htmlEl.classList.remove('dark');
+        localStorage.setItem('app-theme', 'light');
+        if (themeIcon) themeIcon.className = 'fa-solid fa-moon text-slate-700 text-lg';
+      } else {
+        htmlEl.classList.add('dark');
+        localStorage.setItem('app-theme', 'dark');
+        if (themeIcon) themeIcon.className = 'fa-solid fa-sun text-amber-400 text-lg';
+      }
+    }
+
+    // Auto-Hiding Header on Scroll
+    function setupHeaderAutoHiding() {
+      const header = document.getElementById('main-header');
+      window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > lastScrollY && currentScrollY > 70) {
+          header.classList.add('-translate-y-full');
+        } else {
+          header.classList.remove('-translate-y-full');
+        }
+        lastScrollY = currentScrollY;
+      });
+    }
+
+    // Safe Telegram Haptics
+    function triggerHaptic() {
+      try {
+        if (window.Telegram?.WebApp?.HapticFeedback) {
+          window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
+        }
+      } catch (e) {}
+    }
+
+    // Inject Metadata
+    function renderLectureMetadata() {
+      document.getElementById('lecture-title-display').innerText = LECTURE_DATA.title;
+      document.getElementById('lecture-subtitle-display').innerText = LECTURE_DATA.subtitle;
+      document.getElementById('chapter-tag-display').innerText = LECTURE_DATA.chapterTag;
+      document.getElementById('topic-count-display').innerText = `${LECTURE_DATA.topics.length} مواضيع مفصلة`;
+    }
+
+    // Drawer Tree Renderer
+    function renderDrawerTree() {
+      const container = document.getElementById('drawer-tree-container');
+      container.innerHTML = '';
+
+      LECTURE_DATA.topics.forEach((topic) => {
+        const isLevel2 = topic.level === 2;
+        const isLevel3 = topic.level === 3;
+        const indentClass = isLevel3 ? 'mr-6' : isLevel2 ? 'mr-3' : 'mr-0';
+        
+        const btn = document.createElement('button');
+        btn.className = `w-full text-right p-3 rounded-xl transition-all flex items-center justify-between text-xs font-cairo font-bold ${indentClass} ${
+          topic.id === activeTopicId 
+            ? 'bg-violet-600/20 text-violet-500 dark:text-violet-400 border border-violet-500/40 shadow-sm' 
+            : 'hover:bg-slate-800/20 dark:hover:bg-slate-800/40 text-slate-400'
+        }`;
+        
+        btn.innerHTML = `
+          <span class="truncate ml-2">${topic.title}</span>
+          <i class="fa-solid fa-chevron-left text-[10px] opacity-60"></i>
+        `;
+
+        btn.onclick = () => {
+          triggerHaptic();
+          switchTopic(topic.id);
+          closeDrawer();
+        };
+
+        container.appendChild(btn);
+      });
+    }
+
+    // Render Active Topic
+    function renderTopic(topicId) {
+      const topic = LECTURE_DATA.topics.find(t => t.id === topicId);
+      if (!topic) return;
+
+      activeTopicId = topicId;
+      const viewport = document.getElementById('active-topic-viewport');
+
+      if (currentChartInstance) {
+        currentChartInstance.destroy();
+        currentChartInstance = null;
+      }
+
+      viewport.innerHTML = `
+        <div class="rich-card p-6 border-b-2 border-b-violet-500/30">
+          <span class="text-[11px] font-bold text-violet-500 dark:text-violet-400 uppercase tracking-wider block mb-1">${topic.subtitle || ''}</span>
+          <h2 class="font-cairo font-extrabold text-xl md:text-2xl">${topic.title}</h2>
+        </div>
+        <div>
+          ${topic.content}
+        </div>
+      `;
+
+      if (window.renderMathInElement) {
+        try {
+          renderMathInElement(viewport, {
+            delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false}
+            ],
+            throwOnError: false
+          });
+        } catch (e) {}
+      }
+
+      if (topic.chartConfig && document.getElementById('topicChart')) {
+        const ctx = document.getElementById('topicChart').getContext('2d');
+        currentChartInstance = new Chart(ctx, topic.chartConfig);
+      }
+
+      setupSimulatorListener();
+      renderDrawerTree();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function switchTopic(topicId) {
+      renderTopic(topicId);
+    }
+
+    function openDrawer() {
+      triggerHaptic();
+      document.getElementById('right-outline-drawer').classList.remove('translate-x-full');
+      document.getElementById('drawer-overlay').classList.remove('hidden');
+    }
+
+    function closeDrawer() {
+      document.getElementById('right-outline-drawer').classList.add('translate-x-full');
+      document.getElementById('drawer-overlay').classList.add('hidden');
+    }
+
+    function setupSimulatorListener() {
+      const simBtn = document.getElementById('sim-run-btn');
+      if (simBtn) {
+        simBtn.onclick = () => {
+          triggerHaptic();
+          const strat = document.getElementById('sim-strategy')?.value;
+          const time = parseFloat(document.getElementById('sim-time')?.value || 0);
+          const res = document.getElementById('sim-result');
+
+          if (!res) return;
+
+          let msg = '';
+          if (strat === 'google') {
+            msg = `❌ <strong>كفاءة منخفضة جداً (خطر الانحياز):</strong> جوجل العام يعيد ملايين النتائج التجارية وغير المفلترة. خلال ${time} دقيقة ستراجع فقط مقالات سطحية غير منهجية.`;
+            res.className = "mt-3 p-3 bg-rose-950/40 rounded-lg text-xs leading-relaxed text-rose-400 block border border-rose-800";
+          } else if (strat === 'simple-pubmed') {
+            msg = `⚠️ <strong>كفاءة متوسطة إلى ضعيفة:</strong> بوبميد البسيط سيعيد آلاف النتائج دون تقييم مسبق. تحتاج لمرشحات إضافية وإلا ستضيع وقتك في أول شاشتين فقط.`;
+            res.className = "mt-3 p-3 bg-amber-950/40 rounded-lg text-xs leading-relaxed text-amber-400 block border border-amber-800";
+          } else if (strat === 'queries') {
+            msg = `✅ <strong>كفاءة أكاديمية وسريرية ممتازة:</strong> ستعزل لك الاستعلامات السريرية الـ RCTs والمراجعات عالية الجودة فورياً خلال دقيقة واحدة.`;
+            res.className = "mt-3 p-3 bg-emerald-950/40 rounded-lg text-xs leading-relaxed text-emerald-400 block border border-emerald-800";
+          } else if (strat === 'trip') {
+            msg = `🌟 <strong>كفاءة سريرية فائقة (One-Stop):</strong> يبحث TRIP في مئات المصادر دفعة واحدة ويفرزها منهجياً؛ مثالي تماماً لوقتك المتاح (${time} دقيقة).`;
+            res.className = "mt-3 p-3 bg-cyan-950/40 rounded-lg text-xs leading-relaxed text-cyan-400 block border border-cyan-800";
+          } else if (strat === 'poc') {
+            msg = `⚡ <strong>الخيار الذهبي عند سرير المريض:</strong> إجابة فورية ومقيمة مسبقاً خلال أقل من دقيقتين مع خلاصة مباشرة لتطبيقها في رعاية المريض.`;
+            res.className = "mt-3 p-3 bg-emerald-950/40 rounded-lg text-xs leading-relaxed text-emerald-300 block border border-emerald-700";
+          }
+          res.innerHTML = msg;
+        };
+      }
+    }
+
+    function setupEventListeners() {
+      document.getElementById('drawer-toggle-btn').onclick = openDrawer;
+      document.getElementById('close-drawer-btn').onclick = closeDrawer;
+      document.getElementById('drawer-overlay').onclick = closeDrawer;
+      document.getElementById('theme-toggle-btn').onclick = toggleTheme;
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeDrawer();
+      });
+    }
+  </script>
+</body>
+</html>
