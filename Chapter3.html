@@ -1,0 +1,1783 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الفصل الثالث: تحديد الاتجاهات - عن ماذا تتحدث هذه الورقة العلمية؟</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            darkBg: '#0B0B0F',
+            lightBg: '#F8FAFC',
+            cardDark: '#171724',
+            cardLight: '#FFFFFF',
+            neonViolet: '#8B5CF6',
+            neonCyan: '#06B6D4',
+            neonAmber: '#F59E0B',
+            neonEmerald: '#10B981',
+            neonRose: '#F43F5E'
+          },
+          fontFamily: {
+            cairo: ['Cairo', 'sans-serif'],
+            arabic: ['IBM Plex Sans Arabic', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- KaTeX CDN (Math LaTeX Formulas Rendering) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Chart.js CDN (Data Visualization) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    /* Dynamic Theme Variables */
+    :root {
+      --bg-main: #0B0B0F;
+      --text-main: #F8FAFC;
+      --card-bg: rgba(23, 23, 36, 0.85);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --header-bg: rgba(11, 11, 15, 0.85);
+      --drawer-bg: #12121A;
+      --shadow-glow: rgba(139, 92, 246, 0.25);
+    }
+
+    html:not(.dark) {
+      --bg-main: #F1F5F9;
+      --text-main: #0F172A;
+      --card-bg: #FFFFFF;
+      --card-border: rgba(0, 0, 0, 0.08);
+      --header-bg: rgba(241, 245, 249, 0.9);
+      --drawer-bg: #FFFFFF;
+      --shadow-glow: rgba(139, 92, 246, 0.12);
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: 'IBM Plex Sans Arabic', sans-serif;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Light Mode Dynamic Text Contrast Overrides */
+    html:not(.dark) .text-slate-300 { color: #334155 !important; }
+    html:not(.dark) .text-slate-400 { color: #475569 !important; }
+    html:not(.dark) .text-slate-200 { color: #1E293B !important; }
+    html:not(.dark) .text-slate-100 { color: #0F172A !important; }
+    html:not(.dark) .text-white { color: #0F172A !important; }
+    
+    html:not(.dark) .bg-slate-800\/40, 
+    html:not(.dark) .bg-slate-900\/40, 
+    html:not(.dark) .bg-slate-900\/50,
+    html:not(.dark) .bg-slate-900\/60, 
+    html:not(.dark) .bg-slate-900\/80 {
+      background-color: rgba(226, 232, 240, 0.7) !important;
+      border-color: rgba(203, 213, 225, 0.8) !important;
+    }
+    
+    html:not(.dark) .border-slate-700\/50, 
+    html:not(.dark) .border-slate-800,
+    html:not(.dark) .border-slate-700 {
+      border-color: rgba(203, 213, 225, 0.8) !important;
+    }
+
+    /* UI Structural Components */
+    .glass-panel {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      transition: all 0.3s ease;
+    }
+
+    .glass-header {
+      background: var(--header-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .rich-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .rich-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px var(--shadow-glow);
+      border-color: rgba(139, 92, 246, 0.4);
+    }
+
+    #right-outline-drawer {
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      background-color: var(--drawer-bg);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(139, 92, 246, 0.3); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(139, 92, 246, 0.6); }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col font-arabic">
+
+  <!-- Auto-Hiding Dynamic Header Navigation Bar -->
+  <header id="main-header" class="sticky top-0 z-40 glass-header w-full transition-transform duration-300 transform translateY(0)">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      
+      <!-- Drawer Toggle Button -->
+      <button id="drawer-toggle-btn" class="flex items-center gap-2 px-3 py-2 rounded-xl bg-violet-600/10 hover:bg-violet-600/20 text-violet-500 font-cairo font-bold text-sm border border-violet-500/20 transition-all">
+        <i class="fa-solid fa-bars-staggered text-base"></i>
+        <span>فهرس الفصل</span>
+      </button>
+
+      <!-- Lecture Header Titles -->
+      <div class="text-center px-2">
+        <span id="chapter-tag-display" class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-violet-500/10 text-violet-400 mb-0.5 border border-violet-500/20">الفصل الثالث</span>
+        <h1 id="lecture-title-display" class="font-cairo font-extrabold text-base md:text-lg leading-tight truncate max-w-[200px] sm:max-w-md">تحديد الاتجاهات</h1>
+      </div>
+
+      <!-- Theme Toggle Button -->
+      <button id="theme-toggle-btn" class="p-2.5 rounded-xl bg-slate-800/20 dark:bg-slate-800/80 hover:bg-violet-600/20 text-amber-500 dark:text-amber-300 border border-slate-700/30 transition-all" title="تبديل المظهر">
+        <i id="theme-icon" class="fa-solid fa-sun text-lg"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 py-6">
+    
+    <!-- Subtitle / Meta Bar -->
+    <div class="mb-6 p-4 rounded-2xl glass-panel border-r-4 border-r-violet-500 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div>
+        <h2 id="lecture-subtitle-display" class="font-cairo font-bold text-base sm:text-lg text-violet-500 dark:text-violet-400">دليل الهيكلة الأكاديمية والسريرية الشامل</h2>
+        <p class="text-xs text-slate-400 mt-1">مرجع: How to Read a Paper: The Basics of Evidence-Based Medicine (Trisha Greenhalgh)</p>
+      </div>
+      <div class="flex items-center gap-2 text-xs font-semibold text-slate-400 bg-slate-800/20 dark:bg-slate-900/50 px-3 py-1.5 rounded-lg w-fit">
+        <i class="fa-solid fa-book-medical text-violet-400"></i>
+        <span id="topic-count-display">0 وحدات دراسية</span>
+      </div>
+    </div>
+
+    <!-- Single Topic Active Viewport -->
+    <div id="active-topic-viewport" class="space-y-6">
+      <!-- Content dynamically injected here -->
+    </div>
+
+  </main>
+
+  <!-- Minimal Clean Footer -->
+  <footer class="mt-auto py-4 text-center text-xs text-slate-400 border-t border-slate-800/20">
+    <span>المنصة الأكاديمية التفاعلية للطب المبني على الأدلة (EBM)</span>
+  </footer>
+
+  <!-- Hierarchical Right Drawer Navigation -->
+  <div id="drawer-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden transition-opacity"></div>
+  
+  <aside id="right-outline-drawer" class="fixed top-0 right-0 h-full w-80 max-w-[85vw] z-50 transform translate-x-full shadow-2xl flex flex-col border-l border-slate-800/30">
+    <div class="p-4 border-b border-slate-800/40 flex items-center justify-between">
+      <div class="flex items-center gap-2 text-violet-500 dark:text-violet-400 font-cairo font-bold text-base">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>شجرة محاور الفصل</span>
+      </div>
+      <button id="close-drawer-btn" class="p-2 rounded-lg text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+    </div>
+
+    <!-- Drawer Items List -->
+    <div id="drawer-tree-container" class="flex-grow overflow-y-auto p-4 space-y-1.5">
+      <!-- Tree links dynamically injected here -->
+    </div>
+  </aside>
+
+  <!-- JavaScript Engine -->
+  <script>
+    /* ==========================================================================
+       LECTURE_DATA ENGINE - CHAPTER 3 COMPLETE
+       ========================================================================== */
+    const LECTURE_DATA = {
+      title: "الفصل الثالث: تحديد الاتجاهات: عن ماذا تتحدث هذه الورقة العلمية؟",
+      subtitle: "Getting your bearings: what is this paper about? — Trisha Greenhalgh",
+      chapterTag: "الفصل الثالث (الأقسام 1، 2، 3)",
+      topics: [
+        {
+          id: "topic-1",
+          title: "1.0 علم «إلقاء الأوراق في سلة المهملات» وواقع النشر الطبي",
+          level: 1,
+          subtitle: "The Science of 'Trashing' Papers & Reality of Medical Literature",
+          chartConfig: {
+            type: 'doughnut',
+            data: {
+              labels: ['أوراق بحثية تشوبها أخطاء وعيوب منهجية (99%)', 'أوراق بحثية خالية تماماً من العيوب المنهجية (1%)'],
+              datasets: [{
+                data: [99, 1],
+                backgroundColor: [
+                  'rgba(244, 63, 94, 0.8)',
+                  'rgba(16, 185, 129, 0.85)'
+                ],
+                borderColor: ['#F43F5E', '#10B981'],
+                borderWidth: 2
+              }]
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: {
+                  position: 'bottom',
+                  labels: { font: { family: 'IBM Plex Sans Arabic', size: 11 }, color: '#94A3B8' }
+                }
+              }
+            }
+          },
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-rose-500">
+                <div class="flex items-center gap-2 text-rose-500 dark:text-rose-400 mb-2">
+                  <i class="fa-solid fa-triangle-exclamation text-xl"></i>
+                  <h3 class="font-cairo font-bold text-lg">الصدمة المعرفية وواقع الإنتاج الطبي (The Reality of Medical Literature)</h3>
+                </div>
+                <p class="text-slate-300 leading-relaxed text-sm">
+                  يصاب معظم الطلاب والأطباء المبتدئين بالدهشة عندما يعلمون أن نسبة كبرى من الأوراق العلمية المنشورة في المجلات الطبية (وصلت في تقدير بعض المتشددين إلى <strong class="text-rose-400 font-bold">%99</strong>) تستحق أن تُلغى وتُلقى مباشرة في سلة المهملات (<span class="font-mono text-xs text-rose-300">belong in the bin</span>)، ولا يجوز مطلقاً استخدامها لتوجيه الممارسة السريرية الواقعية.
+                </p>
+              </div>
+
+              <!-- Data Visualization Card -->
+              <div class="rich-card p-6 border-r-4 border-r-cyan-500">
+                <h4 class="font-cairo font-bold text-base mb-2 text-cyan-400 flex items-center gap-2">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  الواقع الإحصائي لجودة الأبحاث المنشورة (دراسات دوغلاس ألتمان)
+                </h4>
+                <p class="text-xs text-slate-400 mb-4">
+                  توزيع موثوقية الأبحاث الطبية المنشورة بناءً على المراجعات المنهجية لعيوب التصميم والتحليل:
+                </p>
+                <div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800 flex justify-center">
+                  <div class="w-full max-w-xs">
+                    <canvas id="topicChart"></canvas>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Historical & Statistical Evidence Table -->
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <h4 class="font-cairo font-bold text-base mb-3 text-violet-400 flex items-center gap-2">
+                  <i class="fa-solid fa-landmark"></i>
+                  الأمانة التاريخية والإحصائية لفساد المنهجيات في النشر الطبي
+                </h4>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-xs text-right border-collapse">
+                    <thead>
+                      <tr class="border-b border-slate-700 bg-slate-800/40 text-violet-300 font-cairo">
+                        <th class="p-3">الباحث / المرجع التاريخي</th>
+                        <th class="p-3">السنة</th>
+                        <th class="p-3">المقولة / الحقيقة الإحصائية الموثقة</th>
+                        <th class="p-3">الأثر السريري والمنهجي</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-300">
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">د. ستيفن لوك<br><span class="text-[10px] text-slate-400 font-normal">Dr. Stephen Lock<br>(رئيس تحرير BMJ الأسبق)</span></td>
+                        <td class="p-3 font-mono text-cyan-400">1979م</td>
+                        <td class="p-3 italic">«قليلة هي الأمور الأكثر إحباطاً للمحرر الطبي من اضطراره لرفض ورقة بحثية قائمة على فكرة ممتازة، ولكنها تنطوي على عيوب قاتلة غير قابلة للإصلاح في المنهجية المستخدمة.»</td>
+                        <td class="p-3 text-amber-300">الفكرة الجيدة لا تشفع للمنهجية المعيبة؛ الخطأ المنهجي يُسقط الورقة بالكامل.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">دوغلاس ألتمان<br><span class="text-[10px] text-slate-400 font-normal">Douglas Altman</span></td>
+                        <td class="p-3 font-mono text-cyan-400">1994م</td>
+                        <td class="p-3">أكد عبر دراساته أن <strong class="text-emerald-400">%1 فقط</strong> من الأبحاث الطبية المنشورة خالية تماماً من العيوب والأخطاء المنهجية (<span class="font-mono text-[10px]">Methodological Flaws</span>).</td>
+                        <td class="p-3 text-rose-300">انتشار الهشاشة الإحصائية والمنهجية في الغالبية الساحقة من الإنتاج الطبي.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">جون إيوانيديس<br><span class="text-[10px] text-slate-400 font-normal">John Ioannidis</span></td>
+                        <td class="p-3 font-mono text-cyan-400">2005م</td>
+                        <td class="p-3">نشر ورقته المرجعية التاريخية والمثيرة للجدل بعنوان: <strong class="text-rose-400">«لماذا معظم نتائج الأبحاث المنشورة خاطئة»</strong> (<span class="font-mono text-[10px]">Why most published research findings are false</span>).</td>
+                        <td class="p-3 text-cyan-300">تفكيك الانحيازات المؤسسية، عينات البحث الصغيرة، وتضخيم النتائج الإحصائية الزائفة.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-2",
+          title: "1.1 الهيكل القياسي للأوراق العلمية (IMRAD) والقاعدة الذهبية للتقييم",
+          level: 2,
+          subtitle: "IMRAD Format, Golden Appraisal Rule & Inversion Model",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-cyan-500">
+                <h3 class="font-cairo font-bold text-lg mb-2 text-cyan-400 flex items-center gap-2">
+                  <i class="fa-solid fa-cubes-stacked"></i>
+                  الهيكل القياسي للأوراق العلمية (IMRAD Format)
+                </h3>
+                <p class="text-slate-300 text-sm mb-4">
+                  تُعرض الأغلبية الساحقة من الأوراق العلمية في المجلات الطبية المعاصرة وفق بنية هيكلية قياسية رباعية تُعرف بـ <strong class="font-mono text-cyan-300">IMRAD</strong>:
+                </p>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-xs text-right border-collapse">
+                    <thead>
+                      <tr class="border-b border-slate-700 bg-slate-800/40 text-cyan-300 font-cairo">
+                        <th class="p-3">القسم القياسي (IMRAD Section)</th>
+                        <th class="p-3">السؤال الجوهري الذي يجيب عليه (Core Question)</th>
+                        <th class="p-3">المعيار النقدي لتقييم القيمة العلمية (Appraisal Standard)</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-300">
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white"><i class="fa-solid fa-circle-info text-violet-400 ml-1"></i>المقدمة (Introduction)</td>
+                        <td class="p-3 text-slate-300">لماذا قرر الباحثون إجراء هذه الدراسة بالذات؟</td>
+                        <td class="p-3 text-slate-400">تحديد خلفية المشكلة والفجوة المعرفية في الأدبيات السابقة.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20 bg-violet-950/20">
+                        <td class="p-3 font-bold text-emerald-400"><i class="fa-solid fa-microscope text-emerald-400 ml-1"></i>المنهجية والطرق (Methods)</td>
+                        <td class="p-3 text-slate-200 font-semibold">كيف أجرى الباحثون دراستهم، وكيف اختاروا تحليل بياناتهم؟</td>
+                        <td class="p-3 text-emerald-300 font-bold">الركيزة الحصرية الوحيدة للحكم على صلاحية الورقة وقيمتها العلمية.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white"><i class="fa-solid fa-square-poll-vertical text-cyan-400 ml-1"></i>النتائج (Results)</td>
+                        <td class="p-3 text-slate-300">ما الذي وجده الباحثون فعلياً من أرقام وبيانات؟</td>
+                        <td class="p-3 text-rose-300">لا قيمة للنتائج المبهرة إذا كان تصميم المنهجية فاسداً أو منحازاً.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white"><i class="fa-solid fa-comments text-amber-400 ml-1"></i>المناقشة (Discussion)</td>
+                        <td class="p-3 text-slate-300">ما هو التفسير والمعنى الذي يراه الباحثون لتلك النتائج؟</td>
+                        <td class="p-3 text-amber-300">تمثل آراء وتكهنات المؤلفين الشخصية، ويجب ألا تؤثر على الحكم الموضوعي.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Golden Rule Alert Card -->
+              <div class="rich-card p-6 border-r-4 border-r-amber-500 bg-amber-500/5">
+                <div class="flex items-start gap-3">
+                  <i class="fa-solid fa-shield-halved text-amber-500 text-2xl mt-1"></i>
+                  <div>
+                    <h4 class="font-cairo font-bold text-base text-amber-400 mb-1">القاعدة الذهبية للتقييم النقدي (The Golden Rule)</h4>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                      إذا كنت بصدد اتخاذ قرار حول ما إذا كانت الورقة العلمية تستحق القراءة وتطبيق نتائجها أم لا، فيجب أن تبني قرارك <strong>حصرياً على متانة قسم المنهجية (<span class="font-mono text-amber-300">Methods</span>)</strong>، وليس على مدى جاذبية الفرضية، أو روعة النتائج، أو التكهنات المطروحة في المناقشة.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Inversion Model Card -->
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <div class="flex items-center gap-2 text-violet-400 mb-2">
+                  <i class="fa-solid fa-brain text-xl"></i>
+                  <h4 class="font-cairo font-bold text-base">بوابة النموذج الذهني: نموذج التفكير العكسي (Inversion Model - Avoiding Failure)</h4>
+                </div>
+                <div class="space-y-2 text-xs text-slate-300">
+                  <p>
+                    <strong class="text-violet-300">الشرح الرابط:</strong> بدلاً من إضاعة ساعات طويلة في التساؤل: <em>"كيف أثبت جودة هذه الورقة؟"</em>، ينعكس التفكير إلى: <strong class="text-rose-400">"ما هي العيوب القاتلة التي إذا وُجدت، أغلقتُ الورقة فوراً واستبعدتها من التطبيق السريري؟"</strong>
+                  </p>
+                  <p class="text-slate-400">
+                    <strong class="text-emerald-400">التطبيق السريري المباشر:</strong> غربلة الأوراق الرديئة وتوفير الجهد المعرفي عبر اختبار وجود أي من عيوب التحكيم المنهجية كبوابة إقصاء فورية.
+                  </p>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-3",
+          title: "1.2 عيوب التحكيم الشائعة وأدلة JAMA (Common Flaws Leading to Rejection)",
+          level: 2,
+          subtitle: "Box 3.1: 10 Flaws Leading to Rejection & JAMA Critical Checklists",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-rose-500">
+                <h3 class="font-cairo font-bold text-lg mb-2 text-rose-400 flex items-center gap-2">
+                  <i class="fa-solid fa-ban"></i>
+                  عيوب التحكيم العشرة الكبرى (Box 3.1: Common Flaws Leading to Rejection)
+                </h3>
+                <p class="text-slate-300 text-xs mb-4 leading-relaxed">
+                  ترسل المجلات العلمية الرصينة الأوراق البحثية إلى محكمين متخصصين (<span class="font-mono text-cyan-300">Referees / Peer Review</span>) لتقييم أصالتها وأهميتها وصحتها المنهجية. يوضح الجدول التالي العيوب العشرة الكبرى التي يكتشفها المحكمون وتؤدي لرفض الأوراق:
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div class="p-3 bg-slate-900/50 rounded-xl border border-slate-800">
+                    <div class="flex items-center gap-2 font-bold text-rose-400 text-xs mb-1">
+                      <span class="w-5 h-5 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center font-mono text-[11px]">1</span>
+                      <span>عدم أصالة الدراسة (The study was not original)</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400">تكرار نتائج معروفة ومثبتة مسبقاً دون إضافة معرفية جديدة تبرر إجراء البحث.</p>
+                  </div>
+
+                  <div class="p-3 bg-slate-900/50 rounded-xl border border-slate-800">
+                    <div class="flex items-center gap-2 font-bold text-rose-400 text-xs mb-1">
+                      <span class="w-5 h-5 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center font-mono text-[11px]">2</span>
+                      <span>عدم اختبار الفرضية الفعلية (Did not actually test hypothesis)</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400">استخدام أساليب وإجراءات عاجزة منطقياً عن الإجابة على السؤال البحثي المطروح.</p>
+                  </div>
+
+                  <div class="p-3 bg-slate-900/50 rounded-xl border border-slate-800">
+                    <div class="flex items-center gap-2 font-bold text-rose-400 text-xs mb-1">
+                      <span class="w-5 h-5 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center font-mono text-[11px]">3</span>
+                      <span>استخدام نوع خاطئ من الدراسات (Wrong type of study done)</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400">مثل محاولة تقييم فاعلية دواء عبر مسح مقطعي بدلاً من تجربة معشاة ذات شواهد.</p>
+                  </div>
+
+                  <div class="p-3 bg-slate-900/50 rounded-xl border border-slate-800">
+                    <div class="flex items-center gap-2 font-bold text-rose-400 text-xs mb-1">
+                      <span class="w-5 h-5 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center font-mono text-[11px]">4</span>
+                      <span>إجراءات أخلّت بالتصميم (Compromised study design)</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400">وجود ثغرات في اختيار العينة، أو فشل التعمية (<span class="font-mono text-[10px]">Blinding</span>)، أو غياب الضبط الدقيق.</p>
+                  </div>
+
+                  <div class="p-3 bg-slate-900/50 rounded-xl border border-slate-800">
+                    <div class="flex items-center gap-2 font-bold text-rose-400 text-xs mb-1">
+                      <span class="w-5 h-5 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center font-mono text-[11px]">5</span>
+                      <span>حجم العينة صغير جداً (Sample size was too small)</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400">عجز إحصائي يمنع اكتشاف الفروق الحقيقية بين المجموعات (<span class="font-mono text-[10px]">Lack of statistical power</span>).</p>
+                  </div>
+
+                  <div class="p-3 bg-slate-900/50 rounded-xl border border-slate-800">
+                    <div class="flex items-center gap-2 font-bold text-rose-400 text-xs mb-1">
+                      <span class="w-5 h-5 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center font-mono text-[11px]">6</span>
+                      <span>غياب أو ضعف مجموعة المقارنة (Uncontrolled / Inadequately controlled)</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400">مقارنة غير عادلة أو غياب شواهد متكافئة لعزل تأثير التدخل الطبي عن العوامل الأخرى.</p>
+                  </div>
+
+                  <div class="p-3 bg-slate-900/50 rounded-xl border border-slate-800">
+                    <div class="flex items-center gap-2 font-bold text-rose-400 text-xs mb-1">
+                      <span class="w-5 h-5 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center font-mono text-[11px]">7</span>
+                      <span>تحليل إحصائي خاطئ أو غير ملائم (Statistical analysis incorrect)</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400">تطبيق اختبارات إحصائية غير متوافقة مع طبيعة توزيع البيانات، أو التلاعب بالدلالة.</p>
+                  </div>
+
+                  <div class="p-3 bg-slate-900/50 rounded-xl border border-slate-800">
+                    <div class="flex items-center gap-2 font-bold text-rose-400 text-xs mb-1">
+                      <span class="w-5 h-5 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center font-mono text-[11px]">8</span>
+                      <span>استنتاجات غير مبررة بالبيانات (Unjustified conclusions)</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400">القفز إلى تعميمات وادعاءات علاجية عريضة لا تدعمها أرقام ونتائج الدراسة الفعلية.</p>
+                  </div>
+
+                  <div class="p-3 bg-slate-900/50 rounded-xl border border-slate-800">
+                    <div class="flex items-center gap-2 font-bold text-rose-400 text-xs mb-1">
+                      <span class="w-5 h-5 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center font-mono text-[11px]">9</span>
+                      <span>تضارب مصالح غير مفصح عنه (Conflict of interest)</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400">تمويل تجاري أو مصالح شخصية غير معلنة تؤثر على حيادية الباحثين واستنتاجاتهم.</p>
+                  </div>
+
+                  <div class="p-3 bg-slate-900/50 rounded-xl border border-slate-800">
+                    <div class="flex items-center gap-2 font-bold text-rose-400 text-xs mb-1">
+                      <span class="w-5 h-5 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center font-mono text-[11px]">10</span>
+                      <span>رداءة الصياغة اللغوية والتنظيمية (Poorly written paper)</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400">ضعف التعبير والغموض الشديد لدرجة تجعل فهم المنهجية والنتائج أمراً مستحيلاً.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- JAMA Guides Card -->
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <h4 class="font-cairo font-bold text-base mb-2 text-violet-400 flex items-center gap-2">
+                  <i class="fa-solid fa-clipboard-check"></i>
+                  أدلة JAMA وقوائم التدقيق (JAMA Users' Guides & Checklists)
+                </h4>
+                <div class="space-y-2 text-xs text-slate-300">
+                  <p>
+                    <strong class="text-cyan-300">سلسلة أدلة JAMA:</strong> نُشرت في مجلة الجمعية الطبية الأمريكية (<span class="font-mono text-cyan-400">JAMA</span>) وتُعد المرجع التأسيسي للتقييم النقدي.
+                  </p>
+                  <p>
+                    <strong class="text-amber-300">قوائم التحقق المنهجية (Critical Appraisal Checklists):</strong> طوّرت أدلة JAMA قوائم تحقق خاصة بكل نوع من الأوراق (العلاج، التشخيص، الفحص، المآل، السببية، جودة الرعاية، والتحليل الاقتصادي).
+                  </p>
+                  <p class="text-slate-400">
+                    <strong class="text-emerald-400">الملحق رقم 1 (Appendix 1):</strong> يلخص الكتاب قوائم تدقيق مبسطة مشتقة من أدلة JAMA لمساعدة القارئ على تقييم الأوراق خطوة بخطوة.
+                  </p>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-4",
+          title: "2.0 الأسئلة التمهيدية الثلاثة وتصنيف المجالات البحثية",
+          level: 1,
+          subtitle: "Three Preliminary Questions & Broad Fields of Research",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-emerald-500">
+                <h3 class="font-cairo font-bold text-lg mb-3 text-emerald-400 flex items-center gap-2">
+                  <i class="fa-solid fa-compass"></i>
+                  ثلاثة أسئلة تمهيدية لتحديد الاتجاهات (Three Preliminary Questions)
+                </h3>
+                <p class="text-xs text-slate-300 mb-4">
+                  إذا كنت تجد صعوبة في قراءة ورقة طبية معقدة، فابدأ دائماً بطرح الأسئلة التمهيدية الثلاثة التالية لتحديد موقعك واتجاهاتك المعرفية:
+                </p>
+
+                <!-- Question 1 Breakdown -->
+                <div class="space-y-4">
+                  <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <h4 class="font-cairo font-bold text-sm text-cyan-400 mb-2">
+                      السؤال الأول (2.1): لماذا دعت الحاجة لإجراء الدراسة وما هو السؤال البحثي؟
+                    </h4>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-2">
+                      <strong>وظيفة الجملة الافتتاحية (The Introductory Sentence):</strong> يجب أن تلخص الجملة الأولى في الورقة البحثية خلفية المشكلة وحجم العبء الصحي بدقة وإيجاز.
+                    </p>
+                    <div class="p-3 bg-slate-950/40 rounded-lg text-[11px] border border-slate-800/80 space-y-1">
+                      <p><span class="text-amber-400 font-semibold">دراسة الحالة السريرية التوضيحية (الأذن الصمغية Glue ear):</span></p>
+                      <p class="text-slate-300">«يعاني طفل واحد من كل 10 أطفال في المملكة المتحدة (UK) من الأذن الصمغية (Glue ear)، وترتبط هذه الحالة بتأخر كبير في النطق والاستيعاب.»</p>
+                      <p class="text-slate-400">«إن ميزان المنافع والأضرار لإدخال أنابيب التهوية (Grommets) مقارنة بالانتظار والمراقبة الحذرة (Watchful waiting) ما يزال محل خلاف وجدل علمي واسع...»</p>
+                    </div>
+                  </div>
+
+                  <!-- Question 2 Breakdown: Primary vs Secondary -->
+                  <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <h4 class="font-cairo font-bold text-sm text-emerald-400 mb-2">
+                      السؤال الثاني (2.2): ما هو نوع الدراسة التي أُجريت؟ (التمييز المصدري الجوهري)
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+                      <div class="p-3 bg-slate-950/50 rounded-lg border border-cyan-500/20">
+                        <span class="font-bold text-cyan-400 text-xs block mb-1">الدراسات الأولية (Primary Studies)</span>
+                        <p class="text-[11px] text-slate-300 mb-2">أبحاث تجري تجارب مباشرة، أو مسوحاً، أو ملاحظات لجمع بيانات خام أصلية من المرضى أو السكان مباشرة.</p>
+                        <ul class="text-[10px] text-slate-400 space-y-0.5 list-disc list-inside">
+                          <li>التجارب المعشاة ذات الشواهد (RCTs)</li>
+                          <li>دراسات الأتراب / الحشدية (Cohort Studies)</li>
+                          <li>دراسات الحالات والشواهد (Case-Control)</li>
+                          <li>المسوح المقطعية (Cross-Sectional)</li>
+                          <li>تقارير وسلاسل الحالات (Case Reports/Series)</li>
+                        </ul>
+                      </div>
+
+                      <div class="p-3 bg-slate-950/50 rounded-lg border border-violet-500/20">
+                        <span class="font-bold text-violet-400 text-xs block mb-1">الدراسات الثانوية / التوليفية (Secondary Studies)</span>
+                        <p class="text-[11px] text-slate-300 mb-2">دراسات تقوم بـ جمع وتلخيص وفحص وتوليف البيانات من دراسات أولية متعددة وموجودة مسبقاً.</p>
+                        <ul class="text-[10px] text-slate-400 space-y-0.5 list-disc list-inside">
+                          <li>المراجعات المنهجية (Systematic Reviews)</li>
+                          <li>التحليلات التلوية (Meta-analyses)</li>
+                          <li>الدلائل الإرشادية السريرية (Guidelines)</li>
+                          <li>تحليلات القرارات والاقتصاد الصحي (Economic Analyses)</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Box 3.2: Broad Fields of Research Table -->
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <h3 class="font-cairo font-bold text-base mb-3 text-violet-400 flex items-center gap-2">
+                  <i class="fa-solid fa-table-list"></i>
+                  المجالات البحثية الكبرى والتصميم الأمثل لكل مجال (Box 3.2: Broad Fields of Research)
+                </h3>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-xs text-right border-collapse">
+                    <thead>
+                      <tr class="border-b border-slate-700 bg-slate-800/40 text-violet-300 font-cairo">
+                        <th class="p-3">المجال البحثي (Broad Field)</th>
+                        <th class="p-3">الهدف والتركيز السريري (Clinical Focus)</th>
+                        <th class="p-3">التصميم المنهجي المفضل والأمثل (Preferred Design)</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-300">
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">1. العلاج والتدخلات (Therapy)</td>
+                        <td class="p-3">اختبار فاعلية العلاجات الدوائية، الإجراءات الجراحية، أو أنماط تقديم الخدمة.</td>
+                        <td class="p-3 text-emerald-400 font-semibold">التجارب المعشاة ذات الشواهد (RCT)</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">2. التشخيص (Diagnosis)</td>
+                        <td class="p-3">إثبات ما إذا كان الاختبار التشخيصي الجديد دقيقاً، صالحاً (Valid)، وموثوقاً (Reliable).</td>
+                        <td class="p-3 text-cyan-400 font-semibold">مسح مقطعي بمقارنة الاختبار بمعيار الذهب (Cross-sectional vs Gold Standard)</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">3. الفحص والمسح المبكر (Screening)</td>
+                        <td class="p-3">إثبات الجدوى السريرية لتطبيق فحوصات على عينات سكانية واسعة لا تظهر عليها أعراض.</td>
+                        <td class="p-3 text-cyan-400 font-semibold">مسح مقطعي أو تجربة معشاة لبرنامج المسح (Cross-sectional or RCT)</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">4. التكهن والمآل (Prognosis)</td>
+                        <td class="p-3">تحديد المسار المستقبلي المتوقع للمرض وما سيحدث لشخص أصيب في مراحله المبكرة.</td>
+                        <td class="p-3 text-amber-400 font-semibold">دراسة أتراب طولية تتبعية مستقبلية (Longitudinal / Inception Cohort Study)</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">5. السببية والنشوء المرضي (Causation / Aetiology)</td>
+                        <td class="p-3">تحديد ما إذا كان التعرض لعامل بيئي أو دوائي يرتبط بنشوء وتطور مرض معين.</td>
+                        <td class="p-3 text-amber-400 font-semibold">دراسة أتراب أو دراسة حالات وشواهد (Cohort or Case–Control Study)</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">6. جودة الرعاية والتدقيق (Quality of Care / Audit)</td>
+                        <td class="p-3">قياس جودة الرعاية السريرية المقدمة ومقارنتها بمعايير سريرية قياسية معتمدة.</td>
+                        <td class="p-3 text-slate-300 font-semibold">التدقيق السريري / دراسات تحسين الجودة (Clinical Audit / Quality Improvement)</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">7. التحليل الاقتصادي الصحي (Economic Analysis)</td>
+                        <td class="p-3">مقارنة التكاليف المالية الإجمالية مع المخرجات والمنافع السريرية الناتجة عن التدخلات.</td>
+                        <td class="p-3 text-rose-400 font-semibold">تحليل التكلفة والمنفعة / الجدوى الاقتصادية (Cost-effectiveness / Cost-utility)</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">8. الأبحاث النوعية (Qualitative Research)</td>
+                        <td class="p-3">استكشاف المعاني، التجارب الإنسانية الذاتية، السلوكيات، وتفضيلات المرضى ومقدمي الرعاية.</td>
+                        <td class="p-3 text-violet-400 font-semibold">المقابلات المعمقة، مجموعات التركيز، والملاحظة (Interviews, Focus groups, Observation)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Quantitative vs Qualitative Table -->
+              <div class="rich-card p-6 border-r-4 border-r-cyan-500">
+                <h3 class="font-cairo font-bold text-base mb-3 text-cyan-400 flex items-center gap-2">
+                  <i class="fa-solid fa-code-compare"></i>
+                  المقارنة الجوهرية: الأبحاث الكمية مقابل الأبحاث النوعية
+                </h3>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-xs text-right border-collapse">
+                    <thead>
+                      <tr class="border-b border-slate-700 bg-slate-800/40 text-cyan-300 font-cairo">
+                        <th class="p-3">وجه المقارنة (Comparison Dimension)</th>
+                        <th class="p-3">الأبحاث الكمية (Quantitative Research)</th>
+                        <th class="p-3">الأبحاث النوعية (Qualitative Research)</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-300">
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">المنطق الفلسفي والهدف</td>
+                        <td class="p-3">اختبار فرضيات محددة مسبقاً وقياس المتغيرات بالأرقام.</td>
+                        <td class="p-3">استكشاف المعاني والآراء، وتوليد فرضيات ونظريات جديدة.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">طبيعة البيانات</td>
+                        <td class="p-3 font-mono text-cyan-300">أرقام، قياسات كمية، ونسب إحصائية (Numerical Data)</td>
+                        <td class="p-3 text-violet-300">نصوص، كلمات، مشاعر، وسلوكيات مسجلة (Narrative Data)</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">منهجية جمع البيانات</td>
+                        <td class="p-3">تجارب سريرية، استبيانات مغلقة، ومقاييس فسيولوجية.</td>
+                        <td class="p-3">مقابلات مفتوحة، مجموعات تركيز، ودراسات أنثروبولوجية.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">التحليل الإحصائي / المنهجي</td>
+                        <td class="p-3 font-mono text-emerald-400">تحليل رياضي واختبارات معنوية إحصائية (P-values, CI)</td>
+                        <td class="p-3 text-amber-300">تحليل موضوعي وترميز نصوص (Thematic / Content Analysis)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-5",
+          title: "2.1 السؤال الثالث وخوارزمية شجرة القرار (Decision Tree Model)",
+          level: 2,
+          subtitle: "Methodological Congruence & Bifurcation Tree Model",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-amber-500">
+                <h3 class="font-cairo font-bold text-lg mb-2 text-amber-400 flex items-center gap-2">
+                  <i class="fa-solid fa-code-branch"></i>
+                  السؤال الثالث: هل كان تصميم الدراسة ملائماً للسؤال والمجال البحثي؟
+                </h3>
+                <p class="text-slate-300 text-xs leading-relaxed mb-3">
+                  <strong>مبدأ الملاءمة الحتمية (Methodological Congruence):</strong> لا توجد دراسة صحيحة ما لم يكن تصميمها المنهجي متوافقاً بطبيعته مع السؤال المطروح.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div class="p-3 bg-rose-950/20 border border-rose-500/30 rounded-xl">
+                    <span class="text-rose-400 font-bold text-xs block mb-1">خطأ قاتل 1:</span>
+                    <p class="text-[11px] text-slate-300">محاولة إثبات فاعلية دواء جديد عبر استبيان مقطعي بدلاً من إجراء تجربة معشاة (RCT).</p>
+                  </div>
+                  <div class="p-3 bg-rose-950/20 border border-rose-500/30 rounded-xl">
+                    <span class="text-rose-400 font-bold text-xs block mb-1">خطأ قاتل 2:</span>
+                    <p class="text-[11px] text-slate-300">محاولة فهم تجربة المريض مع الألم النفسي عبر أرقام وتجارب معشاة بدلاً من الأبحاث النوعية.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Interactive Decision Tree Flowchart Card -->
+              <div class="rich-card p-6 border-r-4 border-r-cyan-500">
+                <div class="flex items-center gap-2 text-cyan-400 mb-4">
+                  <i class="fa-solid fa-sitemap text-xl"></i>
+                  <h4 class="font-cairo font-bold text-base">نموذج شجرة القرار والتفرع الثنائي (Decision Tree & Bifurcation Model)</h4>
+                </div>
+                
+                <div class="space-y-3 text-xs font-arabic">
+                  <!-- Root Node -->
+                  <div class="p-3 bg-slate-900/80 border border-violet-500/40 rounded-xl text-center font-bold text-violet-300">
+                    <i class="fa-solid fa-file-medical ml-1"></i> فحص الورقة الطبية: ما هو نوع الورقة العام؟
+                  </div>
+
+                  <!-- Level 1 Branching -->
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pr-4 border-r-2 border-slate-700">
+                    <div class="p-3 bg-violet-950/30 border border-violet-500/30 rounded-xl">
+                      <span class="text-violet-400 font-bold block mb-1">1. دراسات ثانوية (توليفية):</span>
+                      <p class="text-[11px] text-slate-300">مراجعة منهجية / تحليل تلوي / دلائل إرشادية سريرية.</p>
+                    </div>
+
+                    <div class="p-3 bg-cyan-950/30 border border-cyan-500/30 rounded-xl">
+                      <span class="text-cyan-400 font-bold block mb-1">2. دراسات أولية (بيانات خام):</span>
+                      <p class="text-[11px] text-slate-300">انتقل للسؤال: هل قام الباحث بتعيين التدخل بنفسه؟</p>
+                    </div>
+                  </div>
+
+                  <!-- Level 2 Branching: Experimental vs Observational -->
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pr-8 border-r-2 border-cyan-700/60">
+                    <div class="p-3 bg-emerald-950/30 border border-emerald-500/30 rounded-xl">
+                      <span class="text-emerald-400 font-bold block mb-1"><i class="fa-solid fa-check ml-1"></i>نعم (تجريبية Experimental):</span>
+                      <div class="space-y-1 mt-2 text-[11px]">
+                        <p class="text-slate-300">هل تم التوزيع عشوائياً؟</p>
+                        <p class="text-emerald-300 font-semibold">• نعم ➔ تجربة معشاة ذات شواهد (RCT) [مجال العلاج]</p>
+                        <p class="text-slate-400">• لا ➔ تجربة شبه تجريبية (Non-RCT)</p>
+                      </div>
+                    </div>
+
+                    <div class="p-3 bg-amber-950/30 border border-amber-500/30 rounded-xl">
+                      <span class="text-amber-400 font-bold block mb-1"><i class="fa-solid fa-xmark ml-1"></i>لا (رصدية Observational):</span>
+                      <div class="space-y-1 mt-2 text-[11px]">
+                        <p class="text-slate-300">هل توجد مجموعة مقارنة / شواهد؟</p>
+                        <p class="text-slate-400">• لا ➔ تقرير حالة أو سلسلة حالات (Case Report / Series)</p>
+                        <p class="text-amber-300 font-semibold">• نعم ➔ حدد الاتجاه الزمني للملاحظة:</p>
+                        <div class="pr-3 text-[10px] space-y-0.5 border-r border-amber-500/40 mt-1">
+                          <p class="text-cyan-300">▪ تتبع مستقبلي للأمام ➔ دراسة أتراب (Cohort) [الإنذار / السببية]</p>
+                          <p class="text-rose-300">▪ بحث استرجاعي للخلف ➔ حالات وشواهد (Case-Control) [الأمراض النادرة]</p>
+                          <p class="text-violet-300">▪ في لحظة زمنية واحدة ➔ مسح مقطعي (Cross-Sectional) [التشخيص / المسح]</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-6",
+          title: "3.0 التجارب المعشاة ذات الشواهد (RCTs) وركائز الصرامة المنهجية",
+          level: 1,
+          subtitle: "Randomised Controlled Trials: Rigour Pillars, ITT & Limitations",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-emerald-500">
+                <div class="flex items-center gap-2 text-emerald-400 mb-2">
+                  <i class="fa-solid fa-flask-vial text-xl"></i>
+                  <h3 class="font-cairo font-bold text-lg">التجارب المعشاة ذات الشواهد (Randomised Controlled Trials - RCTs)</h3>
+                </div>
+                <p class="text-slate-300 text-xs leading-relaxed mb-3">
+                  <strong>المفهوم الجوهري (Definition & Mechanism):</strong> دراسة تجريبية (<span class="font-mono text-emerald-300">Experimental Study</span>) يُوزع فيها المشاركون عشوائياً وبمحض الصدفة الرياضية إلى مجموعتين متكافئتين أو أكثر:
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                  <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <span class="text-emerald-400 font-bold block mb-1">مجموعة التدخل (Intervention Group):</span>
+                    <p class="text-slate-400">تتلقى العلاج أو الإجراء الجراحي أو الدواء الجديد قيد الاختبار.</p>
+                  </div>
+                  <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <span class="text-cyan-400 font-bold block mb-1">مجموعة الشواهد (Control Group):</span>
+                    <p class="text-slate-400">تتلقى علاجاً وهمياً غير فعال (<span class="font-mono text-cyan-300">Placebo</span>) أو العلاج القياسي المعتاد (<span class="font-mono text-cyan-300">Standard of Care</span>).</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Why RCTs Matter Table -->
+              <div class="rich-card p-6 border-r-4 border-r-cyan-500">
+                <h4 class="font-cairo font-bold text-base mb-3 text-cyan-400 flex items-center gap-2">
+                  <i class="fa-solid fa-award"></i>
+                  لماذا تُعد التجارب المعشاة المعيار الذهبي لتقييم العلاجات؟ (Why do RCTs matter?)
+                </h4>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-xs text-right border-collapse">
+                    <thead>
+                      <tr class="border-b border-slate-700 bg-slate-800/40 text-cyan-300 font-cairo">
+                        <th class="p-3">الميزة المنهجية الجوهرية (Methodological Advantage)</th>
+                        <th class="p-3">التفسير العلمي والسريري (Scientific Rationale)</th>
+                        <th class="p-3">الأثر الإحصائي على دقة النتائج (Statistical Impact)</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-300">
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-emerald-400">القضاء على تحيز الاختيار والتعيين (Elimination of Selection Bias)</td>
+                        <td class="p-3">منع الباحث أو الطبيب من توجيه المرضى الأقل مرجعية أو الأفضل صحة نحو علاج معين عمداً أو دون وعي.</td>
+                        <td class="p-3 text-cyan-300 font-mono">تكافؤ تام في نقطة البداية بين المجموعات (Baseline Equivalence).</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-emerald-400">تحييد وتوزيع عوامل الخلط المجهولة (Balancing Unknown Confounders)</td>
+                        <td class="p-3">التوزيع العشوائي الصارم يوزع كافة المتغيرات المؤثرة (المعروفة كالعمر والوزن، والمجهولة كالطفرات الجينية) بالتساوي.</td>
+                        <td class="p-3 text-cyan-300">عزل المتغير المستقل (العلاج) كسبب وحيد ومباشر لأي فرق في النتائج.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-emerald-400">إمكانية تطبيق التعمية المزدوجة (Double-Blind Capability)</td>
+                        <td class="p-3">منع انحياز توقعات المريض (<span class="font-mono text-xs">Placebo effect</span>) وانحياز الطبيب في تقييم التحسن السريري.</td>
+                        <td class="p-3 text-cyan-300">قياس الأثر البيولوجي والسريري الحقيقي للتدخل الطبي بنقاء تام.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Rigour Pillars in RCTs -->
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <h4 class="font-cairo font-bold text-base mb-3 text-violet-400 flex items-center gap-2">
+                  <i class="fa-solid fa-shield-virus"></i>
+                  ركائز الصرامة المنهجية في التجارب المعشاة (Rigour Pillars in RCTs)
+                </h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                  <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <span class="font-bold text-violet-300 block mb-1">1. إخفاء التوزيع (Allocation Concealment):</span>
+                    <p class="text-slate-400">حجب مسار التعشية عن الأطباء والباحثين القائمين على إدخال المرضى لمنع التأثير في قرار ضم المريض.</p>
+                  </div>
+                  <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <span class="font-bold text-cyan-300 block mb-1">2. مستويات التعمية (Blinding / Masking):</span>
+                    <ul class="text-[11px] text-slate-400 space-y-1">
+                      <li>• <strong>أحادية (Single Blind):</strong> المريض لا يعلم العالج.</li>
+                      <li>• <strong>مزدوجة (Double Blind):</strong> المريض والطبيب كلاهما يجهلان هوية العلاج.</li>
+                      <li>• <strong>ثلاثية (Triple Blind):</strong> تمتد لتشمل المحلل الإحصائي ومقيمي النتائج.</li>
+                    </ul>
+                  </div>
+                  <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <span class="font-bold text-emerald-300 block mb-1">3. التحليل بنية العلاج (ITT Analysis):</span>
+                    <p class="text-slate-400">تحليل جميع المرضى ضمن المجموعات التي خُصصوا لها أصلاً عند بدء التعشية، بغض النظر عما إذا التزموا بالعلاج أو انسحبوا، لمنع تحيز التسرب (<span class="font-mono text-[10px]">Attrition Bias</span>).</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Limitations of RCTs Table -->
+              <div class="rich-card p-6 border-r-4 border-r-rose-500">
+                <h4 class="font-cairo font-bold text-base mb-3 text-rose-400 flex items-center gap-2">
+                  <i class="fa-solid fa-triangle-exclamation"></i>
+                  القيود والعيوب المنهجية للتجارب المعشاة (Limitations of RCTs)
+                </h4>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-xs text-right border-collapse">
+                    <thead>
+                      <tr class="border-b border-slate-700 bg-slate-800/40 text-rose-300 font-cairo">
+                        <th class="p-3">القيد المنهجي (Limitation)</th>
+                        <th class="p-3">الوصف السريري والتحدي الميداني (Clinical Description & Challenge)</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-300">
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">الموانع الأخلاقية (Ethical Constraints)</td>
+                        <td class="p-3">لا يمكن تعريض المرضى عشوائياً لعوامل ضارة مفترضة (مثل إجبار مجموعة على التدخين أو التعرض للإشعاع).</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">الكلفة المالية والزمن (High Cost & Long Duration)</td>
+                        <td class="p-3">تتطلب ميزانيات ضخمة وفرق عمل متخصصة ومتابعة مستمرة قد تمتد لسنوات طويلة.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">الصلاحية الخارجية ومحدودية التعميم (Limited External Validity)</td>
+                        <td class="p-3">معايير الاستبعاد الصارمة تجعل عينة التجربة مثالية ونقية، مما يقلل انطباقها على مرضى الواقع المعقدين المصابين بأمراض متعددة.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">العجز عن رصد الآثار الجانبية النادرة جداً (Rare Adverse Events)</td>
+                        <td class="p-3">حجم عينات التجارب المعشاة لا يكفي إحصائياً لاكتشاف المضاعفات النادرة جداً التي تحدث لواحد من كل مئة ألف مريض.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-7",
+          title: "3.1 دراسات الأتراب / الحشدية الطولية (Cohort Studies)",
+          level: 2,
+          subtitle: "Cohort Studies: Etymology, Directionality, Formulas & Metrics",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-cyan-500">
+                <div class="flex items-center gap-2 text-cyan-400 mb-2">
+                  <i class="fa-solid fa-users-line text-xl"></i>
+                  <h3 class="font-cairo font-bold text-lg">دراسات الأتراب / الحشدية (Cohort Studies)</h3>
+                </div>
+                <p class="text-slate-300 text-xs leading-relaxed mb-3">
+                  <strong class="text-violet-300">الأصل اللغوي والتعريف (Etymology & Definition):</strong> كلمة <span class="font-mono text-cyan-300">Cohort</span> مشتقة تاريخياً من الكتائب العسكرية في الجيش الروماني القديم التي تسير معاً وتخوض نفس الظروف والتجارب.
+                </p>
+                <p class="text-slate-300 text-xs leading-relaxed">
+                  <strong class="text-emerald-300">التعريف المنهجي:</strong> دراسة رصدية تتبعية طولية (<span class="font-mono text-xs text-emerald-400">Prospective Longitudinal Observational Study</span>)؛ تبدأ بمجموعة محددة من الأفراد الأصحاء (غير المصابين بالمرض قيد الدراسة في البداية)، وتتبعهم عبر مسار الزمن بعد فرزهم في نقطة البداية إلى:
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3 text-xs">
+                  <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <span class="text-amber-400 font-bold block mb-1">مجموعة معرضة (Exposed Group):</span>
+                    <p class="text-slate-400">أفراد يتعرضون لعامل خطر بيئي أو سلوكي معين (مثل: المدخنون، أو عمال المناجم).</p>
+                  </div>
+                  <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <span class="text-emerald-400 font-bold block mb-1">مجموعة غير معرضة (Unexposed Group):</span>
+                    <p class="text-slate-400">أفراد يشبهون المجموعة الأولى في كافة الخصائص ولكنهم غير معرضين لعامل الخطر.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Temporal Patterns Table -->
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <h4 class="font-cairo font-bold text-base mb-3 text-violet-400 flex items-center gap-2">
+                  <i class="fa-solid fa-clock-rotate-left"></i>
+                  الأنماط الزمنية لدراسات الأتراب (Temporal Direction & Execution)
+                </h4>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-xs text-right border-collapse">
+                    <thead>
+                      <tr class="border-b border-slate-700 bg-slate-800/40 text-violet-300 font-cairo">
+                        <th class="p-3">نمط دراسة الأتراب (Cohort Type)</th>
+                        <th class="p-3">الاتجاه الزمني والتنفيذ (Temporal Direction & Execution)</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-300">
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">دراسة أتراب مستقبلية (Prospective Cohort)</td>
+                        <td class="p-3">يتم تحديد التعرض في الوقت الحاضر، ثم تتبع العينة نحو المستقبل لرصد حدوث المرض.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">دراسة أتراب استرجاعية / تاريخية (Retrospective / Historical Cohort)</td>
+                        <td class="p-3">يتم استخدام سجلات تاريخية موثقة من الماضي لتحديد من كان معرضاً، وتتبع سجلاتهم وصولاً للحاضر لرصد النتيجة.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">دراسة أتراب البداية (Inception Cohort Study)</td>
+                        <td class="p-3 text-amber-300">تتبع المرضى منذ اللحظة الأولى لتشخيصهم بالمرض لدراسة المآل والتكهن الطبي (<span class="font-mono text-[10px]">Prognosis</span>).</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Mathematical Formulas in KaTeX Card -->
+              <div class="rich-card p-6 border-r-4 border-r-emerald-500">
+                <h4 class="font-cairo font-bold text-base mb-3 text-emerald-400 flex items-center gap-2">
+                  <i class="fa-solid fa-calculator"></i>
+                  المقاييس الوبائية المستخرجة مباشرة من دراسات الأتراب (KaTeX)
+                </h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                  <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <span class="font-bold text-cyan-300 block mb-1">الخطر النسبي (Relative Risk - RR):</span>
+                    <p class="text-slate-400 text-[11px] mb-2">نسبة خطر حدوث المرض لدى المعرضين مقارنة بغير المعرضين:</p>
+                    <div class="text-center py-2 bg-slate-950/60 rounded-lg text-cyan-400 dir-ltr font-mono text-sm">
+                      $$ RR = \frac{I_{\text{exposed}}}{I_{\text{unexposed}}} = \frac{a / (a + b)}{c / (c + d)} $$
+                    </div>
+                  </div>
+
+                  <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <span class="font-bold text-amber-300 block mb-1">الخطر المنسوب (Attributable Risk - AR):</span>
+                    <p class="text-slate-400 text-[11px] mb-2">مقدار الخطر الإضافي الذي يمكن عزوه حصرياً لعامل التعرض:</p>
+                    <div class="text-center py-2 bg-slate-950/60 rounded-lg text-amber-400 dir-ltr font-mono text-sm">
+                      $$ AR = I_{\text{exposed}} - I_{\text{unexposed}} $$
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Strengths and Limitations -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="rich-card p-5 border-r-4 border-r-emerald-500">
+                  <h5 class="font-cairo font-bold text-sm text-emerald-400 mb-2"><i class="fa-solid fa-check ml-1"></i>المزايا الكبرى (Key Strengths)</h5>
+                  <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+                    <li><strong>إثبات التسلسل الزمني القاطع:</strong> التعرض يسبق حدوث المرض بيقين تام.</li>
+                    <li><strong>المعيار الأمثل للتعرضات النادرة:</strong> مثل دراسة عمال مصنع لمادة كيميائية غير مألوفة.</li>
+                    <li>دراسة مخرجات وأمراض متعددة ناتجة عن نفس عامل التعرض الواحد.</li>
+                  </ul>
+                </div>
+
+                <div class="rich-card p-5 border-r-4 border-r-rose-500">
+                  <h5 class="font-cairo font-bold text-sm text-rose-400 mb-2"><i class="fa-solid fa-xmark ml-1"></i>العيوب والمخاطر المنهجية (Key Limitations)</h5>
+                  <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+                    <li>باهظة التكلفة وتستغرق زمناً طويلاً جداً (عقود أحياناً).</li>
+                    <li>غير صالحة إطلاقاً للأمراض النادرة لأنها تتطلب متابعة ملايين الأفراد.</li>
+                    <li>خطر فقدان المتابعة (<span class="font-mono text-[10px]">Loss to Follow-up</span>) يهدد صحة النتائج.</li>
+                    <li>غياب التعشية يترك الباب مفتوحاً للخلط بالمتغيرات (<span class="font-mono text-[10px]">Confounding</span>).</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-8",
+          title: "3.2 دراسات الحالات والشواهد (Case–Control Studies)",
+          level: 2,
+          subtitle: "Case-Control Studies: Reverse Logic, Odds Ratio & Biases",
+          content: `
+            <div class="space-y-6">
+              <div class="rich-card p-6 border-r-4 border-r-amber-500">
+                <div class="flex items-center gap-2 text-amber-400 mb-2">
+                  <i class="fa-solid fa-magnifying-glass-arrow-right text-xl"></i>
+                  <h3 class="font-cairo font-bold text-lg">دراسات الحالات والشواهد (Case–Control Studies)</h3>
+                </div>
+                <p class="text-slate-300 text-xs leading-relaxed mb-3">
+                  <strong>التعريف والمنطق المنهجي العكسي (Definition & Reverse Logic):</strong> دراسة رصدية استرجاعية مقارنة (<span class="font-mono text-amber-300">Retrospective Observational Study</span>)؛ تنطلق من النتيجة المرضية بعد وقوعها بالفعل للبحث عن أسبابها المحتملة في الماضي عبر مجموعتين:
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs mb-4">
+                  <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <span class="text-rose-400 font-bold block mb-1">الحالات (Cases):</span>
+                    <p class="text-slate-400">مجموعة من الأفراد المصابين بالمرض قيد الدراسة فعلياً.</p>
+                  </div>
+                  <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <span class="text-cyan-400 font-bold block mb-1">الشواهد (Controls):</span>
+                    <p class="text-slate-400">مجموعة من الأفراد المطابقين للحالات في العمر والجنس والبيئة ولكنهم أصحاء وغير مصابين بالمرض.</p>
+                  </div>
+                </div>
+
+                <!-- Reverse Logic Visual Diagram -->
+                <div class="p-4 bg-slate-950/60 rounded-xl border border-amber-500/30 text-center">
+                  <span class="text-[11px] font-bold text-amber-300 block mb-2 font-mono">الاتجاه الزمني للبحث: استرجاعي للخلف (Looking Backward)</span>
+                  <div class="flex flex-col sm:flex-row items-center justify-center gap-4 text-xs">
+                    <div class="p-2.5 bg-slate-900 rounded-lg border border-slate-700 w-full sm:w-auto">
+                      <span class="text-slate-400 block text-[10px]">نقطة الانطلاق (الحاضر)</span>
+                      <strong class="text-white">الحالات (مرضى) + الشواهد (أصحاء)</strong>
+                    </div>
+                    <i class="fa-solid fa-arrow-left text-amber-400 text-lg hidden sm:block"></i>
+                    <i class="fa-solid fa-arrow-down text-amber-400 text-lg sm:hidden"></i>
+                    <div class="p-2.5 bg-slate-900 rounded-lg border border-slate-700 w-full sm:w-auto">
+                      <span class="text-slate-400 block text-[10px]">البحث في الماضي (السجلات والذاكرة)</span>
+                      <strong class="text-cyan-300">هل كان هناك تعرض لعامل الخطر؟</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Statistical Metric: Odds Ratio (KaTeX) -->
+              <div class="rich-card p-6 border-r-4 border-r-cyan-500">
+                <h4 class="font-cairo font-bold text-base mb-2 text-cyan-400 flex items-center gap-2">
+                  <i class="fa-solid fa-percent"></i>
+                  نسبة الأرجحية (Odds Ratio - OR): المقياس الإحصائي المعتمد
+                </h4>
+                <p class="text-xs text-slate-300 leading-relaxed mb-3">
+                  المقياس الإحصائي الوحيد الصالح هنا، ويقيس أرجحية التعرض لعامل الخطر بين الحالات مقسومة على أرجحية التعرض بين الشواهد (لأنه لا يمكن حساب معدل الحدوث <span class="font-mono text-cyan-300">Incidence</span> أو الخطر النسبي المباشر <span class="font-mono text-cyan-300">RR</span> لأن العدد الكلي للمجتمع غير معروف):
+                </p>
+                <div class="text-center py-2 bg-slate-900/60 rounded-lg text-cyan-400 dir-ltr font-mono text-sm">
+                  $$ OR = \frac{\text{Odds of exposure in cases}}{\text{Odds of exposure in controls}} = \frac{a / c}{b / d} = \frac{a \cdot d}{b \cdot c} $$
+                </div>
+              </div>
+
+              <!-- Strengths vs Vulnerable Biases -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="rich-card p-5 border-r-4 border-r-emerald-500">
+                  <h5 class="font-cairo font-bold text-sm text-emerald-400 mb-2"><i class="fa-solid fa-circle-check ml-1"></i>الاستخدام السريري والمزايا</h5>
+                  <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+                    <li><strong>التصميم الأمثل للأمراض النادرة جداً:</strong> مثل سرطانات الأطفال غير الشائعة.</li>
+                    <li><strong>المعيار الأمثل للأمراض ذات فترة الكمون الطويلة:</strong> التي تستغرق 20-30 سنة للظهور.</li>
+                    <li>سريعة الإنجاز ومنخفضة التكلفة جداً مقارنة بدراسات الأتراب.</li>
+                  </ul>
+                </div>
+
+                <div class="rich-card p-5 border-r-4 border-r-rose-500">
+                  <h5 class="font-cairo font-bold text-sm text-rose-400 mb-2"><i class="fa-solid fa-triangle-exclamation ml-1"></i>الانحيازات والعيوب المنهجية</h5>
+                  <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+                    <li><strong>تحيز التذكر (Recall Bias):</strong> المرضى يتذكرون تفاصيل ماضيهم بدقة وتحيز أكبر من الأصحاء.</li>
+                    <li><strong>تحيز اختيار الشواهد (Selection Bias):</strong> صعوبة بالغة في إيجاد شواهد يماثلون الحالات تماماً.</li>
+                    <li>العجز عن إثبات السببية المباشرة بشكل قاطع لا يقبل الشك.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-9",
+          title: "3.3 المسوح المقطعية وتقارير وسلاسل الحالات السريرية",
+          level: 2,
+          subtitle: "Cross-Sectional Surveys, Case Reports & Case Series Breakdown",
+          content: `
+            <div class="space-y-6">
+              <!-- Cross-Sectional Surveys -->
+              <div class="rich-card p-6 border-r-4 border-r-cyan-500">
+                <div class="flex items-center gap-2 text-cyan-400 mb-2">
+                  <i class="fa-solid fa-camera text-xl"></i>
+                  <h3 class="font-cairo font-bold text-lg">المسوح المقطعية العرضية (Cross-Sectional Surveys)</h3>
+                </div>
+                <p class="text-slate-300 text-xs leading-relaxed mb-3">
+                  <strong>التعريف والرمزية البصرية ("Snapshot in time"):</strong> دراسة رصدية تعتمد على أخذ «لقطة فوتوغرافية ثابتة» لمجتمع الدراسة في لحظة زمنية محددة. يتم قياس المتغيرات وتحديد وجود عامل التعرض والمرض لدى أفراد العينة في نفس الوقت وبشكل متزامن.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs mb-4">
+                  <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <span class="font-bold text-cyan-300 block mb-1">1. قياس معدل الانتشار (Prevalence):</span>
+                    <p class="text-slate-400">تحديد نسبة المصابين بمرض معين في المجتمع في وقت محدد (مفيد لتخطيط الموارد والسياسات الصحية).</p>
+                  </div>
+                  <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <span class="font-bold text-emerald-300 block mb-1">2. الدقة التشخيصية (Diagnostic Accuracy):</span>
+                    <p class="text-slate-400">مقارنة اختبار تشخيصي جديد مع فحص معياري ذهبي (<span class="font-mono text-[10px]">Gold Standard</span>) بالتزامن.</p>
+                  </div>
+                  <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <span class="font-bold text-amber-300 block mb-1">3. المسح والكشف المبكر (Screening):</span>
+                    <p class="text-slate-400">تقييم انتشار عوامل الخطر والاعتلالات الصامتة لدى عينات سكانية واسعة.</p>
+                  </div>
+                </div>
+
+                <!-- Fatal Flaw Warning -->
+                <div class="p-4 bg-rose-950/20 border border-rose-500/30 rounded-xl flex items-start gap-3">
+                  <i class="fa-solid fa-skull-crossbones text-rose-400 text-xl mt-1"></i>
+                  <div>
+                    <h5 class="font-cairo font-bold text-xs text-rose-400 mb-1">نقطة الضعف القاتلة: معضلة التتابع الزمني والسببية («معضلة البيضة والدجاجة»)</h5>
+                    <p class="text-[11px] text-slate-300 leading-relaxed">
+                      نظراً لأن التعرض والنتيجة يُقاسان في اللحظة نفسها، يعجز المسح المقطعي تماماً عن إثبات أيهما حدث أولاً؛ فهل أدى الخمول البدني إلى السمنة، أم أن السمنة هي التي جعلت المرضى قليلي الحركة؟
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Case Reports & Case Series -->
+              <div class="rich-card p-6 border-r-4 border-r-amber-500">
+                <div class="flex items-center gap-2 text-amber-400 mb-2">
+                  <i class="fa-solid fa-notes-medical text-xl"></i>
+                  <h3 class="font-cairo font-bold text-lg">تقارير وسلاسل الحالات السريرية (Case Reports & Case Series)</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs mb-4">
+                  <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <span class="font-bold text-amber-300 block mb-1">تقرير الحالة (Case Report):</span>
+                    <p class="text-slate-400">توثيق سريري سردي مفصل لمريض منفرد ظهرت عليه أعراض غير معتادة، أو استجابة غير مألوفة لعلاج، أو تظاهر مرضي غير مسبوق.</p>
+                  </div>
+                  <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <span class="font-bold text-cyan-300 block mb-1">سلسلة الحالات (Case Series):</span>
+                    <p class="text-slate-400">تجميع وصفي لمجموعة من تقارير الحالات الفردية (مثلاً: 5 إلى 20 مريضاً) يشتركون في نفس المرض أو الظاهرة السريرية النادرة.</p>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                  <div class="p-3 bg-emerald-950/20 border border-emerald-500/20 rounded-xl">
+                    <span class="text-emerald-400 font-bold block mb-1"><i class="fa-solid fa-bell ml-1"></i>الأهمية السريرية والتاريخية:</span>
+                    <ul class="text-[11px] text-slate-300 space-y-1 list-disc list-inside">
+                      <li><strong>نظام إنذار سريري مبكر (Early Warning System):</strong> الكشف الأولي عن الأمراض الجديدة والأوبئة المجهولة.</li>
+                      <li><strong>توليد الفرضيات العلمية:</strong> مهدت سلاسل الحالات لاكتشاف متلازمة نقص المناعة (<span class="font-mono text-[10px]">AIDS</span>) وتشوهات عقار الثاليدومايد (<span class="font-mono text-[10px]">Thalidomide</span>).</li>
+                    </ul>
+                  </div>
+
+                  <div class="p-3 bg-rose-950/20 border border-rose-500/20 rounded-xl">
+                    <span class="text-rose-400 font-bold block mb-1"><i class="fa-solid fa-ban ml-1"></i>العيوب والمحددات المنهجية:</span>
+                    <ul class="text-[11px] text-slate-300 space-y-1 list-disc list-inside">
+                      <li>غياب تام لمجموعة المقارنة والشواهد (<span class="font-mono text-[10px]">No Control Group</span>).</li>
+                      <li>غير قابلة للتعميم إحصائياً وتخضع للمصادفة والانحياز الشخصي للمؤلف.</li>
+                      <li>عاجزة تماماً عن إثبات الفاعلية العلاجية أو السببية.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-10",
+          title: "3.4 مصفوفة المفاضلة الشاملة والتفكير من المبادئ الأولى",
+          level: 2,
+          subtitle: "Trade-off Matrix & First Principles Thinking",
+          chartConfig: {
+            type: 'radar',
+            data: {
+              labels: ['القوة الإثباتية', 'انخفاض التكلفة', 'السرعة الزمنية', 'ملاءمة المرض النادر', 'ملاءمة التعرض النادر'],
+              datasets: [
+                {
+                  label: 'التجارب المعشاة (RCTs)',
+                  data: [100, 10, 15, 10, 5],
+                  borderColor: '#10B981',
+                  backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                  borderWidth: 2
+                },
+                {
+                  label: 'دراسات الأتراب (Cohort)',
+                  data: [85, 25, 20, 5, 95],
+                  borderColor: '#06B6D4',
+                  backgroundColor: 'rgba(6, 182, 212, 0.2)',
+                  borderWidth: 2
+                },
+                {
+                  label: 'الحالات والشواهد (Case-Control)',
+                  data: [65, 80, 85, 95, 20],
+                  borderColor: '#F59E0B',
+                  backgroundColor: 'rgba(245, 158, 11, 0.2)',
+                  borderWidth: 2
+                }
+              ]
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: { position: 'bottom', labels: { font: { family: 'IBM Plex Sans Arabic', size: 10 }, color: '#94A3B8' } }
+              },
+              scales: {
+                r: {
+                  angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                  grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                  pointLabels: { font: { family: 'IBM Plex Sans Arabic', size: 11 }, color: '#CBD5E1' },
+                  ticks: { display: false }
+                }
+              }
+            }
+          },
+          content: `
+            <div class="space-y-6">
+              <!-- Radar Chart for Trade-offs -->
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <div class="flex items-center gap-2 text-violet-400 mb-2">
+                  <i class="fa-solid fa-scale-balanced text-xl"></i>
+                  <h3 class="font-cairo font-bold text-lg">بوابة النموذج الذهني: مصفوفة الموازنة والمفاضلة (Trade-off Matrix)</h3>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                  لا يوجد تصميم بحثي مثالي بالمطلق؛ كل اختيار لتصميم معين ينطوي على تنازلات حتمية ومفاضلة بين الكلفة، الزمن، القوة الإثباتية، وطبيعة السؤال السريري.
+                </p>
+                <div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800 flex justify-center">
+                  <div class="w-full max-w-md">
+                    <canvas id="topicChart"></canvas>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Comprehensive Comparative Matrix Table -->
+              <div class="rich-card p-6 border-r-4 border-r-cyan-500">
+                <h4 class="font-cairo font-bold text-base mb-3 text-cyan-400 flex items-center gap-2">
+                  <i class="fa-solid fa-table-cells"></i>
+                  مصفوفة المقارنة المعيارية الشاملة لتصاميم الدراسات السريرية
+                </h4>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-xs text-right border-collapse">
+                    <thead>
+                      <tr class="border-b border-slate-700 bg-slate-800/40 text-cyan-300 font-cairo">
+                        <th class="p-2.5">التصميم البحثي (Study Design)</th>
+                        <th class="p-2.5">القوة الإثباتية (Evidence Strength)</th>
+                        <th class="p-2.5">التكلفة والزمن (Cost & Time)</th>
+                        <th class="p-2.5">ملاءمة المرض النادر (Rare Disease)</th>
+                        <th class="p-2.5">ملاءمة التعرض النادر (Rare Exposure)</th>
+                        <th class="p-2.5">المقياس الإحصائي (Primary Metric)</th>
+                        <th class="p-2.5">التحيز الأخطر (Key Vulnerable Bias)</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-300">
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-2.5 font-bold text-white">التجارب المعشاة (RCTs)</td>
+                        <td class="p-2.5 text-emerald-400 font-semibold">الأعلى والأقوى (Gold Standard)</td>
+                        <td class="p-2.5 text-rose-400">باهظة جداً / سنوات</td>
+                        <td class="p-2.5 text-rose-400">❌ ضعيفة جداً</td>
+                        <td class="p-2.5 text-rose-400">❌ موانع أخلاقية</td>
+                        <td class="p-2.5 font-mono text-cyan-300 text-[10px]">RR / RRR / NNT</td>
+                        <td class="p-2.5 text-amber-300">تحيز التسرب (Attrition Bias)</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-2.5 font-bold text-white">دراسات الأتراب (Cohort)</td>
+                        <td class="p-2.5 text-emerald-300">قوية جداً (تثبت التسلسل الزمني)</td>
+                        <td class="p-2.5 text-rose-400">مرتفعة / عقود</td>
+                        <td class="p-2.5 text-rose-400">❌ غير صالحة</td>
+                        <td class="p-2.5 text-emerald-400 font-bold">✔️ المعيار الأمثل</td>
+                        <td class="p-2.5 font-mono text-cyan-300 text-[10px]">Incidence / RR / AR</td>
+                        <td class="p-2.5 text-amber-300">فقدان المتابعة والخلط (Loss to follow-up)</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-2.5 font-bold text-white">الحالات والشواهد (Case–Control)</td>
+                        <td class="p-2.5 text-amber-300">متوسطة إلى جيدة (استرجاعية)</td>
+                        <td class="p-2.5 text-emerald-400">منخفضة / سريعة</td>
+                        <td class="p-2.5 text-emerald-400 font-bold">✔️ المعيار الأمثل</td>
+                        <td class="p-2.5 text-rose-400">❌ ضعيفة</td>
+                        <td class="p-2.5 font-mono text-cyan-300 text-[10px]">Odds Ratio (OR)</td>
+                        <td class="p-2.5 text-amber-300">تحيز التذكر واختيار الشواهد (Recall Bias)</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-2.5 font-bold text-white">المسوح المقطعية (Cross-Sectional)</td>
+                        <td class="p-2.5 text-slate-400">ضعيفة للسببية (ترابطية فقط)</td>
+                        <td class="p-2.5 text-emerald-400">منخفضة جداً / فورية</td>
+                        <td class="p-2.5 text-rose-400">❌ غير ملائمة</td>
+                        <td class="p-2.5 text-rose-400">❌ غير ملائمة</td>
+                        <td class="p-2.5 font-mono text-cyan-300 text-[10px]">Prevalence / Accuracy</td>
+                        <td class="p-2.5 text-amber-300">معضلة التتابع الزمني (Temporal Ambiguity)</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-2.5 font-bold text-white">تقارير الحالات (Case Reports)</td>
+                        <td class="p-2.5 text-slate-500">القاعدة التأسيسية (وصفية)</td>
+                        <td class="p-2.5 text-emerald-400">شبه معدومة</td>
+                        <td class="p-2.5 text-emerald-400">✔️ لرصد الحالات الفريدة</td>
+                        <td class="p-2.5 text-rose-400">❌ غير ملائمة</td>
+                        <td class="p-2.5 text-slate-400 text-[10px]">وصف كيفي وأعداد بسيطة</td>
+                        <td class="p-2.5 text-amber-300">انحياز النشر والمصادفة (Publication Bias)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- First Principles Thinking Card -->
+              <div class="rich-card p-6 border-r-4 border-r-emerald-500">
+                <div class="flex items-center gap-2 text-emerald-400 mb-2">
+                  <i class="fa-solid fa-lightbulb text-xl"></i>
+                  <h4 class="font-cairo font-bold text-base">بوابة النموذج الذهني: التفكير من المبادئ الأولى (First Principles Thinking)</h4>
+                </div>
+                <p class="text-xs text-slate-300 mb-3">بدلاً من التردد، يتم تفكيك المشكلة السريرية إلى ثلاثة أسئلة تأسيسية غير قابلة للاختزال:</p>
+                <div class="space-y-2 text-xs">
+                  <div class="p-2.5 bg-slate-900/60 rounded-lg border border-slate-800">
+                    <span class="text-cyan-300 font-bold">1. ما هو السؤال الجوهري؟</span>
+                    <span class="text-slate-300"> اختبار فاعلية علاج ➔ <strong class="text-emerald-400">RCT</strong> | البحث عن سبب مرض نادر ➔ <strong class="text-amber-400">Case-Control</strong> | تتبع مسار إنذار وتكهن ➔ <strong class="text-cyan-400">Cohort</strong>.</span>
+                  </div>
+                  <div class="p-2.5 bg-slate-900/60 rounded-lg border border-slate-800">
+                    <span class="text-amber-300 font-bold">2. هل التدخل آمن وأخلاقي للتعيين العشوائي؟</span>
+                    <span class="text-slate-300"> إذا كان التدخل ضاراً، تُحظر التجارب المعشاة فوراً ويتم التحول للرصد.</span>
+                  </div>
+                  <div class="p-2.5 bg-slate-900/60 rounded-lg border border-slate-800">
+                    <span class="text-violet-300 font-bold">3. ما هي الموارد والزمن المتاح؟</span>
+                    <span class="text-slate-300"> الموازنة بين السرعة والكلفة عبر مصفوفة المفاضلة.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-11",
+          title: "4.0 الهرم التقليدي لتدرج الأدلة ونقده المنهجي (Hierarchy of Evidence)",
+          level: 1,
+          subtitle: "Classic Pyramid, Methodological Critique & Fitness-for-Purpose Matrix",
+          content: `
+            <div class="space-y-6">
+              <!-- Classic Hierarchy Breakdown -->
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <div class="flex items-center gap-2 text-violet-400 mb-2">
+                  <i class="fa-solid fa-pyramid text-xl"></i>
+                  <h3 class="font-cairo font-bold text-lg">الهرم التقليدي لتدرج الأدلة العلمية (The Traditional Hierarchy of Evidence)</h3>
+                </div>
+                <p class="text-xs text-slate-300 mb-4 leading-relaxed">
+                  تم تطوير الهرم الكلاسيكي لتدرج الأدلة في بدايات حركة الطب القائم على الأدلة لترتيب الأبحاث تصاعدياً بناءً على قدرة التصميم المنهجي على عزل التحيز وإثبات العلاقة السببية:
+                </p>
+
+                <!-- Visual ASCII/CSS Pyramid -->
+                <div class="p-4 bg-slate-950/60 rounded-xl border border-violet-500/30 space-y-1.5 text-center text-xs font-bold">
+                  <div class="p-2 bg-emerald-500/20 text-emerald-300 rounded border border-emerald-500/40 w-full sm:w-2/5 mx-auto">
+                    المستوى 1: المراجعات المنهجية والتحليلات التلوية (Systematic Reviews & Meta-Analyses) [القمة]
+                  </div>
+                  <div class="p-2 bg-cyan-500/20 text-cyan-300 rounded border border-cyan-500/40 w-full sm:w-1/2 mx-auto">
+                    المستوى 2: التجارب المعشاة ذات الشواهد (Individual RCTs)
+                  </div>
+                  <div class="p-2 bg-blue-500/20 text-blue-300 rounded border border-blue-500/40 w-full sm:w-3/5 mx-auto">
+                    المستوى 3: دراسات الأتراب الحشدية الطولية (Cohort Studies)
+                  </div>
+                  <div class="p-2 bg-amber-500/20 text-amber-300 rounded border border-amber-500/40 w-full sm:w-4/5 mx-auto">
+                    المستوى 4: دراسات الحالات والشواهد (Case–Control Studies)
+                  </div>
+                  <div class="p-2 bg-rose-500/20 text-rose-300 rounded border border-rose-500/40 w-full sm:w-11/12 mx-auto">
+                    المستوى 5: المسوح المقطعية وسلاسل الحالات (Cross-Sectional Surveys & Case Series)
+                  </div>
+                  <div class="p-2 bg-slate-800 text-slate-300 rounded border border-slate-700 w-full mx-auto">
+                    المستوى 6: تقارير الحالات المنفردة (Case Reports)
+                  </div>
+                  <div class="p-2 bg-slate-900 text-slate-400 rounded border border-slate-800 w-full mx-auto">
+                    المستوى 7: آراء الخبراء والأبحاث المعملية (Expert Opinion & In Vitro) [القاعدة]
+                  </div>
+                </div>
+              </div>
+
+              <!-- Critique of the Hierarchy -->
+              <div class="rich-card p-6 border-r-4 border-r-rose-500">
+                <h4 class="font-cairo font-bold text-base mb-3 text-rose-400 flex items-center gap-2">
+                  <i class="fa-solid fa-gavel"></i>
+                  التحليل النقدي وحدود الهرم الكلاسيكي (Critique of Traditional Hierarchy)
+                </h4>
+                <div class="space-y-3 text-xs">
+                  <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <span class="font-bold text-rose-300 block mb-1">1. خطأ التعميم المطلق (The Overgeneralisation Fallacy):</span>
+                    <p class="text-slate-400">صُمم الهرم الكلاسيكي حصرياً لتقييم الأسئلة العلاجية الدوائية التدخلية (<span class="font-mono text-cyan-300">Therapy Questions</span>)؛ وتطبيقه بصورة عمياء على سائر الأسئلة الطبية يُعد خطأ منهجياً فادحاً.</p>
+                  </div>
+                  <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <span class="font-bold text-rose-300 block mb-1">2. فخ التصميم النظري مقابل جودة التنفيذ (Design vs Execution):</span>
+                    <p class="text-slate-400">تجربة معشاة (RCT) ضعيفة التنفيذ أو ذات تسرب مرتفع (<span class="font-mono text-amber-300">High Attrition</span>) تعطي نتائج مضللة وأدنى قيمة من دراسة أتراب (Cohort) نُفذت بدقة وصرامة استثنائية.</p>
+                  </div>
+                  <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <span class="font-bold text-rose-300 block mb-1">3. إهمال السياق وتفضيلات المريض (Context & Patient Values):</span>
+                    <p class="text-slate-400">الهرم يتعامل مع الأرقام المجردة ويتجاهل الأبعاد النفسية، والاجتماعية، وتجارب المرضى، التي لا يمكن قياسها بالتجارب المعشاة.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Fitness for Purpose Matrix Table -->
+              <div class="rich-card p-6 border-r-4 border-r-emerald-500">
+                <div class="flex items-center gap-2 text-emerald-400 mb-2">
+                  <i class="fa-solid fa-bullseye text-xl"></i>
+                  <h4 class="font-cairo font-bold text-base">مصفوفة الملاءمة للغرض: الأداة المناسبة للسؤال المناسب (Fitness for Purpose Matrix)</h4>
+                </div>
+                <p class="text-xs text-slate-300 mb-3">
+                  <strong>إعادة تفكيك الهرم بالمبادئ الأولى:</strong> الدليل العلمي ليس "رتبة عسكرية ثابتة"، بل هو «الأداة الأكثر قدرة على الإجابة عن طبيعة السؤال المطروح بأقل قدر من الانحياز». يتغير "رأس الهرم" تلقائياً بتغير نوع السؤال:
+                </p>
+
+                <div class="overflow-x-auto">
+                  <table class="w-full text-xs text-right border-collapse">
+                    <thead>
+                      <tr class="border-b border-slate-700 bg-slate-800/40 text-emerald-300 font-cairo">
+                        <th class="p-3">نوع السؤال السريري (Clinical Question Domain)</th>
+                        <th class="p-3">التصميم الذي يتربع على قمة الهرم (Gold Standard Design)</th>
+                        <th class="p-3">لماذا هو الأفضل لهذا السؤال؟ (Scientific Rationale)</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-300">
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">العلاج والتدخلات السريرية (Therapy & Interventions)</td>
+                        <td class="p-3 text-emerald-400 font-semibold">التجارب المعشاة والمراجعات المنهجية (RCTs & Systematic Reviews)</td>
+                        <td class="p-3">القدرة الحصرية للتعشية على تحييد عوامل الخلط وعزل الأثر الحقيقي للعلاج.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">التشخيص والدقة التشخيصية (Diagnostic Accuracy)</td>
+                        <td class="p-3 text-cyan-400 font-semibold">المسوح المقطعية المقارنة بمعيار الذهب (Cross-Sectional vs Gold Standard)</td>
+                        <td class="p-3">التطبيق المتزامن للفحص الجديد والمعياري لحساب الحساسية والنوعية بدقة.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">المسح والتقصي المبكر (Screening Programs)</td>
+                        <td class="p-3 text-cyan-400 font-semibold">التجارب المعشاة لبرامج المسح (RCTs of Screening vs No Screening)</td>
+                        <td class="p-3">إثبات أن الاكتشاف المبكر يقلل الوفيات الإجمالية فعلياً ولا يقتصر على تقديم زمن التشخيص.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">التكهن والإنذار المرضي (Prognosis & Natural History)</td>
+                        <td class="p-3 text-amber-400 font-semibold">دراسات أتراب البداية التتبعية الطولية (Inception Cohort Studies)</td>
+                        <td class="p-3">متابعة المرضى من اللحظة الأولى للتشخيص ورصد المسار الطبيعي للمرض عبر الزمن.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">السببية والتعرضات الضارة النادرة (Causation & Harm)</td>
+                        <td class="p-3 text-amber-400 font-semibold">دراسات الأتراب أو الحالات والشواهد (Cohort / Case–Control Studies)</td>
+                        <td class="p-3">استحالة تعريض المرضى للأذى عشوائياً لأسباب أخلاقية، وتفوق الحالات والشواهد في رصد الضرر النادر.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">الآثار الجانبية النادرة جداً للأدوية (Rare Adverse Reactions)</td>
+                        <td class="p-3 text-rose-400 font-semibold">سلاسل الحالات وأنظمة التيقظ الدوائي (Pharmacovigilance & Case Series)</td>
+                        <td class="p-3">عينات التجارب المعشاة أصغر من أن ترصد المضاعفات التي تحدث بنسبة 1 في 100,000.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-800/20">
+                        <td class="p-3 font-bold text-white">تجارب المرضى والسلوك الإنساني (Patient Experience & Values)</td>
+                        <td class="p-3 text-violet-400 font-semibold">الأبحاث النوعية المعمقة (Qualitative Research - Interviews)</td>
+                        <td class="p-3">الأرقام تعجز عن قياس المعاناة، المشاعر، المعتقدات الثقافية، وتفضيلات الرعاية.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: "topic-12",
+          title: "5.0 التمارين والتطبيقات السريرية العملية والمراجع (Exercises & References)",
+          level: 1,
+          subtitle: "Clinical Exercises, Rapid Trashing Practice & Comprehensive References",
+          content: `
+            <div class="space-y-6">
+              <!-- Exercise 5.1: Interactive Scenarios Matching -->
+              <div class="rich-card p-6 border-r-4 border-r-emerald-500">
+                <div class="flex items-center gap-2 text-emerald-400 mb-2">
+                  <i class="fa-solid fa-list-check text-xl"></i>
+                  <h3 class="font-cairo font-bold text-lg">تمرين 5.1: الفرز المنهجي للسيناريوهات السريرية (Study Design Selection)</h3>
+                </div>
+                <p class="text-xs text-slate-300 mb-4">
+                  اختبر قدرتك على تحديد التصميم البحثي الأمثل والتعليل المنهجي لكل معضلة سريرية:
+                </p>
+
+                <div class="space-y-3 text-xs">
+                  <!-- Scenario 1 -->
+                  <div class="p-3.5 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <div class="flex items-start justify-between gap-2 mb-2">
+                      <span class="font-bold text-white"><span class="text-emerald-400">السيناريو 1:</span> ترغب في معرفة ما إذا كان عقار بيتا-بلوكر جديد يخفض معدل الوفيات بعد الجلطة القلبية.</span>
+                    </div>
+                    <div class="p-2.5 bg-emerald-950/20 border border-emerald-500/30 rounded-lg text-emerald-300">
+                      <strong>التصميم الأمثل:</strong> تجربة معشاة ذات شواهد (Randomised Controlled Trial)<br>
+                      <strong>التعليل المنهجي:</strong> سؤال علاجي يتطلب تعشية لعزل أثر الدواء عن شدة الجلطة الأصلية وعوامل الخلط.
+                    </div>
+                  </div>
+
+                  <!-- Scenario 2 -->
+                  <div class="p-3.5 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <div class="flex items-start justify-between gap-2 mb-2">
+                      <span class="font-bold text-white"><span class="text-amber-400">السيناريو 2:</span> ترغب في دراسة سبب نشوء ورم دماغي نادر جداً يصيب واحداً من كل 500,000 طفل.</span>
+                    </div>
+                    <div class="p-2.5 bg-amber-950/20 border border-amber-500/30 rounded-lg text-amber-300">
+                      <strong>التصميم الأمثل:</strong> دراسة حالات وشواهد (Case–Control Study)<br>
+                      <strong>التعليل المنهجي:</strong> المرض نادر جداً؛ وتتبع الأصحاء في دراسة أتراب سيتطلب ملايين البشر وعقوداً من الزمن.
+                    </div>
+                  </div>
+
+                  <!-- Scenario 3 -->
+                  <div class="p-3.5 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <div class="flex items-start justify-between gap-2 mb-2">
+                      <span class="font-bold text-white"><span class="text-cyan-400">السيناريو 3:</span> ترغب في معرفة المسار المستقبلي المتوقع لاحتمالية فقدان البصر لدى مرضى شُخصوا حديثاً بالسكري.</span>
+                    </div>
+                    <div class="p-2.5 bg-cyan-950/20 border border-cyan-500/30 rounded-lg text-cyan-300">
+                      <strong>التصميم الأمثل:</strong> دراسة أتراب البداية الطولية (Inception Cohort Study)<br>
+                      <strong>التعليل المنهجي:</strong> سؤال مآل وإنذار (Prognosis) يتطلب تتبع المرضى من نقطة التشخيص ورصد المضاعفات.
+                    </div>
+                  </div>
+
+                  <!-- Scenario 4 -->
+                  <div class="p-3.5 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <div class="flex items-start justify-between gap-2 mb-2">
+                      <span class="font-bold text-white"><span class="text-violet-400">السيناريو 4:</span> ترغب في تقييم دقة جهاز فحص سريع جديد للكشف عن بكتيريا الحلق في العيادة الخارجية.</span>
+                    </div>
+                    <div class="p-2.5 bg-violet-950/20 border border-violet-500/30 rounded-lg text-violet-300">
+                      <strong>التصميم الأمثل:</strong> مسح مقطعي مقارن (Cross-Sectional vs Gold Standard)<br>
+                      <strong>التعليل المنهجي:</strong> مقارنة متزامنة لنتائج الجهاز الجديد مع المزرعة البكتيرية المعيارية (Culture).
+                    </div>
+                  </div>
+
+                  <!-- Scenario 5 -->
+                  <div class="p-3.5 bg-slate-900/60 rounded-xl border border-slate-800">
+                    <div class="flex items-start justify-between gap-2 mb-2">
+                      <span class="font-bold text-white"><span class="text-rose-400">السيناريو 5:</span> ترغب في فهم أسباب رفض بعض الأمهات إعطاء أطفالهن اللقاحات الدورية الإلزامية.</span>
+                    </div>
+                    <div class="p-2.5 bg-rose-950/20 border border-rose-500/30 rounded-lg text-rose-300">
+                      <strong>التصميم الأمثل:</strong> أبحاث نوعية (مقابلات معمقة ومجموعات تركيز - Qualitative Study)<br>
+                      <strong>التعليل المنهجي:</strong> استكشاف الدوافع النفسية، المعتقدات، والمخاوف الذاتية التي لا تقيسها الاستبيانات المغلقة.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Exercise 5.2: Rapid Trashing -->
+              <div class="rich-card p-6 border-r-4 border-r-rose-500">
+                <div class="flex items-center gap-2 text-rose-400 mb-2">
+                  <i class="fa-solid fa-trash-can text-xl"></i>
+                  <h3 class="font-cairo font-bold text-lg">تمرين 5.2: تمرين الغربلة السريعة والتفكير العكسي (Rapid "Trashing" Exercise)</h3>
+                </div>
+                <div class="p-3.5 bg-slate-900/60 rounded-xl border border-slate-800 text-xs mb-3 space-y-2">
+                  <p class="font-bold text-white">السيناريو المطروح:</p>
+                  <p class="text-slate-300 leading-relaxed">
+                    عُرضت عليك ورقة بحثية تزعم أن <strong class="text-amber-400">«شرب الشاي الأخضر يقي من سرطان البنكرياس»</strong>، وعند فحص المنهجية وجدت الآتي:
+                  </p>
+                  <ul class="text-[11px] text-slate-400 space-y-1 list-disc list-inside">
+                    <li>الدراسة مسح مقطعي (<span class="font-mono text-cyan-300">Cross-sectional survey</span>) أُجري على عينة من 50 شخصاً فقط تم سؤالهم عن عادات شرب الشاي وإصابتهم بالسرطان.</li>
+                    <li>لا توجد مجموعة شواهد متكافئة، والتحليل الإحصائي لم يضبط عوامل الخلط مثل التدخين والعمر.</li>
+                  </ul>
+                </div>
+
+                <div class="p-4 bg-rose-950/30 border border-rose-500/40 rounded-xl text-xs space-y-2">
+                  <div class="flex items-center gap-2 font-bold text-rose-400 text-sm">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                    <span>القرار المنهجي السريع وفق التفكير العكسي:</span>
+                  </div>
+                  <p class="text-white font-bold">
+                    القرار: إقصاء الورقة فوراً وإلقاؤها في سلة المهملات (<span class="font-mono text-rose-300">Belongs in the bin</span>).
+                  </p>
+                  <div class="text-[11px] text-slate-300 space-y-1">
+                    <p><strong>الأسباب المنهجية القاتلة:</strong></p>
+                    <p>1. التصميم المقطعي عاجز تماماً عن إثبات السببية والتتابع الزمني.</p>
+                    <p>2. حجم العينة (50 شخصاً فقط) صغير جداً ومعدوم القوة الإحصائية.</p>
+                    <p>3. غياب الشواهد وإهمال التدخين كعامل خلط رئيسي يفسد النتائج.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Academic References -->
+              <div class="rich-card p-6 border-r-4 border-r-violet-500">
+                <div class="flex items-center gap-2 text-violet-400 mb-3">
+                  <i class="fa-solid fa-book-bookmark text-xl"></i>
+                  <h3 class="font-cairo font-bold text-base">المراجع الأكاديمية الشاملة للفصل الثالث (References)</h3>
+                </div>
+                <div class="space-y-2 text-[11px] text-slate-400 font-mono dir-ltr text-left">
+                  <p class="p-2 bg-slate-900/40 rounded border border-slate-800"><strong class="text-violet-400">2.</strong> Lock S. Few things are more dispiriting than to reject a paper based on a good idea with irremediable flaws in the methods. <em>British Medical Journal (BMJ)</em>, 1979.</p>
+                  <p class="p-2 bg-slate-900/40 rounded border border-slate-800"><strong class="text-violet-400">3.</strong> Altman DG. The scandal of poor medical research. <em>British Medical Journal (BMJ)</em>, 1994; 308: 283–284.</p>
+                  <p class="p-2 bg-slate-900/40 rounded border border-slate-800"><strong class="text-violet-400">4.</strong> Ioannidis JPA. Why most published research findings are false. <em>PLoS Medicine</em>, 2005; 2(8): e124.</p>
+                  <p class="p-2 bg-slate-900/40 rounded border border-slate-800"><strong class="text-violet-400">5.</strong> Guyatt GH, Sackett DL, Cook DJ, et al. Users' Guides to the Medical Literature: A manual for evidence-based clinical practice. <em>JAMA & The Evidence-Based Medicine Working Group</em>, 1993–2000.</p>
+                  <p class="p-2 bg-slate-900/40 rounded border border-slate-800"><strong class="text-violet-400">6.</strong> Greenhalgh T, Howick J, Maskrey N. Evidence based medicine: a movement in crisis? <em>British Medical Journal (BMJ)</em>, 2014; 348: g3725.</p>
+                  <p class="p-2 bg-slate-900/40 rounded border border-slate-800"><strong class="text-violet-400">7.</strong> Greenhalgh T. <em>How to Read a Paper: The Basics of Evidence-Based Medicine</em> (7th Edition). Wiley-Blackwell, 2024.</p>
+                </div>
+              </div>
+            </div>
+          `
+        }
+      ]
+    };
+
+    /* ==========================================================================
+       UI CONTROLLER ENGINE
+       ========================================================================== */
+    let activeTopicId = LECTURE_DATA.topics[0]?.id || '';
+    let currentChartInstance = null;
+    let lastScrollY = window.scrollY;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      renderLectureMetadata();
+      renderDrawerTree();
+      renderTopic(activeTopicId);
+      setupEventListeners();
+      setupHeaderAutoHiding();
+    });
+
+    // Theme Switcher Logic
+    function initTheme() {
+      const savedTheme = localStorage.getItem('app-theme') || 'dark';
+      const htmlEl = document.documentElement;
+      const themeIcon = document.getElementById('theme-icon');
+
+      if (savedTheme === 'dark') {
+        htmlEl.classList.add('dark');
+        if (themeIcon) themeIcon.className = 'fa-solid fa-sun text-amber-400';
+      } else {
+        htmlEl.classList.remove('dark');
+        if (themeIcon) themeIcon.className = 'fa-solid fa-moon text-slate-700';
+      }
+    }
+
+    function toggleTheme() {
+      triggerHaptic();
+      const htmlEl = document.documentElement;
+      const themeIcon = document.getElementById('theme-icon');
+      
+      if (htmlEl.classList.contains('dark')) {
+        htmlEl.classList.remove('dark');
+        localStorage.setItem('app-theme', 'light');
+        if (themeIcon) themeIcon.className = 'fa-solid fa-moon text-slate-700';
+      } else {
+        htmlEl.classList.add('dark');
+        localStorage.setItem('app-theme', 'dark');
+        if (themeIcon) themeIcon.className = 'fa-solid fa-sun text-amber-400';
+      }
+    }
+
+    // Auto-Hiding Header on Scroll
+    function setupHeaderAutoHiding() {
+      const header = document.getElementById('main-header');
+      window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > lastScrollY && currentScrollY > 70) {
+          header.classList.add('-translate-y-full');
+        } else {
+          header.classList.remove('-translate-y-full');
+        }
+        lastScrollY = currentScrollY;
+      });
+    }
+
+    // Safe Telegram Haptics
+    function triggerHaptic() {
+      try {
+        if (window.Telegram?.WebApp?.HapticFeedback) {
+          window.Telegram.WebApp.HapticFeedback.impactOccurred('light');
+        }
+      } catch (e) {}
+    }
+
+    // Inject Metadata
+    function renderLectureMetadata() {
+      document.getElementById('lecture-title-display').innerText = LECTURE_DATA.title;
+      document.getElementById('lecture-subtitle-display').innerText = LECTURE_DATA.subtitle;
+      document.getElementById('chapter-tag-display').innerText = LECTURE_DATA.chapterTag;
+      document.getElementById('topic-count-display').innerText = `${LECTURE_DATA.topics.length} وحدات دراسية`;
+    }
+
+    // Drawer Tree Renderer
+    function renderDrawerTree() {
+      const container = document.getElementById('drawer-tree-container');
+      container.innerHTML = '';
+
+      LECTURE_DATA.topics.forEach((topic) => {
+        const isLevel2 = topic.level === 2;
+        const isLevel3 = topic.level === 3;
+        const indentClass = isLevel3 ? 'mr-5 border-r-2 border-slate-700/60 pr-2' : isLevel2 ? 'mr-2.5 border-r-2 border-violet-500/30 pr-2' : 'mr-0';
+        
+        const btn = document.createElement('button');
+        btn.className = `w-full text-right p-2.5 rounded-xl transition-all flex items-center justify-between text-xs font-cairo font-bold ${indentClass} ${
+          topic.id === activeTopicId 
+            ? 'bg-violet-600/20 text-violet-400 border border-violet-500/40 shadow-sm' 
+            : 'hover:bg-slate-800/30 text-slate-400'
+        }`;
+        
+        btn.innerHTML = `
+          <span class="truncate ml-2">${topic.title}</span>
+          <i class="fa-solid fa-chevron-left text-[10px] opacity-60"></i>
+        `;
+
+        btn.onclick = () => {
+          triggerHaptic();
+          switchTopic(topic.id);
+          closeDrawer();
+        };
+
+        container.appendChild(btn);
+      });
+    }
+
+    // Render Active Topic
+    function renderTopic(topicId) {
+      const topic = LECTURE_DATA.topics.find(t => t.id === topicId);
+      if (!topic) return;
+
+      activeTopicId = topicId;
+      const viewport = document.getElementById('active-topic-viewport');
+
+      if (currentChartInstance) {
+        currentChartInstance.destroy();
+        currentChartInstance = null;
+      }
+
+      viewport.innerHTML = `
+        <div class="rich-card p-6 border-b-2 border-b-violet-500/30">
+          <span class="text-[11px] font-bold text-violet-500 dark:text-violet-400 uppercase tracking-wider block mb-1">${topic.subtitle || ''}</span>
+          <h2 class="font-cairo font-extrabold text-xl md:text-2xl">${topic.title}</h2>
+        </div>
+        <div>
+          ${topic.content}
+        </div>
+      `;
+
+      // Render KaTeX Formulas safely
+      if (window.renderMathInElement) {
+        try {
+          renderMathInElement(viewport, {
+            delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false}
+            ],
+            throwOnError: false
+          });
+        } catch (e) {}
+      }
+
+      // Render Chart if config exists
+      if (topic.chartConfig && document.getElementById('topicChart')) {
+        const ctx = document.getElementById('topicChart').getContext('2d');
+        currentChartInstance = new Chart(ctx, topic.chartConfig);
+      }
+
+      renderDrawerTree();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function switchTopic(topicId) {
+      renderTopic(topicId);
+    }
+
+    function openDrawer() {
+      triggerHaptic();
+      document.getElementById('right-outline-drawer').classList.remove('translate-x-full');
+      document.getElementById('drawer-overlay').classList.remove('hidden');
+    }
+
+    function closeDrawer() {
+      document.getElementById('right-outline-drawer').classList.add('translate-x-full');
+      document.getElementById('drawer-overlay').classList.add('hidden');
+    }
+
+    function setupEventListeners() {
+      document.getElementById('drawer-toggle-btn').onclick = openDrawer;
+      document.getElementById('close-drawer-btn').onclick = closeDrawer;
+      document.getElementById('drawer-overlay').onclick = closeDrawer;
+      document.getElementById('theme-toggle-btn').onclick = toggleTheme;
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeDrawer();
+      });
+    }
+  </script>
+</body>
+</html>
